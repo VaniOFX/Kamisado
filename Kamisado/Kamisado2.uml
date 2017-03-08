@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_AN6LMPpuEea7j9YywTptLw" name="Kamisado2" visibility="public">
+    <eAnnotations xmi:id="_AW-noPpuEea7j9YywTptLw" source="http://ns.yatta.de/umllab">
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_AW-nofpuEea7j9YywTptLw" source="codegen">
+        <details xmi:id="_AW-novpuEea7j9YywTptLw" key="codegenDirectory" value="/Kamisado/src"/>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:id="_sqS9cPp0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_sqULkPp0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_sqULkfp0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_sqULkvp0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_sqULk_p0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_sqUyoPp0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_sqUyofp0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_sqUyovp0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_stD9kPp0Eea7j9YywTptLw">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pPa5YPpxEea7j9YywTptLw" name="Player">
+      <ownedAttribute xmi:id="_wsNwMPpzEea7j9YywTptLw" name="game" type="_88sVQPpxEea7j9YywTptLw" association="_wsNJIPpzEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wsNwMfpzEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wsNwMvpzEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tBsRIPpxEea7j9YywTptLw" name="AIPlayer">
+      <generalization xmi:id="_D9zLEPpzEea7j9YywTptLw" general="_pPa5YPpxEea7j9YywTptLw"/>
+      <ownedAttribute xmi:id="_1K7zsvpyEea7j9YywTptLw" name="gameRules" type="_Bn6uQPpyEea7j9YywTptLw" association="_1K7MoPpyEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1K7zs_pyEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1K7ztPpyEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5oD7wPpxEea7j9YywTptLw" name="HumanPlayer">
+      <generalization xmi:id="_BgFygPpzEea7j9YywTptLw" general="_pPa5YPpxEea7j9YywTptLw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_88sVQPpxEea7j9YywTptLw" name="Game">
+      <ownedAttribute xmi:id="_sgrZUfpyEea7j9YywTptLw" name="applicaiton" type="_DoeQwPpyEea7j9YywTptLw" association="_sgrZUPpyEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sgucoPpyEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sgucofpyEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_xEs-JPpyEea7j9YywTptLw" name="gameRules" type="_Bn6uQPpyEea7j9YywTptLw" association="_xEs-IPpyEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xEs-JfpyEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xEs-JvpyEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_TNDjgfpzEea7j9YywTptLw" name="stats" type="_WuhUkPpyEea7j9YywTptLw" association="_TNDjgPpzEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TNDjgvpzEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TNDjg_pzEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_wsNJIfpzEea7j9YywTptLw" name="player" type="_pPa5YPpxEea7j9YywTptLw" association="_wsNJIPpzEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wsNJIvpzEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wsNJI_pzEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-Fty0PpxEea7j9YywTptLw" name="SinglePlayer">
+      <generalization xmi:id="_GIzqEPpzEea7j9YywTptLw" general="_88sVQPpxEea7j9YywTptLw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="__2d-wPpxEea7j9YywTptLw" name="TwoPlayer">
+      <generalization xmi:id="_H0ODAPpzEea7j9YywTptLw" general="_88sVQPpxEea7j9YywTptLw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Bn6uQPpyEea7j9YywTptLw" name="GameRules">
+      <ownedAttribute xmi:id="_xEs-IfpyEea7j9YywTptLw" name="game" type="_88sVQPpxEea7j9YywTptLw" association="_xEs-IPpyEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xEs-IvpyEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xEs-I_pyEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_1K7MofpyEea7j9YywTptLw" name="aIPlayer" type="_tBsRIPpxEea7j9YywTptLw" association="_1K7MoPpyEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1K7zsPpyEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1K7zsfpyEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_DoeQwPpyEea7j9YywTptLw" name="Applicaiton">
+      <ownedAttribute xmi:id="_sgucovpyEea7j9YywTptLw" name="game" type="_88sVQPpxEea7j9YywTptLw" association="_sgrZUPpyEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sgvDsPpyEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sgvDsfpyEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_vQXSsvpyEea7j9YywTptLw" name="gUI" type="_FDe2MPpyEea7j9YywTptLw" association="_vQWroPpyEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vQXSs_pyEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vQXStPpyEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_18rHwPp0Eea7j9YywTptLw" name="NewGame" visibility="public" type="_88sVQPpxEea7j9YywTptLw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_FDe2MPpyEea7j9YywTptLw" name="GUI">
+      <ownedAttribute xmi:id="_vQWrofpyEea7j9YywTptLw" name="applicaiton" type="_DoeQwPpyEea7j9YywTptLw" association="_vQWroPpyEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vQXSsPpyEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vQXSsfpyEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_WuhUkPpyEea7j9YywTptLw" name="Stats">
+      <ownedAttribute xmi:id="_TNDjhPpzEea7j9YywTptLw" name="game" type="_88sVQPpxEea7j9YywTptLw" association="_TNDjgPpzEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TNDjhfpzEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TNDjhvpzEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_pC84wfpzEea7j9YywTptLw" name="connection" type="_YDNPkPpyEea7j9YywTptLw" association="_pC84wPpzEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pC84wvpzEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pC9f0PpzEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YDNPkPpyEea7j9YywTptLw" name="Connection" visibility="public">
+      <ownedAttribute xmi:id="_mYXh1PpzEea7j9YywTptLw" name="multiplayer" type="_ihsLMPpzEea7j9YywTptLw" association="_mYXh0PpzEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mYXh1fpzEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mYXh1vpzEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_pC9f0fpzEea7j9YywTptLw" name="stats" type="_WuhUkPpyEea7j9YywTptLw" association="_pC84wPpzEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pC9f0vpzEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pC9f0_pzEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_sgrZUPpyEea7j9YywTptLw" name="" memberEnd="_sgrZUfpyEea7j9YywTptLw _sgucovpyEea7j9YywTptLw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_vQWroPpyEea7j9YywTptLw" name="" memberEnd="_vQWrofpyEea7j9YywTptLw _vQXSsvpyEea7j9YywTptLw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_xEs-IPpyEea7j9YywTptLw" name="" memberEnd="_xEs-IfpyEea7j9YywTptLw _xEs-JPpyEea7j9YywTptLw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_1K7MoPpyEea7j9YywTptLw" name="" memberEnd="_1K7MofpyEea7j9YywTptLw _1K7zsvpyEea7j9YywTptLw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_TNDjgPpzEea7j9YywTptLw" name="" memberEnd="_TNDjgfpzEea7j9YywTptLw _TNDjhPpzEea7j9YywTptLw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ihsLMPpzEea7j9YywTptLw" name="Multiplayer">
+      <generalization xmi:id="_kgD8YPpzEea7j9YywTptLw" general="_88sVQPpxEea7j9YywTptLw"/>
+      <ownedAttribute xmi:id="_mYXh0fpzEea7j9YywTptLw" name="connection" type="_YDNPkPpyEea7j9YywTptLw" association="_mYXh0PpzEea7j9YywTptLw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mYXh0vpzEea7j9YywTptLw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mYXh0_pzEea7j9YywTptLw" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_mYXh0PpzEea7j9YywTptLw" name="" memberEnd="_mYXh0fpzEea7j9YywTptLw _mYXh1PpzEea7j9YywTptLw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_pC84wPpzEea7j9YywTptLw" name="" memberEnd="_pC84wfpzEea7j9YywTptLw _pC9f0fpzEea7j9YywTptLw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_wsNJIPpzEea7j9YywTptLw" name="" memberEnd="_wsNJIfpzEea7j9YywTptLw _wsNwMPpzEea7j9YywTptLw"/>
+    <profileApplication xmi:id="_AXBq8PpuEea7j9YywTptLw">
+      <eAnnotations xmi:id="_AXCSAPpuEea7j9YywTptLw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_AXCSAfpuEea7j9YywTptLw" base_Package="_AN6LMPpuEea7j9YywTptLw">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+</xmi:XMI>

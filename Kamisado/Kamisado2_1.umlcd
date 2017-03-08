@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_AU7ZMPpuEea7j9YywTptLw">
+  <modelElement href="Kamisado2.uml#_AN6LMPpuEea7j9YywTptLw"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_sh0BwPpyEea7j9YywTptLw" sourceAnchor="50.0,56.0" targetAnchor="125.0,22.0" target="_88s8UPpxEea7j9YywTptLw" source="_Doe30PpyEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_sgrZUPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_sh0BwfpyEea7j9YywTptLw"/>
+    <bendpoints xmi:id="_kCDFUPzREeaHRNMTknBhvw" sourceY="140" targetX="106"/>
+    <nameVisual xmi:id="_sh0BwvpyEea7j9YywTptLw" text="">
+      <visualProperties xmi:id="_slwGkPpyEea7j9YywTptLw" position="-52.0,-23.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_sh0Bw_pyEea7j9YywTptLw" aggregationKind="NONE" name="applicaiton" navigable="true">
+      <modelElement href="Kamisado2.uml#_sgrZUfpyEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_slu4cPpyEea7j9YywTptLw" position="2.0,28.0"/>
+      <visibility xmi:id="_sh0BxPpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_sh0BxfpyEea7j9YywTptLw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_sh0BxvpyEea7j9YywTptLw" aggregationKind="NONE" name="game" navigable="true">
+      <modelElement href="Kamisado2.uml#_sgucovpyEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_slwtoPpyEea7j9YywTptLw" position="51.0,-96.0"/>
+      <visibility xmi:id="_sh0Bx_pyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_sh0ByPpyEea7j9YywTptLw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_vQZH4PpyEea7j9YywTptLw" sourceAnchor="108.0,28.0" targetAnchor="96.0,0.0" target="_FDfdQPpyEea7j9YywTptLw" source="_Doe30PpyEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_vQWroPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_vQZH4fpyEea7j9YywTptLw"/>
+    <bendpoints xmi:id="_kCDsYPzREeaHRNMTknBhvw" sourceX="158" targetY="-54"/>
+    <nameVisual xmi:id="_vQZH4vpyEea7j9YywTptLw" text="">
+      <visualProperties xmi:id="_vSkSIPpyEea7j9YywTptLw" position="-57.0,1.0000000000000018"/>
+    </nameVisual>
+    <sourceRole xmi:id="_vQZH4_pyEea7j9YywTptLw" aggregationKind="NONE" name="applicaiton" navigable="true">
+      <modelElement href="Kamisado2.uml#_vQWrofpyEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_vSjEAPpyEea7j9YywTptLw" position="22.0,-57.0"/>
+      <visibility xmi:id="_vQZH5PpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_vQZH5fpyEea7j9YywTptLw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_vQZH5vpyEea7j9YywTptLw" aggregationKind="NONE" name="gUI" navigable="true">
+      <modelElement href="Kamisado2.uml#_vQXSsvpyEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_vSkSIfpyEea7j9YywTptLw" position="7.0,-60.0"/>
+      <visibility xmi:id="_vQZH5_pyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_vQZH6PpyEea7j9YywTptLw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_xEuzUPpyEea7j9YywTptLw" sourceAnchor="77.0,0.0" targetAnchor="70.0,109.0" target="_Bn7VUPpyEea7j9YywTptLw" source="_88s8UPpxEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_xEs-IPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_xEuzUfpyEea7j9YywTptLw"/>
+    <nameVisual xmi:id="_xEuzUvpyEea7j9YywTptLw" text="">
+      <visualProperties xmi:id="_xGREYfpyEea7j9YywTptLw" position="2.0,-11.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_xEuzU_pyEea7j9YywTptLw" aggregationKind="NONE" name="game" navigable="true">
+      <modelElement href="Kamisado2.uml#_xEs-IfpyEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_xGREYPpyEea7j9YywTptLw" position="46.0,-11.0"/>
+      <visibility xmi:id="_xEuzVPpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_xEuzVfpyEea7j9YywTptLw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_xEuzVvpyEea7j9YywTptLw" aggregationKind="NONE" name="gameRules" navigable="true">
+      <modelElement href="Kamisado2.uml#_xEs-JPpyEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_xGREYvpyEea7j9YywTptLw" position="-130.0,-19.0"/>
+      <visibility xmi:id="_xEuzV_pyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_xEuzWPpyEea7j9YywTptLw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_1K9o4PpyEea7j9YywTptLw" sourceAnchor="144.0,38.0" targetAnchor="0.0,18.0" target="_Bn7VUPpyEea7j9YywTptLw" source="_tBs4MPpxEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_1K7MoPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_1K9o4fpyEea7j9YywTptLw" position="255.0,154.0"/>
+    <nameVisual xmi:id="_1K9o4vpyEea7j9YywTptLw" text="">
+      <visualProperties xmi:id="_1MrgIfpyEea7j9YywTptLw" position="-6.0,-24.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_1K9o4_pyEea7j9YywTptLw" aggregationKind="NONE" name="aIPlayer" navigable="true">
+      <modelElement href="Kamisado2.uml#_1K7MofpyEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_1MrgIPpyEea7j9YywTptLw" position="-14.0,12.0"/>
+      <visibility xmi:id="_1K9o5PpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_1K9o5fpyEea7j9YywTptLw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_1K9o5vpyEea7j9YywTptLw" aggregationKind="NONE" name="gameRules" navigable="true">
+      <modelElement href="Kamisado2.uml#_1K7zsvpyEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_1MrgIvpyEea7j9YywTptLw" position="-75.0,-96.0"/>
+      <visibility xmi:id="_1K9o5_pyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_1K9o6PpyEea7j9YywTptLw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_GI0RIPpzEea7j9YywTptLw" sourceAnchor="61.0,0.0" targetAnchor="62.0,132.0" superClass="_88s8UPpxEea7j9YywTptLw" subClass="_-Fty0fpxEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_GIzqEPpzEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_GI0RIfpzEea7j9YywTptLw"/>
+    <bendpoints xmi:id="_kCE6gvzREeaHRNMTknBhvw" sourceY="-24" targetX="101" targetY="22"/>
+    <bendpoints xmi:id="_kCE6g_zREeaHRNMTknBhvw" sourceX="-101" sourceY="-24" targetY="22"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_H0OqEPpzEea7j9YywTptLw" sourceAnchor="56.0,0.0" targetAnchor="62.0,132.0" superClass="_88s8UPpxEea7j9YywTptLw" subClass="__2el0PpxEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_H0ODAPpzEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_H0OqEfpzEea7j9YywTptLw"/>
+    <bendpoints xmi:id="_kCETcvzREeaHRNMTknBhvw" sourceY="-23" targetX="354" targetY="22"/>
+    <bendpoints xmi:id="_kCETc_zREeaHRNMTknBhvw" sourceX="-354" sourceY="-23" targetY="22"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_TNExoPpzEea7j9YywTptLw" sourceAnchor="0.0,55.0" targetAnchor="125.0,52.0" target="_88s8UPpxEea7j9YywTptLw" source="_Wuh7oPpyEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_TNDjgPpzEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_TNExofpzEea7j9YywTptLw"/>
+    <nameVisual xmi:id="_TNFYsPpzEea7j9YywTptLw" text="">
+      <visualProperties xmi:id="_TPP74PpzEea7j9YywTptLw" position="0.0,2.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_TNFYsfpzEea7j9YywTptLw" aggregationKind="NONE" name="stats" navigable="true">
+      <modelElement href="Kamisado2.uml#_TNDjgfpzEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_TPPU0PpzEea7j9YywTptLw" position="-65.0,-47.0"/>
+      <visibility xmi:id="_TNFYsvpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_TNFYs_pzEea7j9YywTptLw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_TNFYtPpzEea7j9YywTptLw" aggregationKind="NONE" name="game" navigable="true">
+      <modelElement href="Kamisado2.uml#_TNDjhPpzEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_TPP74fpzEea7j9YywTptLw" position="30.0,2.0"/>
+      <visibility xmi:id="_TNFYtfpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_TNFYtvpzEea7j9YywTptLw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_kgEjcPpzEea7j9YywTptLw" sourceAnchor="46.0,0.0" targetAnchor="62.0,132.0" superClass="_88s8UPpxEea7j9YywTptLw" subClass="_ihsyQPpzEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_kgD8YPpzEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_kgEjcfpzEea7j9YywTptLw"/>
+    <bendpoints xmi:id="_kCE6gPzREeaHRNMTknBhvw" sourceY="-22" targetX="211" targetY="22"/>
+    <bendpoints xmi:id="_kCE6gfzREeaHRNMTknBhvw" sourceX="-211" sourceY="-22" targetY="22"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_mYYv8PpzEea7j9YywTptLw" sourceAnchor="0.0,45.0" targetAnchor="57.0,60.0" target="_ihsyQPpzEea7j9YywTptLw" source="_YDN2oPpyEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_mYXh0PpzEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_mYYv8fpzEea7j9YywTptLw"/>
+    <bendpoints xmi:id="_kCETcPzREeaHRNMTknBhvw" sourceX="-106" targetY="82"/>
+    <nameVisual xmi:id="_mYYv8vpzEea7j9YywTptLw" text="">
+      <visualProperties xmi:id="_mamWcPpzEea7j9YywTptLw" position="1.0,-62.99999999999994"/>
+    </nameVisual>
+    <sourceRole xmi:id="_mYYv8_pzEea7j9YywTptLw" aggregationKind="NONE" name="connection" navigable="true">
+      <modelElement href="Kamisado2.uml#_mYXh0fpzEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_malvYPpzEea7j9YywTptLw" position="-95.0,2.0"/>
+      <visibility xmi:id="_mYYv9PpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_mYYv9fpzEea7j9YywTptLw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_mYYv9vpzEea7j9YywTptLw" aggregationKind="NONE" name="multiplayer" navigable="true">
+      <modelElement href="Kamisado2.uml#_mYXh1PpzEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_mamWcfpzEea7j9YywTptLw" position="-93.0,8.999999999999943"/>
+      <visibility xmi:id="_mYYv9_pzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_mYYv-PpzEea7j9YywTptLw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_pC-t8PpzEea7j9YywTptLw" sourceAnchor="124.0,0.0" targetAnchor="143.0,37.0" target="_Wuh7oPpyEea7j9YywTptLw" source="_YDN2oPpyEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_pC84wPpzEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_pC-t8fpzEea7j9YywTptLw"/>
+    <bendpoints xmi:id="_kCETcfzREeaHRNMTknBhvw" sourceY="-239" targetX="83"/>
+    <nameVisual xmi:id="_pC-t8vpzEea7j9YywTptLw" text="">
+      <visualProperties xmi:id="_pEqwAPpzEea7j9YywTptLw" position="-52.0,1.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_pC-t8_pzEea7j9YywTptLw" aggregationKind="NONE" name="connection" navigable="true">
+      <modelElement href="Kamisado2.uml#_pC84wfpzEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_pEqI8PpzEea7j9YywTptLw" position="2.0,-93.0"/>
+      <visibility xmi:id="_pC-t9PpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_pC-t9fpzEea7j9YywTptLw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_pC-t9vpzEea7j9YywTptLw" aggregationKind="NONE" name="stats" navigable="true">
+      <modelElement href="Kamisado2.uml#_pC9f0fpzEea7j9YywTptLw"/>
+      <visualProperties xmi:id="_pEqwAfpzEea7j9YywTptLw" position="36.0,41.0"/>
+      <visibility xmi:id="_pC-t9_pzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_pC-t-PpzEea7j9YywTptLw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_NnaCEPzCEeaHRNMTknBhvw" sourceAnchor="147.0,0.0" targetAnchor="3.0,132.0" target="_88s8UPpxEea7j9YywTptLw" source="_pGqB8PzBEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_NnW-wPzCEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_NnaCEfzCEeaHRNMTknBhvw"/>
+    <nameVisual xmi:id="_NnaCEvzCEeaHRNMTknBhvw" text="">
+      <visualProperties xmi:id="_Np_cAfzCEeaHRNMTknBhvw" position="-13.0,-9.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_NnaCE_zCEeaHRNMTknBhvw" aggregationKind="NONE" name="board" navigable="true">
+      <modelElement href="Kamisado2.uml#_NnW-wfzCEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_Np_cAPzCEeaHRNMTknBhvw" position="-97.0,-46.0"/>
+      <visibility xmi:id="_NnaCFPzCEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_NnaCFfzCEeaHRNMTknBhvw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_NnaCFvzCEeaHRNMTknBhvw" aggregationKind="NONE" name="game" navigable="true">
+      <modelElement href="Kamisado2.uml#_NnXl0fzCEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_NqADEPzCEeaHRNMTknBhvw" position="12.0,1.0"/>
+      <visibility xmi:id="_NnaCF_zCEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_NnaCGPzCEeaHRNMTknBhvw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_VLsccPzOEeaHRNMTknBhvw" sourceAnchor="69.0,70.0" targetAnchor="34.0,0.0" target="_QGiggPzOEeaHRNMTknBhvw" source="_5oEi0PpxEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_VLqAMPzOEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_VLsccfzOEeaHRNMTknBhvw"/>
+    <nameVisual xmi:id="_VLsccvzOEeaHRNMTknBhvw" text="">
+      <visualProperties xmi:id="_VOhG8fzOEeaHRNMTknBhvw" position="2.0,-8.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_VLscc_zOEeaHRNMTknBhvw" aggregationKind="NONE" name="humanPlayer" navigable="true">
+      <modelElement href="Kamisado2.uml#_VLqAMfzOEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_VOhG8PzOEeaHRNMTknBhvw" position="-142.0,-7.0"/>
+      <visibility xmi:id="_VLscdPzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_VLscdfzOEeaHRNMTknBhvw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_VLscdvzOEeaHRNMTknBhvw" aggregationKind="NONE" name="abstractPlayer" navigable="true">
+      <modelElement href="Kamisado2.uml#_VLqnQvzOEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_VOhuAPzOEeaHRNMTknBhvw" position="-111.0,-47.999999999999986"/>
+      <visibility xmi:id="_VLscd_zOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_VLscePzOEeaHRNMTknBhvw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_Vm6_4PzOEeaHRNMTknBhvw" sourceAnchor="23.0,77.0" targetAnchor="167.0,0.0" target="_QGiggPzOEeaHRNMTknBhvw" source="_tBs4MPpxEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_Vm4joPzOEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_Vm6_4fzOEeaHRNMTknBhvw"/>
+    <nameVisual xmi:id="_Vm6_4vzOEeaHRNMTknBhvw" text="">
+      <visualProperties xmi:id="_VpsnEPzOEeaHRNMTknBhvw" position="2.0,-13.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_Vm6_4_zOEeaHRNMTknBhvw" aggregationKind="NONE" name="aIPlayer" navigable="true">
+      <modelElement href="Kamisado2.uml#_Vm4jofzOEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_VpsAAPzOEeaHRNMTknBhvw" position="21.0,2.0"/>
+      <visibility xmi:id="_Vm6_5PzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_Vm6_5fzOEeaHRNMTknBhvw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_Vm6_5vzOEeaHRNMTknBhvw" aggregationKind="NONE" name="abstractPlayer" navigable="true">
+      <modelElement href="Kamisado2.uml#_Vm5KsfzOEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_VpsnEfzOEeaHRNMTknBhvw" position="-111.0,-47.000000000000014"/>
+      <visibility xmi:id="_Vm6_5_zOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_Vm6_6PzOEeaHRNMTknBhvw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_WNmlYPzOEeaHRNMTknBhvw" sourceAnchor="182.0,45.0" targetAnchor="0.0,15.0" target="_88s8UPpxEea7j9YywTptLw" source="_QGiggPzOEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_WNkJIPzOEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_WNmlYfzOEeaHRNMTknBhvw"/>
+    <nameVisual xmi:id="_WNmlYvzOEeaHRNMTknBhvw" text="">
+      <visualProperties xmi:id="_WQPCoPzOEeaHRNMTknBhvw" position="-1.0,-24.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_WNmlY_zOEeaHRNMTknBhvw" aggregationKind="NONE" name="abstractPlayer" navigable="true">
+      <modelElement href="Kamisado2.uml#_WNkwMPzOEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_WQObkPzOEeaHRNMTknBhvw" position="54.0,46.0"/>
+      <visibility xmi:id="_WNmlZPzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_WNmlZfzOEeaHRNMTknBhvw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_WNmlZvzOEeaHRNMTknBhvw" aggregationKind="NONE" name="game" navigable="true">
+      <modelElement href="Kamisado2.uml#_WNkwM_zOEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_WQPCofzOEeaHRNMTknBhvw" position="-124.0,2.0"/>
+      <visibility xmi:id="_WNmlZ_zOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_WNmlaPzOEeaHRNMTknBhvw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_bGmCsPzQEeaHRNMTknBhvw" sourceAnchor="93.0,0.0" targetAnchor="68.0,82.0" target="_wLZ6QfzFEeaHRNMTknBhvw" source="_tjL60PzFEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_bGkNgPzQEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_bGmpwPzQEeaHRNMTknBhvw"/>
+    <nameVisual xmi:id="_bGmpwfzQEeaHRNMTknBhvw" text="">
+      <visualProperties xmi:id="_bJgz0PzQEeaHRNMTknBhvw" position="2.0,-25.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_bGmpwvzQEeaHRNMTknBhvw" aggregationKind="NONE" name="position" navigable="true">
+      <modelElement href="Kamisado2.uml#_bGk0kPzQEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_bJflsPzQEeaHRNMTknBhvw" position="-35.0,-56.0"/>
+      <visibility xmi:id="_bGmpw_zQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_bGmpxPzQEeaHRNMTknBhvw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_bGmpxfzQEeaHRNMTknBhvw" aggregationKind="NONE" name="move" navigable="true">
+      <modelElement href="Kamisado2.uml#_bGk0k_zQEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_bJgz0fzQEeaHRNMTknBhvw" position="-94.0,1.0"/>
+      <visibility xmi:id="_bGmpxvzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_bGmpx_zQEeaHRNMTknBhvw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_d-dnsPzQEeaHRNMTknBhvw" sourceAnchor="0.0,43.0" targetAnchor="116.0,82.0" target="_wLZ6QfzFEeaHRNMTknBhvw" source="_p7oiIPzBEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_d-bygPzQEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_d-dnsfzQEeaHRNMTknBhvw"/>
+    <bendpoints xmi:id="_kCFhkPzREeaHRNMTknBhvw" sourceX="-28" targetY="176"/>
+    <nameVisual xmi:id="_d-dnsvzQEeaHRNMTknBhvw" text="">
+      <visualProperties xmi:id="_eBftkPzQEeaHRNMTknBhvw" position="0.9999999999999716,-63.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_d-dns_zQEeaHRNMTknBhvw" aggregationKind="NONE" name="piece1" navigable="true">
+      <modelElement href="Kamisado2.uml#_d-bygfzQEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_eBfGgPzQEeaHRNMTknBhvw" position="-44.0,41.0"/>
+      <visibility xmi:id="_d-dntPzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_d-dntfzQEeaHRNMTknBhvw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_d-dntvzQEeaHRNMTknBhvw" aggregationKind="NONE" name="move" navigable="true">
+      <modelElement href="Kamisado2.uml#_d-byhPzQEeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_eBgUoPzQEeaHRNMTknBhvw" position="2.0000000000000284,30.0"/>
+      <visibility xmi:id="_d-dnt_zQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_d-dnuPzQEeaHRNMTknBhvw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_edkJEPzREeaHRNMTknBhvw" sourceAnchor="19.0,81.0" targetAnchor="84.0,0.0" target="_p7oiIPzBEeaHRNMTknBhvw" source="_pGqB8PzBEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_ediT4PzREeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_edkJEfzREeaHRNMTknBhvw"/>
+    <nameVisual xmi:id="_edkJEvzREeaHRNMTknBhvw" text="">
+      <visualProperties xmi:id="_egNNYPzREeaHRNMTknBhvw" position="2.0,-51.0"/>
+    </nameVisual>
+    <sourceRole xmi:id="_edkJE_zREeaHRNMTknBhvw" aggregationKind="NONE" name="board" navigable="true">
+      <modelElement href="Kamisado2.uml#_ediT4fzREeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_egMmUPzREeaHRNMTknBhvw" position="-58.0,53.0"/>
+      <visibility xmi:id="_edkJFPzREeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_edkJFfzREeaHRNMTknBhvw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_edkJFvzREeaHRNMTknBhvw" aggregationKind="NONE" name="piece" navigable="true">
+      <modelElement href="Kamisado2.uml#_edi68PzREeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_egN0cPzREeaHRNMTknBhvw" position="2.0,-83.0"/>
+      <visibility xmi:id="_edkJF_zREeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_edkJGPzREeaHRNMTknBhvw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_j-0LIPzREeaHRNMTknBhvw" sourceAnchor="103.0,0.0" targetAnchor="91.0,85.0" target="_QGiggPzOEeaHRNMTknBhvw" source="_wLZ6QfzFEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_j-xu4PzREeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_j-0LIfzREeaHRNMTknBhvw"/>
+    <nameVisual xmi:id="_j-0LIvzREeaHRNMTknBhvw" text="">
+      <visualProperties xmi:id="_kCHWwPzREeaHRNMTknBhvw" position="-13.000000000000028,-41.66666666666666"/>
+    </nameVisual>
+    <sourceRole xmi:id="_j-0LI_zREeaHRNMTknBhvw" aggregationKind="NONE" name="move" navigable="true">
+      <modelElement href="Kamisado2.uml#_j-xu4fzREeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_kCGvsPzREeaHRNMTknBhvw" position="-55.000000000000014,-75.66666666666663"/>
+      <visibility xmi:id="_j-0LJPzREeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_j-0LJfzREeaHRNMTknBhvw" label="*" max="-1"/>
+    </sourceRole>
+    <targetRole xmi:id="_j-0LJvzREeaHRNMTknBhvw" aggregationKind="NONE" name="abstractPlayer" navigable="true">
+      <modelElement href="Kamisado2.uml#_j-yV8vzREeaHRNMTknBhvw"/>
+      <visualProperties xmi:id="_kCH90PzREeaHRNMTknBhvw" position="2.0,20.666666666666686"/>
+      <visibility xmi:id="_j-0LJ_zREeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_j-0LKPzREeaHRNMTknBhvw" label="*" max="-1"/>
+    </targetRole>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_Doe30PpyEea7j9YywTptLw" name="Applicaiton" associationsOut="_sh0BwPpyEea7j9YywTptLw _vQZH4PpyEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_DoeQwPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_Doe30fpyEea7j9YywTptLw" position="570.0,-37.0" size="108.0,56.0"/>
+    <visibility xmi:id="_Doe30vpyEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_sh6vcPpyEea7j9YywTptLw" name="game">
+      <modelElement href="Kamisado2.uml#_sgucovpyEea7j9YywTptLw"/>
+      <visibility xmi:id="_sh6vcfpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_sh6vcvpyEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_sh6vc_pyEea7j9YywTptLw" name="Game">
+        <modelElement href="Kamisado2.uml#_88sVQPpxEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_vQaWAPpyEea7j9YywTptLw" name="gUI">
+      <modelElement href="Kamisado2.uml#_vQXSsvpyEea7j9YywTptLw"/>
+      <visibility xmi:id="_vQaWAfpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_vQaWAvpyEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_vQaWA_pyEea7j9YywTptLw" name="Display">
+        <modelElement href="Kamisado2.uml#_FDe2MPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:InterfaceVisual" xmi:id="_QGiggPzOEeaHRNMTknBhvw" name="AbstractPlayer" associationsIn="_VLsccPzOEeaHRNMTknBhvw _Vm6_4PzOEeaHRNMTknBhvw _j-0LIPzREeaHRNMTknBhvw" associationsOut="_WNmlYPzOEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_QGhSYPzOEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_QGiggfzOEeaHRNMTknBhvw" position="48.0,107.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_QGiggvzOEeaHRNMTknBhvw" label="+"/>
+    <attributes xmi:id="_VLtDgPzOEeaHRNMTknBhvw" name="humanPlayer">
+      <modelElement href="Kamisado2.uml#_VLqAMfzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_VLtDgfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_VLtDgvzOEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_VLtDg_zOEeaHRNMTknBhvw" name="HumanPlayer">
+        <modelElement href="Kamisado2.uml#_5oD7wPpxEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_Vm6_6fzOEeaHRNMTknBhvw" name="aIPlayer">
+      <modelElement href="Kamisado2.uml#_Vm4jofzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_Vm6_6vzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_Vm6_6_zOEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_Vm6_7PzOEeaHRNMTknBhvw" name="AIPlayer">
+        <modelElement href="Kamisado2.uml#_tBsRIPpxEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_WNoakPzOEeaHRNMTknBhvw" name="game">
+      <modelElement href="Kamisado2.uml#_WNkwM_zOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_WNoakfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_WNoakvzOEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_WNoak_zOEeaHRNMTknBhvw" name="Game">
+        <modelElement href="Kamisado2.uml#_88sVQPpxEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_j-0yMPzREeaHRNMTknBhvw" name="move">
+      <modelElement href="Kamisado2.uml#_j-xu4fzREeaHRNMTknBhvw"/>
+      <visibility xmi:id="_j-0yMfzREeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_j-0yMvzREeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_j-0yM_zREeaHRNMTknBhvw" name="Move">
+        <modelElement href="Kamisado2.uml#_wLZ6QPzFEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_YSDJYPzOEeaHRNMTknBhvw" name="getMove">
+      <modelElement href="Kamisado2.uml#_YSCiUPzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_YSDJYfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_YSDJYvzOEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_YSDJY_zOEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_YSCiUfzOEeaHRNMTknBhvw"/>
+        <type xmi:id="_YSDJZPzOEeaHRNMTknBhvw" name="Move">
+          <modelElement href="Kamisado2.uml#_wLZ6QPzFEeaHRNMTknBhvw"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_Bn7VUPpyEea7j9YywTptLw" name="GameRules" associationsIn="_xEuzUPpyEea7j9YywTptLw _1K9o4PpyEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_Bn6uQPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_Bn7VUfpyEea7j9YywTptLw" position="396.0,11.0" size="141.0,-1.0"/>
+    <visibility xmi:id="_Bn7VUvpyEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_xEvaYPpyEea7j9YywTptLw" name="game">
+      <modelElement href="Kamisado2.uml#_xEs-IfpyEea7j9YywTptLw"/>
+      <visibility xmi:id="_xEvaYfpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_xEvaYvpyEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_xEvaY_pyEea7j9YywTptLw" name="Game">
+        <modelElement href="Kamisado2.uml#_88sVQPpxEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_1K-3APpyEea7j9YywTptLw" name="aIPlayer">
+      <modelElement href="Kamisado2.uml#_1K7MofpyEea7j9YywTptLw"/>
+      <visibility xmi:id="_1K-3AfpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_1K-3AvpyEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_1K-3A_pyEea7j9YywTptLw" name="AIPlayer">
+        <modelElement href="Kamisado2.uml#_tBsRIPpxEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_1Cqg8PzBEeaHRNMTknBhvw" name="isLegalMove" staticOperation="true">
+      <modelElement href="Kamisado2.uml#_1CoEsPzBEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_1Cqg8fzBEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_1Cqg8vzBEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_1Cqg8_zBEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_1CoEsfzBEeaHRNMTknBhvw"/>
+        <type xmi:id="_1Cqg9PzBEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_wrzigPzOEeaHRNMTknBhvw" name="isWinningMove">
+      <modelElement href="Kamisado2.uml#_wry7cPzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_wrzigfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_wrzigvzOEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_wrzig_zOEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_wry7cfzOEeaHRNMTknBhvw"/>
+        <type xmi:id="_wrzihPzOEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="__ATi4PzOEeaHRNMTknBhvw" name="isInDeadlock">
+      <modelElement href="Kamisado2.uml#__ASUwPzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="__ATi4fzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="__ATi4vzOEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="__ATi4_zOEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#__ASUwfzOEeaHRNMTknBhvw"/>
+        <type xmi:id="__ATi5PzOEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_88s8UPpxEea7j9YywTptLw" name="Game" associationsIn="_sh0BwPpyEea7j9YywTptLw _TNExoPpzEea7j9YywTptLw _NnaCEPzCEeaHRNMTknBhvw _WNmlYPzOEeaHRNMTknBhvw" associationsOut="_xEuzUPpyEea7j9YywTptLw" subclassedBy="_GI0RIPpzEea7j9YywTptLw _H0OqEPpzEea7j9YywTptLw _kgEjcPpzEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_88sVQPpxEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_88s8UfpxEea7j9YywTptLw" position="389.0,137.0" size="125.0,-1.0"/>
+    <visibility xmi:id="_88s8UvpxEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_sh46QPpyEea7j9YywTptLw" name="applicaiton">
+      <modelElement href="Kamisado2.uml#_sgrZUfpyEea7j9YywTptLw"/>
+      <visibility xmi:id="_sh46QfpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_sh46QvpyEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_sh46Q_pyEea7j9YywTptLw" name="Applicaiton">
+        <modelElement href="Kamisado2.uml#_DoeQwPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_xEvaZPpyEea7j9YywTptLw" name="gameRules">
+      <modelElement href="Kamisado2.uml#_xEs-JPpyEea7j9YywTptLw"/>
+      <visibility xmi:id="_xEvaZfpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_xEvaZvpyEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_xEwBcPpyEea7j9YywTptLw" name="GameRules">
+        <modelElement href="Kamisado2.uml#_Bn6uQPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_TNFYt_pzEea7j9YywTptLw" name="stats">
+      <modelElement href="Kamisado2.uml#_TNDjgfpzEea7j9YywTptLw"/>
+      <visibility xmi:id="_TNFYuPpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_TNFYufpzEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_TNFYuvpzEea7j9YywTptLw" name="Stats">
+        <modelElement href="Kamisado2.uml#_WuhUkPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_NnapIPzCEeaHRNMTknBhvw" name="board">
+      <modelElement href="Kamisado2.uml#_NnW-wfzCEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_NnapIfzCEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_NnapIvzCEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_NnapI_zCEeaHRNMTknBhvw" name="Board">
+        <modelElement href="Kamisado2.uml#_pGiGIPzBEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_WNnMcPzOEeaHRNMTknBhvw" name="abstractPlayer">
+      <modelElement href="Kamisado2.uml#_WNkwMPzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_WNnMcfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_WNnMcvzOEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_WNnMc_zOEeaHRNMTknBhvw" name="AbstractPlayer">
+        <modelElement href="Kamisado2.uml#_QGhSYPzOEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_L4TwEPzPEeaHRNMTknBhvw" name="pause">
+      <modelElement href="Kamisado2.uml#_L4TJAPzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_L4TwEfzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_L4TwEvzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_L4TwE_zPEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_L4TJAfzPEeaHRNMTknBhvw"/>
+        <type xmi:id="_L4TwFPzPEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_N11zwPzPEeaHRNMTknBhvw" name="resume">
+      <modelElement href="Kamisado2.uml#_N11MsPzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_N11zwfzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_N11zwvzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_N11zw_zPEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_N11MsfzPEeaHRNMTknBhvw"/>
+        <type xmi:id="_N11zxPzPEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_RY4csPzPEeaHRNMTknBhvw" name="save">
+      <modelElement href="Kamisado2.uml#_RY31oPzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_RY4csfzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_RY4csvzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_RY4cs_zPEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_RY31ofzPEeaHRNMTknBhvw"/>
+        <type xmi:id="_RY4ctPzPEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_V8t0QPzPEeaHRNMTknBhvw" name="getMatchReport">
+      <modelElement href="Kamisado2.uml#_V8tNMPzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_V8t0QfzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_V8t0QvzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_Wuh7oPpyEea7j9YywTptLw" name="Stats" associationsIn="_pC-t8PpzEea7j9YywTptLw" associationsOut="_TNExoPpzEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_WuhUkPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_Wuh7ofpyEea7j9YywTptLw" position="677.0,134.0" size="143.0,74.0"/>
+    <visibility xmi:id="_Wuh7ovpyEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_TNF_wPpzEea7j9YywTptLw" name="game">
+      <modelElement href="Kamisado2.uml#_TNDjhPpzEea7j9YywTptLw"/>
+      <visibility xmi:id="_TNF_wfpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_TNF_wvpzEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_TNF_w_pzEea7j9YywTptLw" name="Game">
+        <modelElement href="Kamisado2.uml#_88sVQPpxEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pC_VAPpzEea7j9YywTptLw" name="connection">
+      <modelElement href="Kamisado2.uml#_pC84wfpzEea7j9YywTptLw"/>
+      <visibility xmi:id="_pC_VAfpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_pC_VAvpzEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_pC_VA_pzEea7j9YywTptLw" name="Connection">
+        <modelElement href="Kamisado2.uml#_YDNPkPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_5oEi0PpxEea7j9YywTptLw" name="HumanPlayer" associationsOut="_VLsccPzOEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_5oD7wPpxEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_5oEi0fpxEea7j9YywTptLw" position="13.0,-4.0" size="138.0,70.0"/>
+    <visibility xmi:id="_5oEi0vpxEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_VLtqkPzOEeaHRNMTknBhvw" name="abstractPlayer">
+      <modelElement href="Kamisado2.uml#_VLqnQvzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_VLtqkfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_VLtqkvzOEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_VLtqk_zOEeaHRNMTknBhvw" name="AbstractPlayer">
+        <modelElement href="Kamisado2.uml#_QGhSYPzOEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_F5cvgPzQEeaHRNMTknBhvw" name="playerColor">
+      <modelElement href="Kamisado2.uml#_F5cIcPzQEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_F5cvgfzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_F5cvgvzQEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_F5cvg_zQEeaHRNMTknBhvw" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_eesR0PzOEeaHRNMTknBhvw" name="getMove">
+      <modelElement href="Kamisado2.uml#_eerqwPzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_eesR0fzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_eesR0vzOEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_eesR0_zOEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_eerqwfzOEeaHRNMTknBhvw"/>
+        <type xmi:id="_eesR1PzOEeaHRNMTknBhvw" name="Move">
+          <modelElement href="Kamisado2.uml#_wLZ6QPzFEeaHRNMTknBhvw"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_tBs4MPpxEea7j9YywTptLw" name="AIPlayer" associationsOut="_1K9o4PpyEea7j9YywTptLw _Vm6_4PzOEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_tBsRIPpxEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_tBs4MfpxEea7j9YywTptLw" position="192.0,-9.0" size="144.0,77.0"/>
+    <visibility xmi:id="_tBs4MvpxEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_1K_eEPpyEea7j9YywTptLw" name="gameRules">
+      <modelElement href="Kamisado2.uml#_1K7zsvpyEea7j9YywTptLw"/>
+      <visibility xmi:id="_1K_eEfpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_1K_eEvpyEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_1K_eE_pyEea7j9YywTptLw" name="GameRules">
+        <modelElement href="Kamisado2.uml#_Bn6uQPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_Vm8OAPzOEeaHRNMTknBhvw" name="abstractPlayer">
+      <modelElement href="Kamisado2.uml#_Vm5KsfzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_Vm8OAfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_Vm8OAvzOEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_Vm8OA_zOEeaHRNMTknBhvw" name="AbstractPlayer">
+        <modelElement href="Kamisado2.uml#_QGhSYPzOEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_HmQPkPzQEeaHRNMTknBhvw" name="playerColor">
+      <modelElement href="Kamisado2.uml#_HmPogPzQEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_HmQPkfzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_HmQPkvzQEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_HmQPk_zQEeaHRNMTknBhvw" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_h5Q7QPzOEeaHRNMTknBhvw" name="getMove">
+      <modelElement href="Kamisado2.uml#_h5QUMPzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_h5Q7QfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_h5Q7QvzOEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_h5Q7Q_zOEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_h5QUMfzOEeaHRNMTknBhvw"/>
+        <type xmi:id="_h5Q7RPzOEeaHRNMTknBhvw" name="Move">
+          <modelElement href="Kamisado2.uml#_wLZ6QPzFEeaHRNMTknBhvw"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_FDfdQPpyEea7j9YywTptLw" name="Display" associationsIn="_vQZH4PpyEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_FDe2MPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_FDfdQfpyEea7j9YywTptLw" position="740.0,45.0" size="192.0,65.0"/>
+    <visibility xmi:id="_FDfdQvpyEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_vQZu8PpyEea7j9YywTptLw" name="applicaiton">
+      <modelElement href="Kamisado2.uml#_vQWrofpyEea7j9YywTptLw"/>
+      <visibility xmi:id="_vQZu8fpyEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_vQZu8vpyEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_vQZu8_pyEea7j9YywTptLw" name="Applicaiton">
+        <modelElement href="Kamisado2.uml#_DoeQwPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_Sfeb4PzQEeaHRNMTknBhvw" name="update">
+      <modelElement href="Kamisado2.uml#_Sfd00PzQEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_Sfeb4fzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_Sfeb4vzQEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_Sfeb4_zQEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_Sfd00fzQEeaHRNMTknBhvw"/>
+        <type xmi:id="_Sfeb5PzQEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_YDN2oPpyEea7j9YywTptLw" name="Connection" associationsOut="_mYYv8PpzEea7j9YywTptLw _pC-t8PpzEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_YDNPkPpyEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_YDN2ofpyEea7j9YywTptLw" position="779.0,410.0" size="137.0,74.0"/>
+    <visibility xmi:id="_YDN2ovpyEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_mYZ-EPpzEea7j9YywTptLw" name="multiplayer">
+      <modelElement href="Kamisado2.uml#_mYXh1PpzEea7j9YywTptLw"/>
+      <visibility xmi:id="_mYZ-EfpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_mYZ-EvpzEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_mYZ-E_pzEea7j9YywTptLw" name="Multiplayer">
+        <modelElement href="Kamisado2.uml#_ihsLMPpzEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_pC_8EPpzEea7j9YywTptLw" name="stats">
+      <modelElement href="Kamisado2.uml#_pC9f0fpzEea7j9YywTptLw"/>
+      <visibility xmi:id="_pC_8EfpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_pC_8EvpzEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_pC_8E_pzEea7j9YywTptLw" name="Stats">
+        <modelElement href="Kamisado2.uml#_WuhUkPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="__2el0PpxEea7j9YywTptLw" name="TwoPlayer" generalizations="_H0OqEPpzEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#__2d-wPpxEea7j9YywTptLw"/>
+    <visualProperties xmi:id="__2el0fpxEea7j9YywTptLw" position="749.0,314.0" size="139.0,66.0"/>
+    <visibility xmi:id="__2el0vpxEea7j9YywTptLw" label="+"/>
+    <operations xmi:id="_pi6-0PzPEeaHRNMTknBhvw" name="setTimer">
+      <modelElement href="Kamisado2.uml#_pi6XwPzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_pi6-0fzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_pi6-0vzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pi6-0_zPEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_pi6XwfzPEeaHRNMTknBhvw"/>
+        <type xmi:id="_pi6-1PzPEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_ihsyQPpzEea7j9YywTptLw" name="Multiplayer" associationsIn="_mYYv8PpzEea7j9YywTptLw" generalizations="_kgEjcPpzEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_ihsLMPpzEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_ihsyQfpzEea7j9YywTptLw" position="616.0,313.0" size="114.0,60.0"/>
+    <visibility xmi:id="_ihsyQvpzEea7j9YywTptLw" label="+"/>
+    <attributes xmi:id="_mYZXAPpzEea7j9YywTptLw" name="connection">
+      <modelElement href="Kamisado2.uml#_mYXh0fpzEea7j9YywTptLw"/>
+      <visibility xmi:id="_mYZXAfpzEea7j9YywTptLw" label="+"/>
+      <cardinality xmi:id="_mYZXAvpzEea7j9YywTptLw" label="*" max="-1"/>
+      <type xmi:id="_mYZXA_pzEea7j9YywTptLw" name="Connection">
+        <modelElement href="Kamisado2.uml#_YDNPkPpyEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_-Fty0fpxEea7j9YywTptLw" name="SinglePlayer" generalizations="_GI0RIPpzEea7j9YywTptLw">
+    <modelElement href="Kamisado2.uml#_-Fty0PpxEea7j9YywTptLw"/>
+    <visualProperties xmi:id="_-Fty0vpxEea7j9YywTptLw" position="491.0,315.0" size="108.0,55.0"/>
+    <visibility xmi:id="_-Fty0_pxEea7j9YywTptLw" label="+"/>
+    <operations xmi:id="_hrGG8PzPEeaHRNMTknBhvw" name="undo">
+      <modelElement href="Kamisado2.uml#_hrFf4PzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_hrGG8fzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_hrGG8vzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_hrGG8_zPEeaHRNMTknBhvw">
+        <modelElement href="Kamisado2.uml#_hrFf4fzPEeaHRNMTknBhvw"/>
+        <type xmi:id="_hrGG9PzPEeaHRNMTknBhvw" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+    </operations>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_pGqB8PzBEeaHRNMTknBhvw" name="Board" associationsOut="_NnaCEPzCEeaHRNMTknBhvw _edkJEPzREeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_pGiGIPzBEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_pGqB8fzBEeaHRNMTknBhvw" position="245.0,306.0" size="162.0,81.0"/>
+    <visibility xmi:id="_pGqB8vzBEeaHRNMTknBhvw" label="+"/>
+    <attributes xmi:id="_Nnb3QPzCEeaHRNMTknBhvw" name="game">
+      <modelElement href="Kamisado2.uml#_NnXl0fzCEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_Nnb3QfzCEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_Nnb3QvzCEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_Nnb3Q_zCEeaHRNMTknBhvw" name="Game">
+        <modelElement href="Kamisado2.uml#_88sVQPpxEea7j9YywTptLw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_edlXMPzREeaHRNMTknBhvw" name="piece">
+      <modelElement href="Kamisado2.uml#_edi68PzREeaHRNMTknBhvw"/>
+      <visibility xmi:id="_edlXMfzREeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_edlXMvzREeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_edlXM_zREeaHRNMTknBhvw" name="Piece">
+        <modelElement href="Kamisado2.uml#_p7n7EPzBEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_tjL60PzFEeaHRNMTknBhvw" name="Position" associationsOut="_bGmCsPzQEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_tjLTwPzFEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_tjL60fzFEeaHRNMTknBhvw" position="11.0,501.0" size="126.0,110.0"/>
+    <visibility xmi:id="_tjL60vzFEeaHRNMTknBhvw" label="+"/>
+    <attributes xmi:id="_7SCr8PzPEeaHRNMTknBhvw" name="posX">
+      <modelElement href="Kamisado2.uml#_7SCE4PzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_7SCr8fzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_7SCr8vzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_7SCr8_zPEeaHRNMTknBhvw" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_8ofhgPzPEeaHRNMTknBhvw" name="posY">
+      <modelElement href="Kamisado2.uml#_8oe6cPzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_8ofhgfzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_8ofhgvzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_8ofhg_zPEeaHRNMTknBhvw" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_-kpsMPzPEeaHRNMTknBhvw" name="color">
+      <modelElement href="Kamisado2.uml#_-kpFIPzPEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_-kpsMfzPEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_-kpsMvzPEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_-kpsM_zPEeaHRNMTknBhvw" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_bGnQ0PzQEeaHRNMTknBhvw" name="move">
+      <modelElement href="Kamisado2.uml#_bGk0k_zQEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_bGnQ0fzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_bGnQ0vzQEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_bGnQ0_zQEeaHRNMTknBhvw" name="Move">
+        <modelElement href="Kamisado2.uml#_wLZ6QPzFEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_p7oiIPzBEeaHRNMTknBhvw" name="Piece" associationsIn="_edkJEPzREeaHRNMTknBhvw" associationsOut="_d-dnsPzQEeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_p7n7EPzBEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_p7oiIfzBEeaHRNMTknBhvw" position="180.0,523.0" size="168.0,87.0"/>
+    <visibility xmi:id="_p7oiIvzBEeaHRNMTknBhvw" label="+"/>
+    <attributes xmi:id="_8VG-YPzCEeaHRNMTknBhvw" name="playerColor">
+      <modelElement href="Kamisado2.uml#_8VGXUPzCEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_8VG-YfzCEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_8VG-YvzCEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_8VG-Y_zCEeaHRNMTknBhvw" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_LEPZYPzQEeaHRNMTknBhvw" name="pieceColor">
+      <modelElement href="Kamisado2.uml#_LEOyUPzQEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_LEPZYfzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_LEPZYvzQEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_LEPZY_zQEeaHRNMTknBhvw" name="int">
+        <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_d-e10PzQEeaHRNMTknBhvw" name="move">
+      <modelElement href="Kamisado2.uml#_d-byhPzQEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_d-e10fzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_d-e10vzQEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_d-e10_zQEeaHRNMTknBhvw" name="Move">
+        <modelElement href="Kamisado2.uml#_wLZ6QPzFEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_edkwIPzREeaHRNMTknBhvw" name="board">
+      <modelElement href="Kamisado2.uml#_ediT4fzREeaHRNMTknBhvw"/>
+      <visibility xmi:id="_edkwIfzREeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_edkwIvzREeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_edkwI_zREeaHRNMTknBhvw" name="Board">
+        <modelElement href="Kamisado2.uml#_pGiGIPzBEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_wLZ6QfzFEeaHRNMTknBhvw" name="Move" associationsIn="_bGmCsPzQEeaHRNMTknBhvw _d-dnsPzQEeaHRNMTknBhvw" associationsOut="_j-0LIPzREeaHRNMTknBhvw">
+    <modelElement href="Kamisado2.uml#_wLZ6QPzFEeaHRNMTknBhvw"/>
+    <visualProperties xmi:id="_wLZ6QvzFEeaHRNMTknBhvw" position="36.0,308.0" size="137.0,82.0"/>
+    <visibility xmi:id="_wLZ6Q_zFEeaHRNMTknBhvw" label="+"/>
+    <attributes xmi:id="_A2yY0PzOEeaHRNMTknBhvw" name="piece">
+      <modelElement href="Kamisado2.uml#_A2uucPzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_A2yY0fzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_A2yY0vzOEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_A2yY0_zOEeaHRNMTknBhvw" name="Piece">
+        <modelElement href="Kamisado2.uml#_p7n7EPzBEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_CrMVsPzOEeaHRNMTknBhvw" name="pos">
+      <modelElement href="Kamisado2.uml#_CrLuoPzOEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_CrMVsfzOEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_CrMVsvzOEeaHRNMTknBhvw" label="1" max="1" min="1"/>
+      <type xmi:id="_CrMVs_zOEeaHRNMTknBhvw" name="Position">
+        <modelElement href="Kamisado2.uml#_tjLTwPzFEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_bGmpyPzQEeaHRNMTknBhvw" name="position">
+      <modelElement href="Kamisado2.uml#_bGk0kPzQEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_bGmpyfzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_bGmpyvzQEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_bGmpy_zQEeaHRNMTknBhvw" name="Position">
+        <modelElement href="Kamisado2.uml#_tjLTwPzFEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_d-eOwPzQEeaHRNMTknBhvw" name="piece1">
+      <modelElement href="Kamisado2.uml#_d-bygfzQEeaHRNMTknBhvw"/>
+      <visibility xmi:id="_d-eOwfzQEeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_d-eOwvzQEeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_d-eOw_zQEeaHRNMTknBhvw" name="Piece">
+        <modelElement href="Kamisado2.uml#_p7n7EPzBEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+    <attributes xmi:id="_j-1ZQPzREeaHRNMTknBhvw" name="abstractPlayer">
+      <modelElement href="Kamisado2.uml#_j-yV8vzREeaHRNMTknBhvw"/>
+      <visibility xmi:id="_j-1ZQfzREeaHRNMTknBhvw" label="+"/>
+      <cardinality xmi:id="_j-1ZQvzREeaHRNMTknBhvw" label="*" max="-1"/>
+      <type xmi:id="_j-1ZQ_zREeaHRNMTknBhvw" name="AbstractPlayer">
+        <modelElement href="Kamisado2.uml#_QGhSYPzOEeaHRNMTknBhvw"/>
+      </type>
+    </attributes>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
