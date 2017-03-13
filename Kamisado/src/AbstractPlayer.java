@@ -1,5 +1,6 @@
 
 public interface AbstractPlayer {
-
-	public Position getMove();
+	public Move getMove(Position initial);
+	public Color getPlayerColor();
+	public Position getInitialPosition();
 }
