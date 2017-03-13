@@ -9,7 +9,9 @@ public class Application {
 		String playerBlack = in.setBlackPlayer();
 		
 		GameDriver game = new GameDriver();
+		game.startGame();
 		//subscribe observer
+		
 		
 		
 		

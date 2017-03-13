@@ -49,4 +49,16 @@ public class State {
 	public Piece getPiece(Position pos){
 		return pieces[pos.getPosX()][pos.getPosY()];
 	}
+	
+	public Position getPiecePosition(Color playerColor, Color pieceColor){
+		for (int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(pieces[i][j].getColor() == pieceColor 
+						&& pieces[i][j].getPlayerColor() == playerColor){
+					return new Position(i, j);
+				}
+			}
+		}
+		return null;
+	}
 }

@@ -2,35 +2,33 @@ import java.util.Scanner;
 
 public class Xterm {
 	
-	private Scanner in;
-	
-	
-	public Xterm(){
-		in = new Scanner(System.in);
-	}
 
-	public String setWhitePlayer(){
+	public static String setWhitePlayer(){
+		Scanner in = new Scanner(System.in);
 		System.out.println("Enter player name for white pieces");
 		//validate
 		String name = in.next();
-		
+		in.close();
 		return name;
 
 	}
 	
-	public String setBlackPlayer(){
+	public static String setBlackPlayer(){
+		Scanner in = new Scanner(System.in);
 		System.out.println("Enter player name for black pieces");
 		//validate
 		String name = in.next();
-		
+		in.close();
 		return name;
 
 	}
 	
-	public Position getTargetPositionInput(){
+	public static Position getPositionInput(){
+		Scanner in = new Scanner(System.in);
 		System.out.println("Enter X and Y coordinates for the desired move");
 		int x = in.nextInt();
 		int y = in.nextInt();
+		in.close();
 		return new Position(x,y);
 	}
 	

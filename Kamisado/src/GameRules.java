@@ -1,39 +1,93 @@
 
 public class GameRules {
 	
-	static int initialX,initialY,targetX,targetY;
-	
-	public GameRules(){
-		
-	}
 
 	public static boolean isLegalMove(State state, Move move){
 
-		initXY(move);
+	
+		int initialX = move.getInitial().getPosX();
+		int initialY = move.getInitial().getPosY();
+		int targetX = move.getTarget().getPosX();
+		int targetY = move.getTarget().getPosY();
 		
-		if (state.getPiece(new Position(targetX,targetY)) != null) 
+		if (state.getPiece(move.getTarget()) != null) 
 			return false;
 		
-		Piece piece = state.getPiece(new Position(initialX,initialY));
+		Piece piece = state.getPiece(move.getInitial());
 		
 		if(piece.getPlayerColor() == Color.BLACK){
-			if(initialX < targetX)
-				return false;
-			return true;
+			if(initialX < targetX){
+				//straight
+				if(initialY == targetY){
+					int x = initialX;
+					while(x != targetX){
+						if(state.getPiece(new Position(x, initialY)) != null) return false;
+						x++;
+					}
+				}//left diagonal
+				else if((initialX + initialX) == (initialY - targetY)){
+					int x = initialX;
+					int y = initialY;
+					while(x != targetX && y != targetY){
+						if(state.getPiece(new Position(x, y)) != null) return false;
+						x++;
+						y--;
+					}
+				}//right diagonal
+				else if((initialX + initialX) == (initialY + targetY)){
+					int x = initialX;
+					int y = initialY;
+					while(x != targetX && y != targetY){
+						if(state.getPiece(new Position(x, y)) != null) return false;
+						x++;
+						y++;
+					}
+				}
+			}
+			
 				
 		}else if(piece.getPlayerColor() == Color.WHITE){
-			if(initialX > targetX)
-				return false;
-			return true;
+			if(initialX > targetX){
+				//straight
+				if(initialY == targetY){
+					int x = initialX;
+					while(x != targetX){
+						if(state.getPiece(new Position(x, initialY)) != null) return false;
+						x--;
+					}
+				}//left diagonal
+				else if((initialX + initialX) == (initialY + targetY)){
+					int x = initialX;
+					int y = initialY;
+					while(x != targetX && y != targetY){
+						if(state.getPiece(new Position(x, y)) != null) return false;
+						x--;
+						y--;
+					}
+					
+				}//right diagonal
+				else if((initialX + initialX) == (initialY - targetY)){
+					int x = initialX;
+					int y = initialY;
+					while(x != targetX && y != targetY){
+						if(state.getPiece(new Position(x, y)) != null) return false;
+						x--;
+						y++;
+					}
+				}
+			}
+				
 		}
-		return false;
+		return true;
 	}
 	
 	public static boolean isWinningMove(State state, Move move){
 	
-		initXY(move);
 		
-		Piece piece = state.getPiece(new Position(initialX,initialY));
+		int targetX = move.getTarget().getPosX();
+		int targetY = move.getTarget().getPosY();
+		
+		Piece piece = state.getPiece(move.getInitial());
 		if(piece.getPlayerColor() == Color.BLACK){
 			if(targetX == 7)
 				return true;
@@ -50,10 +104,4 @@ public class GameRules {
 		return false;
 	}
 	
-	public static void initXY(Move move){
-		initialX = move.getInitial().getPosX();
-		initialY = move.getInitial().getPosY();
-		targetX = move.getTarget().getPosX();
-		targetY = move.getTarget().getPosY();
-	}
 }
