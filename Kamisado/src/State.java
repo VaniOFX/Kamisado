@@ -43,6 +43,7 @@ public class State {
 		Position initial = move.getInitial();
 		Position target = move.getTarget();
 		pieces[target.getPosX()][target.getPosY()] = pieces[initial.getPosX()][initial.getPosY()];
+		pieces[initial.getPosX()][initial.getPosY()] = null;
 	}
 	
 	public Piece getPiece(Position pos){

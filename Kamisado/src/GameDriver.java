@@ -37,13 +37,11 @@ public class GameDriver implements Observable {
 
 	@Override
 	public void unsubscribe(Observer observer) {
-		// TODO Auto-generated method stub
 		observers.remove(observer);
 	}
 
 	@Override
 	public void notifyObservers() {
-		// TODO Auto-generated method stub
 		for(Observer ob : observers){
 			ob.update();
 		}
