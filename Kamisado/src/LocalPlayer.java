@@ -2,20 +2,22 @@
 public class LocalPlayer implements AbstractPlayer{
 
 	private Color playerColor;
+	private Xterm in;
 	
 	public LocalPlayer(Color playerColor){
 		this.playerColor = playerColor;
+		in = new Xterm();
 	}
 
 	public Move getMove(Position initial) {
-		return new Move(initial, Xterm.getPositionInput());
+		return new Move(initial, in.getPositionInput());
 	}
 	
 	public Position getInitialPosition(){
-		return Xterm.getPositionInput();
+		return in.getPositionInput();
 	}
 	
-	public Color getPlayerColor() {
+	public Color getColor() {
 		return playerColor;
 	}
 	

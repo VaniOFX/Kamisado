@@ -23,7 +23,7 @@ public class GameDriver implements Observable {
 	public void startGame(){
 		history.push(currentState);
 		currentPlayer = player1;
-		Position currentInitial = player1.getInitialPosition();
+		Position currentInitial = currentPlayer.getInitialPosition();
 		while(true){
 
 			//current player makes a move
@@ -38,7 +38,7 @@ public class GameDriver implements Observable {
 				currentState.move(move);
 				notifyObservers();
 				
-				currentInitial = currentState.getPiecePosition(currentPlayer.getPlayerColor(), board.getColor(move.getTarget()));
+				currentInitial = currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget()));
 				
 				//push board to history
 				State newState = currentState;
