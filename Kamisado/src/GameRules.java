@@ -1,10 +1,36 @@
+import java.util.ArrayList;
 
 public class GameRules {
 	
-
-	public static boolean isLegalMove(State state, Move move){
-
 	
+	public static  ArrayList<Position> legalPositions(State state, Position initial){
+		
+		int initialX = initial.getPosX();
+		ArrayList<Position> positions = new ArrayList<Position>();
+		Piece piece = state.getPiece(initial);
+		Position pos;
+		
+		if(piece.getPlayerColor() == Color.BLACK){
+			for(int x = initialX+1; x < 8; x++){
+				for(int y = 0; y < 8; y++){
+					pos = new Position(x,y);
+					if(isLegalMove(state, new Move(initial, pos)))
+						positions.add(pos);
+				}
+			}
+		}else if(piece.getPlayerColor() == Color.WHITE){
+			for(int x = initialX-1; x >= 0; x--){
+				for(int y = 0; y < 8; y++){
+					pos = new Position(x,y);
+					if(isLegalMove(state, new Move(initial, pos)))
+						positions.add(pos);
+				}
+			}
+		}
+		return positions;
+		
+	}
+	public static boolean isLegalMove(State state, Move move){
 		int initialX = move.getInitial().getPosX();
 		int initialY = move.getInitial().getPosY();
 		int targetX = move.getTarget().getPosX();
@@ -19,30 +45,34 @@ public class GameRules {
 			if(initialX < targetX){
 				//straight
 				if(initialY == targetY){
-					int x = initialX;
+					int x = initialX+1;
 					while(x != targetX){
 						if(state.getPiece(new Position(x, initialY)) != null) return false;
 						x++;
 					}
 				}//left diagonal
-				else if((initialX + initialX) == (initialY - targetY)){
-					int x = initialX;
-					int y = initialY;
+				else if((targetX - initialX) == (initialY - targetY)){
+					int x = initialX+1;
+					int y = initialY-1;
 					while(x != targetX && y != targetY){
 						if(state.getPiece(new Position(x, y)) != null) return false;
 						x++;
 						y--;
 					}
 				}//right diagonal
-				else if((initialX + initialX) == (initialY + targetY)){
-					int x = initialX;
-					int y = initialY;
+				else if((targetX - initialX) == (targetY - initialY)){
+					int x = initialX+1;
+					int y = initialY+1;
 					while(x != targetX && y != targetY){
 						if(state.getPiece(new Position(x, y)) != null) return false;
 						x++;
 						y++;
 					}
+				}else{
+					return false;
 				}
+			}else{
+				return false;
 			}
 			
 				
@@ -50,15 +80,15 @@ public class GameRules {
 			if(initialX > targetX){
 				//straight
 				if(initialY == targetY){
-					int x = initialX;
+					int x = initialX-1;
 					while(x != targetX){
 						if(state.getPiece(new Position(x, initialY)) != null) return false;
 						x--;
 					}
 				}//left diagonal
-				else if((initialX + initialX) == (initialY + targetY)){
-					int x = initialX;
-					int y = initialY;
+				else if((initialX - targetX) == (initialY - targetY)){
+					int x = initialX-1;
+					int y = initialY-1;
 					while(x != targetX && y != targetY){
 						if(state.getPiece(new Position(x, y)) != null) return false;
 						x--;
@@ -66,15 +96,19 @@ public class GameRules {
 					}
 					
 				}//right diagonal
-				else if((initialX + initialX) == (initialY - targetY)){
-					int x = initialX;
-					int y = initialY;
+				else if((initialY - targetY) == (targetX - initialX)){
+					int x = initialX-1;
+					int y = initialY+1;
 					while(x != targetX && y != targetY){
 						if(state.getPiece(new Position(x, y)) != null) return false;
 						x--;
 						y++;
 					}
+				}else{
+					return false;
 				}
+			}else{
+				return false;
 			}
 				
 		}
@@ -85,23 +119,23 @@ public class GameRules {
 	
 		
 		int targetX = move.getTarget().getPosX();
-		int targetY = move.getTarget().getPosY();
 		
 		Piece piece = state.getPiece(move.getInitial());
+		
 		if(piece.getPlayerColor() == Color.BLACK){
 			if(targetX == 7)
 				return true;
 				
 		}else if(piece.getPlayerColor() == Color.WHITE){
-			if(targetY == 0 )
+			if(targetX == 0 )
 				return true;
 		}
 		return false;
 	}
 	
-	public static boolean isInDeadLock(State state, Move move){
+	public static boolean hasNoLegalMoves(State state, Move move){
 		
-		return false;
+		return legalPositions(state, move.getInitial()).size() == 0;
 	}
 	
 }

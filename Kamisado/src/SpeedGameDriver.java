@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class GameDriver implements Observable {
-	
+public class SpeedGameDriver extends GameDriver implements Runnable{
+
 	private AbstractPlayer playerWhite;
 	private AbstractPlayer playerBlack;
 	private Stack<State> history;
@@ -11,9 +11,9 @@ public class GameDriver implements Observable {
 	private ArrayList<Observer> observers;
 	private AbstractPlayer currentPlayer;
 	private Position currentInitial;
-	private boolean running;
 	
-	public GameDriver(AbstractPlayer white, AbstractPlayer black){
+	public SpeedGameDriver(AbstractPlayer white, AbstractPlayer black){
+		super(white, black);
 		this.playerWhite = white;
 		this.playerBlack = black;
 		history = new Stack<State>();
@@ -25,17 +25,23 @@ public class GameDriver implements Observable {
 	public void startGame(){
 		history.push(currentState);
 		currentPlayer = playerWhite;
-		currentInitial = currentPlayer.getInitialPosition();
-		running = true;
-		while(running){
+	}
 
+	@Override
+	public void run() {
+
+		currentInitial = currentPlayer.getInitialPosition();
+		
+		while(true) {
 			//current player makes a move
 			Move move = currentPlayer.getMove(currentInitial);
+			
 			//validate move
 			if(GameRules.isLegalMove(currentState, move)){
 				if(GameRules.isWinningMove(currentState, move)){
 					//generate match report
-					running = false;
+					System.out.println(currentPlayer.getName()+ " won");
+					//end game
 				}
 				//update board
 				currentState.move(move);
@@ -57,11 +63,20 @@ public class GameDriver implements Observable {
 			}else{
 				System.out.println("Illegal move.");
 			}
-			
 		}
-		System.out.println(currentPlayer.getName()+ " won");
+		
 	}
-
+	
+	public void onTimeOut(){
+		System.out.println(currentPlayer.getName()+ " ran out of time!");
+		if (currentPlayer.getColor() == Color.WHITE){
+			System.out.println(playerBlack.getName()+ " won");
+		}else{
+			System.out.println(playerWhite.getName()+ " won");
+		}
+		System.exit(1);
+	}
+	
 	@Override
 	public void subscribe(Observer observer) {
 		observers.add(observer);
@@ -82,8 +97,4 @@ public class GameDriver implements Observable {
 	
 	
 	
-	
-	
-	
-
 }

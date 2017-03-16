@@ -1,5 +1,5 @@
 
 public interface Observer {
 
-	public void update();
+	public void update(State currentState);
 }

@@ -5,7 +5,6 @@ public class Piece {
 	private Color color;
 	
 	public Piece(Color playerColor, Color color){
-		//should we validate the arguments???
 		this.playerColor=playerColor;
 		this.color = color;
 	}

@@ -1,4 +1,3 @@
-
 public class State {
 	
 	
@@ -11,7 +10,7 @@ public class State {
 	}
 
 	private void initPieces(){
-		// Initialise pieces
+		// Initialize pieces
 		pieces = new Piece[8][8];
 		pieces[0][0] = new Piece(Color.BLACK, Color.ORANGE);
 		pieces[0][1] = new Piece(Color.BLACK, Color.BLUE);
@@ -21,12 +20,6 @@ public class State {
 		pieces[0][5] = new Piece(Color.BLACK, Color.RED);
 		pieces[0][6] = new Piece(Color.BLACK, Color.GREEN);
 		pieces[0][7] = new Piece(Color.BLACK, Color.BROWN);
-		
-		for(int i = 1; i < 7; i++){
-			for(int j = 0; j < 8; j++){
-				pieces[i][j] = null;
-			}
-		}
 		
 		pieces[7][0] = new Piece(Color.WHITE, Color.BROWN);
 		pieces[7][1] = new Piece(Color.WHITE, Color.GREEN);
@@ -53,12 +46,28 @@ public class State {
 	public Position getPiecePosition(Color playerColor, Color pieceColor){
 		for (int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
-				if(pieces[i][j].getColor() == pieceColor 
-						&& pieces[i][j].getPlayerColor() == playerColor){
-					return new Position(i, j);
+				if(pieces[i][j] != null){
+					if(pieces[i][j].getColor() == pieceColor 
+							&& pieces[i][j].getPlayerColor() == playerColor){
+						return new Position(i, j);
+					}
 				}
 			}
 		}
 		return null;
 	}
+	
+	public void printState(){
+		for (int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(pieces[i][j]== null){
+					System.out.print("|____|");
+				}else{
+					System.out.print("|"+ pieces[i][j].getPlayerColor().toString().charAt(0)+","+ pieces[i][j].getColor().toString().substring(0, 2)+"|");
+				}
+			}
+			System.out.println();
+		}
+	}
+
 }
