@@ -8,31 +8,65 @@ public class Application {
 		
 		
 		//MainView mv = new MainView();
-		String playerWhite = Xterm.setWhitePlayer();
-		String playerBlack = Xterm.setBlackPlayer();
-		AbstractPlayer white = new LocalPlayer(playerWhite,Color.WHITE);
-		AbstractPlayer black = new LocalPlayer(playerBlack,Color.BLACK);
-		String mode = Xterm.chooseGameMode();
-		int moveTime = Xterm.moveTime();
-		if(mode.equals("speed")){
-			SpeedGameDriver game = new SpeedGameDriver(white,black);
-			game.subscribe(new StateView());
-			game.startGame();
-			long startTime = System.currentTimeMillis();
-			Thread t = new Thread(game);
-			t.start();
-			while(t.isAlive()){
-				if(System.currentTimeMillis() - startTime > moveTime && t.isAlive() && !t.isInterrupted()){
-					t.interrupt();
-					game.onTimeOut();
+		String modePlayers = Xterm.chooseGameMode("single","duo");
+		if(modePlayers.equals("duo")){
+			String playerWhite = Xterm.setWhitePlayer();
+			String playerBlack = Xterm.setBlackPlayer();
+			AbstractPlayer white = new LocalPlayer(playerWhite,Color.WHITE);
+			AbstractPlayer black = new LocalPlayer(playerBlack,Color.BLACK);
+			String modeSpeed = Xterm.chooseGameMode("normal","speed");
+			if(modeSpeed.equals("speed")){
+				int moveTime = Xterm.moveTime();
+				DuoSpeedGameDriver game = new DuoSpeedGameDriver(white,black);
+				game.subscribe(new StateView());
+				game.startGame();
+				long startTime = System.currentTimeMillis();
+				Thread t = new Thread(game);
+				t.start();
+				while(t.isAlive()){
+					if(System.currentTimeMillis() - startTime > moveTime && t.isAlive() && !t.isInterrupted()){
+						t.interrupt();
+						game.onTimeOut();
+					}
 				}
+			}else if(modeSpeed.equals("normal")){
+				DuoGameDriver game = new DuoGameDriver(white, black);
+				game.subscribe(new StateView());
+				game.startGame();
 			}
-		}else if(mode.equals("normal")){
-			GameDriver game = new GameDriver(white, black);
-			game.subscribe(new StateView());
-			game.startGame();
+		}else if(modePlayers.equals("single")){
+			String setCol = Xterm.setPlayerColor();
+			String name = "";
+			Color AIPlayerCol = null, LocalPlayerCol = null;
+			if(setCol.equals("white")){
+				name = Xterm.setWhitePlayer();
+				AIPlayerCol = Color.BLACK;
+				LocalPlayerCol = Color.WHITE;
+			}
+			else if(setCol.equals("black"))
+			{
+				name = Xterm.setBlackPlayer();
+				AIPlayerCol = Color.WHITE;
+				LocalPlayerCol = Color.BLACK;
+			}
+			
+			String modeDiff = Xterm.chooseGameMode("easy", "hard");
+			if(modeDiff.equals("easy")){
+				AbstractPlayer LocalPlayer = new LocalPlayer(name,LocalPlayerCol);
+				AbstractPlayer AIPlayer = new EasyAIPlayer("AIPlayer",AIPlayerCol);
+				SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
+				game.subscribe(new StateView());
+				game.startGame();
+			}
+			else if(modeDiff.equals("hard")){
+				AbstractPlayer LocalPlayer = new LocalPlayer(name,LocalPlayerCol);
+				AbstractPlayer AIPlayer = new HardAIPlayer("AIPlayer",AIPlayerCol);
+				SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
+				game.subscribe(new StateView());
+				game.startGame();
+			}
+			
 		}
-
 	}
 
 }

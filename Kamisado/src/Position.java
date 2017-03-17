@@ -13,5 +13,8 @@ public class Position {
 		return posY;
 	}
 	
+	public boolean equals(Position pos){
+		return (posX == pos.getPosX() && posY == pos.getPosY());
+	}
 }
 

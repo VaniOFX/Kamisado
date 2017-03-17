@@ -1,29 +1,33 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class GameDriver implements Observable {
+public class DuoGameDriver implements Observable {
 	
-	private AbstractPlayer playerWhite;
-	private AbstractPlayer playerBlack;
-	private Stack<State> history;
-	private State currentState; 
-	private Board board;
-	private ArrayList<Observer> observers;
-	private AbstractPlayer currentPlayer;
-	private Position currentInitial;
-	private boolean running;
+	protected AbstractPlayer playerWhite;
+	protected AbstractPlayer playerBlack; 
+	protected Board board;
+	protected ArrayList<Observer> observers;
+	protected State currentState;
+	protected AbstractPlayer currentPlayer;
+	protected Position currentInitial;
+	private Stack<State> history; 
+	protected boolean running;
+	protected boolean historyEnabled = false;
 	
-	public GameDriver(AbstractPlayer white, AbstractPlayer black){
+	public DuoGameDriver(AbstractPlayer white, AbstractPlayer black){
 		this.playerWhite = white;
 		this.playerBlack = black;
-		history = new Stack<State>();
 		currentState = new State();
+		history = new Stack<State>();
 		board = new Board();
 		observers = new ArrayList<Observer>();
 	}
 	
 	public void startGame(){
-		history.push(currentState);
+		if(historyEnabled){
+			history = new Stack<State>();
+			history.push(currentState);
+		}
 		currentPlayer = playerWhite;
 		currentInitial = currentPlayer.getInitialPosition();
 		running = true;
@@ -31,6 +35,15 @@ public class GameDriver implements Observable {
 
 			//current player makes a move
 			Move move = currentPlayer.getMove(currentInitial);
+			
+			if(historyEnabled){
+				if(move.getTarget().equals(new Position(-1,-1))){
+					if(!history.empty()){
+						currentState = history.pop();
+						continue;
+					}
+			}
+			
 			//validate move
 			if(GameRules.isLegalMove(currentState, move)){
 				if(GameRules.isWinningMove(currentState, move)){
@@ -42,8 +55,9 @@ public class GameDriver implements Observable {
 				
 				notifyObservers();
 								
-				//push board to history
-				history.push(currentState);
+				if(historyEnabled){
+					history.push(currentState);
+				}
 				
 				//switch current player
 				if(currentPlayer == playerWhite){
@@ -60,6 +74,7 @@ public class GameDriver implements Observable {
 			
 		}
 		System.out.println(currentPlayer.getName()+ " won");
+		}
 	}
 
 	@Override
@@ -80,10 +95,4 @@ public class GameDriver implements Observable {
 		}
 	}
 	
-	
-	
-	
-	
-	
-
 }

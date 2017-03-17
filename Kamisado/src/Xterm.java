@@ -29,13 +29,28 @@ public class Xterm{
 		return name;
 
 	}
+
+	public static String setPlayerColor(){
+		in = new Scanner(System.in);
+		System.out.println("Which set do you want to play with: white or black");
+		String set;
+		while(!in.hasNext()){
+			in.next();
+		}
+		do{
+			set = in.next();
+			checkQuit(set);
+			}while(!((set.trim().toLowerCase().equals("white")||(set.trim().toLowerCase().equals("black")))));
+		return set;
+	}
+	
 	
 	public static Position getInitialPosition(){
 		in = new Scanner(System.in);
 		int x,y;
 		System.out.println("Enter X and Y coordinates for the desired move");
 		do{
-			System.out.println("Please enter a number between 1 and 8 for X:");
+			System.out.println("Please enter the number 7 for X:");
 			while(!in.hasNextInt()){
 				checkQuit(in.next());
 				System.out.println("Please enter an integer");
@@ -59,11 +74,16 @@ public class Xterm{
 	public static Position getPositionInput(){
 		in = new Scanner(System.in);
 		int x,y;
+		String nextTok;
 		System.out.println("Enter X and Y coordinates for the desired move");
 		do{
 			System.out.println("Please enter a number between 1 and 8 for X:");
 			while(!in.hasNextInt()){
-				checkQuit(in.next());
+				nextTok = in.next();
+				checkQuit(nextTok);
+				if(checkUndo(nextTok)){
+					return new Position(-1,-1);
+				}
 				System.out.println("Please enter an integer");
 			}
 			x = in.nextInt();
@@ -82,9 +102,9 @@ public class Xterm{
 		return new Position(x,y);
 	}
 	
-	public static String chooseGameMode(){
+	public static String chooseGameMode(String first, String second){
 		in = new Scanner(System.in);
-		System.out.println("Choose game mode: normal or speed");
+		System.out.println("Choose game mode: "+first+ " or " +second);
 		String mode;
 		while(!in.hasNext()){
 			in.next();
@@ -92,7 +112,7 @@ public class Xterm{
 		do{
 		mode = in.next();
 		checkQuit(mode);
-		}while(!((mode.trim().toLowerCase().equals("speed")||(mode.trim().toLowerCase().equals("normal")))));
+		}while(!((mode.trim().toLowerCase().equals(first)||(mode.trim().toLowerCase().equals(second)))));
 		return mode;
 	}
 	
@@ -112,5 +132,10 @@ public class Xterm{
 			System.exit(0);
 		}
 	}
+	
+	private static boolean checkUndo(String undo){
+		return undo.trim().toLowerCase().equals("undo");
+	}
+	
 	
 }

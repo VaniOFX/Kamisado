@@ -1,35 +1,19 @@
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class SpeedGameDriver extends GameDriver implements Runnable{
+public class DuoSpeedGameDriver extends DuoGameDriver implements Runnable{
 
-	private AbstractPlayer playerWhite;
-	private AbstractPlayer playerBlack;
-	private Stack<State> history;
-	private State currentState; 
-	private Board board;
-	private ArrayList<Observer> observers;
-	private AbstractPlayer currentPlayer;
-	private Position currentInitial;
 	
-	public SpeedGameDriver(AbstractPlayer white, AbstractPlayer black){
+	public DuoSpeedGameDriver(AbstractPlayer white, AbstractPlayer black){
 		super(white, black);
-		this.playerWhite = white;
-		this.playerBlack = black;
-		history = new Stack<State>();
-		currentState = new State();
-		board = new Board();
-		observers = new ArrayList<Observer>();
 	}
 	
-	public void startGame(){
-		history.push(currentState);
-		currentPlayer = playerWhite;
-	}
-
 	@Override
 	public void run() {
-
+		super.startGame();
+		
+		
+		/*
 		currentInitial = currentPlayer.getInitialPosition();
 		
 		while(true) {
@@ -48,8 +32,6 @@ public class SpeedGameDriver extends GameDriver implements Runnable{
 				
 				notifyObservers();
 								
-				//push board to history
-				history.push(currentState);
 				
 				//switch current player
 				if(currentPlayer == playerWhite){
@@ -64,7 +46,7 @@ public class SpeedGameDriver extends GameDriver implements Runnable{
 				System.out.println("Illegal move.");
 			}
 		}
-		
+		*/
 	}
 	
 	public void onTimeOut(){
@@ -76,25 +58,6 @@ public class SpeedGameDriver extends GameDriver implements Runnable{
 		}
 		System.exit(1);
 	}
-	
-	@Override
-	public void subscribe(Observer observer) {
-		observers.add(observer);
 		
-	}
-
-	@Override
-	public void unsubscribe(Observer observer) {
-		observers.remove(observer);
-	}
-
-	@Override
-	public void notifyObservers() {
-		for(Observer ob : observers){
-			ob.update(currentState);
-		}
-	}
-	
-	
 	
 }
