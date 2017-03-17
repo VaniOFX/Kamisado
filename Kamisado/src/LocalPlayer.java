@@ -1,4 +1,4 @@
-
+ 
 public class LocalPlayer implements AbstractPlayer{
 
 	private Color playerColor;

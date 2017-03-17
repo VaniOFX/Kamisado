@@ -55,6 +55,7 @@ public class Xterm{
 		System.out.println("The initial position is "+ x +" and " + y);
 		return new Position(x,y);
 	}
+	
 	public static Position getPositionInput(){
 		in = new Scanner(System.in);
 		int x,y;
