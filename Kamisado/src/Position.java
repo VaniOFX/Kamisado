@@ -1,4 +1,4 @@
-public class Position {
+public class Position implements java.io.Serializable  {
 	private int posX;
 	private int posY;
 	

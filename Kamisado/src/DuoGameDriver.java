@@ -1,3 +1,9 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -23,6 +29,11 @@ public class DuoGameDriver implements Observable {
 		board = new Board();
 		observers = new ArrayList<Observer>();
 	}
+	
+	public DuoGameDriver(String filename) throws FileNotFoundException, ClassNotFoundException, IOException{
+		readFromFile(filename);
+	}
+	
 	
 	public void startGame(){
 		if(historyEnabled){
@@ -100,6 +111,30 @@ public class DuoGameDriver implements Observable {
 		for(Observer ob : observers){
 			ob.update(currentState);
 		}
+	}
+	
+	public void writeToFile() throws FileNotFoundException, IOException{
+		ObjectOutputStream outputWriter = new ObjectOutputStream(new FileOutputStream("gameDriver.ser"));
+		outputWriter.writeObject(currentState);
+		outputWriter.writeObject(currentPlayer);
+		outputWriter.writeObject(currentInitial);
+		outputWriter.writeObject(playerWhite);
+		outputWriter.writeObject(playerBlack);
+		outputWriter.writeObject(history);
+		outputWriter.flush();  
+		outputWriter.close();  
+	}
+	
+	public void readFromFile(String filename) throws FileNotFoundException, IOException, ClassNotFoundException{
+		ObjectInputStream inputReader= new ObjectInputStream(new FileInputStream(filename));
+		currentState = (State) inputReader.readObject();
+		currentPlayer = (AbstractPlayer) inputReader.readObject();
+		currentInitial = (Position) inputReader.readObject();
+		playerWhite = (AbstractPlayer) inputReader.readObject();
+		playerBlack = (AbstractPlayer) inputReader.readObject();
+		Stack<State> readObject = (Stack<State>) inputReader.readObject();
+		if(readObject != null) history = readObject;
+		currentState.printState();
 	}
 	
 }

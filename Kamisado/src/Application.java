@@ -5,7 +5,7 @@ import java.util.Timer;
 public class Application {
 
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
 		
 		//MainView mv = new MainView();
@@ -32,6 +32,10 @@ public class Application {
 				}
 			}else if(modeSpeed.equals("normal")){
 				DuoGameDriver game = new DuoGameDriver(white, black);
+				
+				game.writeToFile();
+				game.readFromFile("gameDriver.ser");
+				
 				game.subscribe(new StateView());
 				game.startGame();
 			}

@@ -1,12 +1,12 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.StringTokenizer;
 
-public class State {
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+public class State implements java.io.Serializable  {
 	
 	
 	private Piece[][] pieces;
@@ -16,12 +16,12 @@ public class State {
 		initPieces();
 	
 	}
-	
-	public State(String filename) throws FileNotFoundException, IOException{
+	/*
+	public State(String filename) throws FileNotFoundException, IOException, ClassNotFoundException{
 		
 		readFromFile(filename);
 	}
-
+*/
 	private void initPieces(){
 		// Initialize pieces
 		pieces = new Piece[8][8];
@@ -82,20 +82,15 @@ public class State {
 			System.out.println();
 		}
 	}
-	
-	public void writeToFile() throws IOException{
-		BufferedWriter outputWriter = new BufferedWriter(new FileWriter("state.txt"));
+/*	
+	public void writeToFile() throws FileNotFoundException, IOException{
+		ObjectOutputStream outputWriter = new ObjectOutputStream(new FileOutputStream("state.ser"));
 		for (int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
 				if(pieces[i][j]!= null){
-					outputWriter.write(i);
-					outputWriter.write(" ");
-					outputWriter.write(j);
-					outputWriter.write(" ");
-					outputWriter.write(pieces[i][j].getColor().toString());
-					outputWriter.write(" ");
-					outputWriter.write(pieces[i][j].getPlayerColor().toString());
-					outputWriter.newLine();
+					outputWriter.writeInt(i);
+					outputWriter.writeInt(j);
+					outputWriter.writeObject(pieces[i][j]);
 				}
 			}
 		}
@@ -103,24 +98,16 @@ public class State {
 		outputWriter.close();  
 	}
 	
-	public void readFromFile(String filename) throws FileNotFoundException, IOException{
+	public void readFromFile(String filename) throws FileNotFoundException, IOException, ClassNotFoundException{
 		pieces = new Piece[8][8];
-		BufferedReader inputReader= new BufferedReader(new FileReader(filename));
-		String line;
-		StringTokenizer tokenizer;
-		int x = 0,y = 0;
-		String color = null, playerColor = null;
-		for (int i = 0; i < 16; i++){
-			while ((line = inputReader.readLine()) != null){
-				tokenizer = new StringTokenizer(line);
-				x = Integer.parseInt(tokenizer.nextToken());
-				y = Integer.parseInt(tokenizer.nextToken());
-				color = tokenizer.nextToken();
-			    playerColor = tokenizer.nextToken(); 
-			}    	
-			pieces[x][y] = new Piece(Color.valueOf(playerColor),Color.valueOf(color));
+		ObjectInputStream inputReader= new ObjectInputStream(new FileInputStream(filename));
+		for(int i = 0; i < 16;i++){
+			int x = inputReader.readInt();
+			int y = inputReader.readInt();
+			pieces[x][y] = (Piece) inputReader.readObject();
 		}
 	}
-
+	*/
 }
+
 

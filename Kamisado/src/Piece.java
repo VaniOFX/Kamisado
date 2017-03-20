@@ -1,5 +1,5 @@
 
-public class Piece {
+public class Piece implements java.io.Serializable {
 	
 	private Color playerColor;
 	private Color color;
