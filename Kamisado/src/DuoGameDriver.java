@@ -13,6 +13,7 @@ public class DuoGameDriver implements Observable {
 	private Stack<State> history; 
 	protected boolean running;
 	protected boolean historyEnabled = false;
+	public boolean moveExecuted = false;
 	
 	public DuoGameDriver(AbstractPlayer white, AbstractPlayer black){
 		this.playerWhite = white;
@@ -25,23 +26,26 @@ public class DuoGameDriver implements Observable {
 	
 	public void startGame(){
 		if(historyEnabled){
-			history = new Stack<State>();
 			history.push(currentState);
 		}
 		currentPlayer = playerWhite;
 		currentInitial = currentPlayer.getInitialPosition();
 		running = true;
 		while(running){
-
+			moveExecuted = false;
 			//current player makes a move
 			Move move = currentPlayer.getMove(currentInitial);
 			
 			if(historyEnabled){
 				if(move.getTarget().equals(new Position(-1,-1))){
-					if(!history.empty()){
+					if(history.empty()){
+						System.out.println("The history is empty");
+					}
+					else{
 						currentState = history.pop();
 						continue;
 					}
+				}
 			}
 			
 			//validate move
@@ -66,8 +70,11 @@ public class DuoGameDriver implements Observable {
 					currentPlayer = playerWhite;
 				}
 				
+				
 				currentInitial = currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget()));
 				System.out.println(currentInitial.getPosX()+" "+currentInitial.getPosY());
+				moveExecuted = true;
+				
 			}else{
 				System.out.println("Illegal move.");
 			}
@@ -75,8 +82,8 @@ public class DuoGameDriver implements Observable {
 		}
 		System.out.println(currentPlayer.getName()+ " won");
 		}
-	}
 
+	
 	@Override
 	public void subscribe(Observer observer) {
 		observers.add(observer);

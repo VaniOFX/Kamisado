@@ -1,10 +1,11 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Timer;
 
 public class Application {
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		
 		//MainView mv = new MainView();
@@ -19,11 +20,11 @@ public class Application {
 				int moveTime = Xterm.moveTime();
 				DuoSpeedGameDriver game = new DuoSpeedGameDriver(white,black);
 				game.subscribe(new StateView());
-				game.startGame();
 				long startTime = System.currentTimeMillis();
 				Thread t = new Thread(game);
 				t.start();
 				while(t.isAlive()){
+					if(game.moveExecuted) startTime = System.currentTimeMillis();
 					if(System.currentTimeMillis() - startTime > moveTime && t.isAlive() && !t.isInterrupted()){
 						t.interrupt();
 						game.onTimeOut();
@@ -50,22 +51,18 @@ public class Application {
 				LocalPlayerCol = Color.BLACK;
 			}
 			
+			AbstractPlayer LocalPlayer = new LocalPlayer(name,LocalPlayerCol);	
+			AbstractPlayer AIPlayer = null;
 			String modeDiff = Xterm.chooseGameMode("easy", "hard");
 			if(modeDiff.equals("easy")){
-				AbstractPlayer LocalPlayer = new LocalPlayer(name,LocalPlayerCol);
-				AbstractPlayer AIPlayer = new EasyAIPlayer("AIPlayer",AIPlayerCol);
-				SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
-				game.subscribe(new StateView());
-				game.startGame();
+				AIPlayer = new EasyAIPlayer("AIPlayer",AIPlayerCol);
 			}
 			else if(modeDiff.equals("hard")){
-				AbstractPlayer LocalPlayer = new LocalPlayer(name,LocalPlayerCol);
-				AbstractPlayer AIPlayer = new HardAIPlayer("AIPlayer",AIPlayerCol);
-				SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
-				game.subscribe(new StateView());
-				game.startGame();
+				AIPlayer = new HardAIPlayer("AIPlayer",AIPlayerCol);
 			}
-			
+			SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
+			game.subscribe(new StateView());
+			game.startGame();
 		}
 	}
 

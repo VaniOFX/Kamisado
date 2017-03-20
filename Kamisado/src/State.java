@@ -1,3 +1,11 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
 public class State {
 	
 	
@@ -7,6 +15,11 @@ public class State {
 		
 		initPieces();
 	
+	}
+	
+	public State(String filename) throws FileNotFoundException, IOException{
+		
+		readFromFile(filename);
 	}
 
 	private void initPieces(){
@@ -69,5 +82,45 @@ public class State {
 			System.out.println();
 		}
 	}
+	
+	public void writeToFile() throws IOException{
+		BufferedWriter outputWriter = new BufferedWriter(new FileWriter("state.txt"));
+		for (int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
+				if(pieces[i][j]!= null){
+					outputWriter.write(i);
+					outputWriter.write(" ");
+					outputWriter.write(j);
+					outputWriter.write(" ");
+					outputWriter.write(pieces[i][j].getColor().toString());
+					outputWriter.write(" ");
+					outputWriter.write(pieces[i][j].getPlayerColor().toString());
+					outputWriter.newLine();
+				}
+			}
+		}
+		outputWriter.flush();  
+		outputWriter.close();  
+	}
+	
+	public void readFromFile(String filename) throws FileNotFoundException, IOException{
+		pieces = new Piece[8][8];
+		BufferedReader inputReader= new BufferedReader(new FileReader(filename));
+		String line;
+		StringTokenizer tokenizer;
+		int x = 0,y = 0;
+		String color = null, playerColor = null;
+		for (int i = 0; i < 16; i++){
+			while ((line = inputReader.readLine()) != null){
+				tokenizer = new StringTokenizer(line);
+				x = Integer.parseInt(tokenizer.nextToken());
+				y = Integer.parseInt(tokenizer.nextToken());
+				color = tokenizer.nextToken();
+			    playerColor = tokenizer.nextToken(); 
+			}    	
+			pieces[x][y] = new Piece(Color.valueOf(playerColor),Color.valueOf(color));
+		}
+	}
 
 }
+
