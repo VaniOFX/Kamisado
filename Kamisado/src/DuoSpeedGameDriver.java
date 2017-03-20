@@ -4,6 +4,11 @@ import java.util.Stack;
 public class DuoSpeedGameDriver extends DuoGameDriver implements Runnable{
 
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6597023580163111084L;
+
 	public DuoSpeedGameDriver(AbstractPlayer white, AbstractPlayer black){
 		super(white, black);
 	}
@@ -21,6 +26,7 @@ public class DuoSpeedGameDriver extends DuoGameDriver implements Runnable{
 		}else{
 			System.out.println(playerWhite.getName()+ " won");
 		}
+		SaveManager.saveGame(this);
 		System.exit(1);
 	}
 		

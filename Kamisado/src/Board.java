@@ -1,7 +1,12 @@
+import java.io.Serializable;
 
-public class Board {
+public class Board implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4126546523662966923L;
 	private Color[][] board;
 	
 	public Board(){

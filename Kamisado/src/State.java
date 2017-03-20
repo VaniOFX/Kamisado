@@ -9,6 +9,10 @@ import java.io.ObjectOutputStream;
 public class State implements java.io.Serializable  {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 755892029592219797L;
 	private Piece[][] pieces;
 	
 	public State(){

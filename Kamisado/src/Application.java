@@ -39,6 +39,7 @@ public class Application {
 				game.subscribe(new StateView());
 				game.startGame();
 			}
+			
 		}else if(modePlayers.equals("single")){
 			String setCol = Xterm.setPlayerColor();
 			String name = "";

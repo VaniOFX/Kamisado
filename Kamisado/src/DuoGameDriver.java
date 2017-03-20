@@ -4,11 +4,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class DuoGameDriver implements Observable {
+public class DuoGameDriver implements Observable, Serializable{
 	
+	private static final long serialVersionUID = -4838628746443249629L;
 	protected AbstractPlayer playerWhite;
 	protected AbstractPlayer playerBlack; 
 	protected Board board;
