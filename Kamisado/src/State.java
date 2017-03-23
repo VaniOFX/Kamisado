@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 
 public class State implements java.io.Serializable  {
 	
-	
+	private Position currentInitial;
 	/**
 	 * 
 	 */
@@ -20,12 +20,7 @@ public class State implements java.io.Serializable  {
 		initPieces();
 	
 	}
-	/*
-	public State(String filename) throws FileNotFoundException, IOException, ClassNotFoundException{
-		
-		readFromFile(filename);
-	}
-*/
+
 	private void initPieces(){
 		// Initialize pieces
 		pieces = new Piece[8][8];
@@ -86,32 +81,17 @@ public class State implements java.io.Serializable  {
 			System.out.println();
 		}
 	}
-/*	
-	public void writeToFile() throws FileNotFoundException, IOException{
-		ObjectOutputStream outputWriter = new ObjectOutputStream(new FileOutputStream("state.ser"));
-		for (int i = 0; i < 8; i++){
-			for(int j = 0; j < 8; j++){
-				if(pieces[i][j]!= null){
-					outputWriter.writeInt(i);
-					outputWriter.writeInt(j);
-					outputWriter.writeObject(pieces[i][j]);
-				}
-			}
-		}
-		outputWriter.flush();  
-		outputWriter.close();  
+
+	public Position getCurrentInitial() {
+		return currentInitial;
 	}
-	
-	public void readFromFile(String filename) throws FileNotFoundException, IOException, ClassNotFoundException{
-		pieces = new Piece[8][8];
-		ObjectInputStream inputReader= new ObjectInputStream(new FileInputStream(filename));
-		for(int i = 0; i < 16;i++){
-			int x = inputReader.readInt();
-			int y = inputReader.readInt();
-			pieces[x][y] = (Piece) inputReader.readObject();
-		}
+
+	public void setCurrentInitial(Position currentInitial) {
+		this.currentInitial = currentInitial;
 	}
-	*/
+
+
+
 }
 
 

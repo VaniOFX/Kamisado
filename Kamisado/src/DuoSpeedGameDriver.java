@@ -9,6 +9,7 @@ public class DuoSpeedGameDriver extends DuoGameDriver implements Runnable{
 	 */
 	private static final long serialVersionUID = -6597023580163111084L;
 
+
 	public DuoSpeedGameDriver(AbstractPlayer white, AbstractPlayer black){
 		super(white, black);
 	}

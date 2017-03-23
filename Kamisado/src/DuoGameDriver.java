@@ -17,7 +17,6 @@ public class DuoGameDriver implements Observable, Serializable{
 	protected ArrayList<Observer> observers;
 	protected State currentState;
 	protected AbstractPlayer currentPlayer;
-	protected Position currentInitial;
 	private Stack<State> history; 
 	protected boolean running;
 	protected boolean historyEnabled = false;
@@ -32,22 +31,17 @@ public class DuoGameDriver implements Observable, Serializable{
 		observers = new ArrayList<Observer>();
 	}
 	
-	public DuoGameDriver(String filename) throws FileNotFoundException, ClassNotFoundException, IOException{
-		readFromFile(filename);
-	}
-	
-	
 	public void startGame(){
 		if(historyEnabled){
 			history.push(currentState);
 		}
 		currentPlayer = playerWhite;
-		currentInitial = currentPlayer.getInitialPosition();
+		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		running = true;
 		while(running){
 			moveExecuted = false;
 			//current player makes a move
-			Move move = currentPlayer.getMove(currentInitial);
+			Move move = currentPlayer.getMove(currentState.getCurrentInitial());
 			
 			if(historyEnabled){
 				if(move.getTarget().equals(new Position(-1,-1))){
@@ -55,11 +49,12 @@ public class DuoGameDriver implements Observable, Serializable{
 						System.out.println("The history is empty");
 					}
 					else{
+						history.pop();
 						currentState = history.pop();
 						continue;
 					}
 				}
-			}
+			
 			
 			//validate move
 			if(GameRules.isLegalMove(currentState, move)){
@@ -84,19 +79,34 @@ public class DuoGameDriver implements Observable, Serializable{
 				}
 				
 				
-				currentInitial = currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget()));
-				System.out.println(currentInitial.getPosX()+" "+currentInitial.getPosY());
+				currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
+				System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
 				moveExecuted = true;
 				
 			}else{
 				System.out.println("Illegal move.");
 			}
-			
+			}
 		}
 		System.out.println(currentPlayer.getName()+ " won");
 		}
 
 	
+	public State getCurrentState(){
+		return currentState;
+	}
+	
+	public AbstractPlayer getCurrentPlayer(){
+		return currentPlayer;
+	}
+	
+	public AbstractPlayer getPlayerBlack(){
+		return playerBlack;
+	}
+	
+	public AbstractPlayer getPlayerWhite(){
+		return playerWhite;
+	}
 	@Override
 	public void subscribe(Observer observer) {
 		observers.add(observer);
@@ -113,30 +123,6 @@ public class DuoGameDriver implements Observable, Serializable{
 		for(Observer ob : observers){
 			ob.update(currentState);
 		}
-	}
-	
-	public void writeToFile() throws FileNotFoundException, IOException{
-		ObjectOutputStream outputWriter = new ObjectOutputStream(new FileOutputStream("gameDriver.ser"));
-		outputWriter.writeObject(currentState);
-		outputWriter.writeObject(currentPlayer);
-		outputWriter.writeObject(currentInitial);
-		outputWriter.writeObject(playerWhite);
-		outputWriter.writeObject(playerBlack);
-		outputWriter.writeObject(history);
-		outputWriter.flush();  
-		outputWriter.close();  
-	}
-	
-	public void readFromFile(String filename) throws FileNotFoundException, IOException, ClassNotFoundException{
-		ObjectInputStream inputReader= new ObjectInputStream(new FileInputStream(filename));
-		currentState = (State) inputReader.readObject();
-		currentPlayer = (AbstractPlayer) inputReader.readObject();
-		currentInitial = (Position) inputReader.readObject();
-		playerWhite = (AbstractPlayer) inputReader.readObject();
-		playerBlack = (AbstractPlayer) inputReader.readObject();
-		Stack<State> readObject = (Stack<State>) inputReader.readObject();
-		if(readObject != null) history = readObject;
-		currentState.printState();
 	}
 	
 }
