@@ -25,5 +25,11 @@ public class LocalPlayer implements AbstractPlayer{
 		return name;
 	}
 
+	@Override
+	public Move getMove(State state) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

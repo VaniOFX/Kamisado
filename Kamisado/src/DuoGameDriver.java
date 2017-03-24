@@ -69,6 +69,7 @@ public class DuoGameDriver implements Observable, Serializable{
 					}
 					else{
 						history.pop();
+						history.pop();
 						currentState = history.pop();
 						notifyObservers();
 						continue;
