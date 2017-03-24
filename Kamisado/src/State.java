@@ -1,10 +1,4 @@
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.util.Arrays;
 
 public class State implements java.io.Serializable  {
 	
@@ -20,7 +14,19 @@ public class State implements java.io.Serializable  {
 		initPieces();
 	
 	}
-
+	
+	public State(Piece[][] pieces, Move move){
+		this.pieces = pieces;
+		Position initial = move.getInitial();
+		Position target = move.getTarget();
+		pieces[target.getPosX()][target.getPosY()] = pieces[initial.getPosX()][initial.getPosY()];
+		pieces[initial.getPosX()][initial.getPosY()] = null;
+	}
+	
+	public State(Piece[][] pieces){
+		this.pieces = pieces;
+	}
+	
 	private void initPieces(){
 		// Initialize pieces
 		pieces = new Piece[8][8];
@@ -44,12 +50,11 @@ public class State implements java.io.Serializable  {
 	}
 	
 	
-	public void move(Move move){
-		Position initial = move.getInitial();
-		Position target = move.getTarget();
-		pieces[target.getPosX()][target.getPosY()] = pieces[initial.getPosX()][initial.getPosY()];
-		pieces[initial.getPosX()][initial.getPosY()] = null;
+	public State move(Move move){
+		
+		return new State(pieces,move);
 	}
+
 	
 	public Piece getPiece(Position pos){
 		return pieces[pos.getPosX()][pos.getPosY()];
@@ -89,8 +94,13 @@ public class State implements java.io.Serializable  {
 	public void setCurrentInitial(Position currentInitial) {
 		this.currentInitial = currentInitial;
 	}
-
-
+	
+	public Piece[][] getPieces(){
+		Piece [][] piecesCopy = new Piece[8][];
+		for(int i = 0; i < 8; i++)
+		    piecesCopy[i] = pieces[i].clone();
+		return piecesCopy;
+	}
 
 }
 

@@ -137,5 +137,19 @@ public class Xterm{
 		return undo.trim().toLowerCase().equals("undo");
 	}
 	
+	public static String setNewGame(){
+		in = new Scanner(System.in);
+		System.out.println("If you want to continue the previous game write [restore] otherwise [new]");
+		String set;
+		while(!in.hasNext()){
+			in.next();
+		}
+		do{
+			set = in.next();
+			checkQuit(set);
+			}while(!((set.trim().toLowerCase().equals("restore")||(set.trim().toLowerCase().equals("new")))));
+		return set;
+	}
+	
 	
 }

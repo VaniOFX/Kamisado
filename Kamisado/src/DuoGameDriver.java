@@ -17,14 +17,19 @@ public class DuoGameDriver implements Observable, Serializable{
 	protected ArrayList<Observer> observers;
 	protected State currentState;
 	protected AbstractPlayer currentPlayer;
-	private Stack<State> history; 
+	protected Stack<State> history; 
 	protected boolean running;
 	protected boolean historyEnabled = false;
 	public boolean moveExecuted = false;
 	
-	public DuoGameDriver(AbstractPlayer white, AbstractPlayer black){
-		this.playerWhite = white;
-		this.playerBlack = black;
+	public DuoGameDriver(AbstractPlayer player1, AbstractPlayer player2){
+		if(player1.getColor() == Color.WHITE){
+			this.playerWhite = player1;
+			this.playerBlack = player2;
+		}else{
+			this.playerWhite = player2;
+			this.playerBlack = player1;
+		}
 		currentState = new State();
 		history = new Stack<State>();
 		board = new Board();
@@ -35,25 +40,41 @@ public class DuoGameDriver implements Observable, Serializable{
 		if(historyEnabled){
 			history.push(currentState);
 		}
+		SaveManager.saveGame(this);
 		currentPlayer = playerWhite;
 		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		running = true;
+	}
+	
+	public void play(){
 		while(running){
 			moveExecuted = false;
+			SaveManager.saveGame(this);
 			//current player makes a move
-			Move move = currentPlayer.getMove(currentState.getCurrentInitial());
+			Move move;
+			if(currentPlayer.getName().equals("AIPlayer")){
+				State newState = new State(currentState.getPieces());
+				newState.setCurrentInitial(currentState.getCurrentInitial());
+				move = currentPlayer.getMove(newState);
+			}else{
+				move = currentPlayer.getMove(currentState.getCurrentInitial());
+			}
+			
 			
 			if(historyEnabled){
 				if(move.getTarget().equals(new Position(-1,-1))){
 					if(history.empty()){
 						System.out.println("The history is empty");
+						continue;
 					}
 					else{
 						history.pop();
 						currentState = history.pop();
+						notifyObservers();
 						continue;
 					}
 				}
+			}
 			
 			
 			//validate move
@@ -63,13 +84,17 @@ public class DuoGameDriver implements Observable, Serializable{
 					running = false;
 				}
 				//update board
-				currentState.move(move);
+				State newState = new State(currentState.getPieces());
+				newState.move(move);
 				
-				notifyObservers();
 								
 				if(historyEnabled){
-					history.push(currentState);
+					history.push(newState);
 				}
+				
+				currentState = newState;
+				
+				notifyObservers();
 				
 				//switch current player
 				if(currentPlayer == playerWhite){
@@ -86,7 +111,7 @@ public class DuoGameDriver implements Observable, Serializable{
 			}else{
 				System.out.println("Illegal move.");
 			}
-			}
+			
 		}
 		System.out.println(currentPlayer.getName()+ " won");
 		}
