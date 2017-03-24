@@ -3,6 +3,7 @@ import java.util.Arrays;
 public class State implements java.io.Serializable  {
 	
 	private Position currentInitial;
+	private Position lastPieceOn;
 	/**
 	 * 
 	 */
@@ -19,6 +20,7 @@ public class State implements java.io.Serializable  {
 		this.pieces = pieces;
 		Position initial = move.getInitial();
 		Position target = move.getTarget();
+		lastPieceOn = target;
 		pieces[target.getPosX()][target.getPosY()] = pieces[initial.getPosX()][initial.getPosY()];
 		pieces[initial.getPosX()][initial.getPosY()] = null;
 	}
@@ -100,6 +102,14 @@ public class State implements java.io.Serializable  {
 		for(int i = 0; i < 8; i++)
 		    piecesCopy[i] = pieces[i].clone();
 		return piecesCopy;
+	}
+
+	public Position getLastPieceOn() {
+		return lastPieceOn;
+	}
+
+	public void setLastPieceOn(Position lastPieceOn) {
+		this.lastPieceOn = lastPieceOn;
 	}
 
 }

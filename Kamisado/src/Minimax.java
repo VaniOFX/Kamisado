@@ -4,7 +4,7 @@ public class Minimax {
 	
 	public static Position minimax(State state, AbstractPlayer player, int depth){
 		State newState = max(state, Integer.MIN_VALUE, Integer.MAX_VALUE, player.getColor(), depth).getState();
-		return newState.getCurrentInitial();
+		return newState.getLastPieceOn();
 		
 	}
 	
@@ -23,7 +23,9 @@ public class Minimax {
 			playerColor = Color.BLACK;
 		}
 		for(Position p : positions){
-			State newState = state.move(new Move(state.getCurrentInitial(), p));
+			State newState = new State(state.getPieces());
+			newState.move(new Move(state.getCurrentInitial(), p));
+			newState.setLastPieceOn(p);
 			newState.setCurrentInitial(newState.getPiecePosition(playerColor, new Board().getColor(p)));
 			children.add(newState);
 		}
@@ -61,7 +63,9 @@ public class Minimax {
 			playerColor = Color.BLACK;
 		}
 		for(Position p : positions){
-			State newState = state.move(new Move(state.getCurrentInitial(), p));
+			State newState = new State(state.getPieces());
+			newState.move(new Move(state.getCurrentInitial(), p));
+			newState.setLastPieceOn(p);
 			newState.setCurrentInitial(newState.getPiecePosition(playerColor, new Board().getColor(p)));
 			children.add(newState);
 		}

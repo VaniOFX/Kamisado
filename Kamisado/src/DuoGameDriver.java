@@ -97,10 +97,12 @@ public class DuoGameDriver implements Observable, Serializable{
 				notifyObservers();
 				
 				//switch current player
-				if(currentPlayer == playerWhite){
-					currentPlayer = playerBlack;
-				}else{
-					currentPlayer = playerWhite;
+				if(running){
+					if(currentPlayer == playerWhite){
+						currentPlayer = playerBlack;
+					}else{
+						currentPlayer = playerWhite;
+					}
 				}
 				
 				
