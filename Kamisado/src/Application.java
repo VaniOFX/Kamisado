@@ -60,10 +60,10 @@ public class Application {
 				AbstractPlayer AIPlayer = null;
 				String modeDiff = Xterm.chooseGameMode("easy", "hard");
 				if(modeDiff.equals("easy")){
-					AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol);
+					AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol,2);
 				}
 				else if(modeDiff.equals("hard")){
-					AIPlayer = new HardAIPlayer("AIPlayer",AIPlayerCol);
+					AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol,4);
 				}
 				SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
 				game.subscribe(new StateView());
@@ -77,7 +77,7 @@ public class Application {
 			System.out.println("The next piece to move is on " +
 					game.getCurrentState().getCurrentInitial().getPosX() + " " +
 					game.getCurrentState().getCurrentInitial().getPosY());
-			game.startGame();
+			game.play();
 			
 		}
 

@@ -5,15 +5,17 @@ public class AIPlayer implements AbstractPlayer{
 
 	private Color playerColor;
 	private String name;
+	private int depth;
 	
-	public AIPlayer(String name, Color playerColor){
+	public AIPlayer(String name, Color playerColor, int depth){
 		this.name = name;
 		this.playerColor = playerColor;
+		this.depth = depth;
 	}
 	
 	@Override
 	public Move getMove(State state){
-		Position targetPos = Minimax.minimax(state, this, 3);
+		Position targetPos = Minimax.minimax(state, this, depth);
 		return new Move(state.getCurrentInitial(),targetPos);
 		
 	}
