@@ -20,6 +20,8 @@ public class DuoGameDriver implements Observable, Serializable{
 	protected Stack<State> history; 
 	protected boolean running;
 	protected boolean historyEnabled = false;
+	protected int scoreWhite;
+	protected int scoreBlack;
 	public boolean moveExecuted = false;
 	
 	public DuoGameDriver(AbstractPlayer player1, AbstractPlayer player2){
@@ -30,23 +32,50 @@ public class DuoGameDriver implements Observable, Serializable{
 			this.playerWhite = player2;
 			this.playerBlack = player1;
 		}
-		currentState = new State();
 		history = new Stack<State>();
-		board = new Board();
+		board = new Board(0);
+		currentState = new State(board);
 		observers = new ArrayList<Observer>();
+		scoreWhite = 0;
+		scoreBlack = 0;
 	}
 	
 	public void startGame(){
 		if(historyEnabled){
 			history.push(currentState);
 		}
+
 		SaveManager.saveGame(this);
 		currentPlayer = playerWhite;
 		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		running = true;
 	}
 	
-	public void play(){
+	public void countScore(int winScore){
+		while(true){
+			if(play().equals(Color.BLACK)){
+				scoreBlack++;
+				if(scoreBlack == winScore){
+					System.out.println(playerWhite.getName()+ " won");
+					break;
+				}
+				
+			}				
+			else{
+				scoreWhite++;
+				if(scoreWhite == winScore){
+					System.out.println(playerWhite.getName()+ " won");
+					break;
+				}
+			}
+			currentState = new State(board);
+			startGame();
+			System.out.println("New GAME!");
+		}
+	}
+	
+	
+	public Color play(){
 		while(running){
 			moveExecuted = false;
 			SaveManager.saveGame(this);
@@ -116,7 +145,8 @@ public class DuoGameDriver implements Observable, Serializable{
 			}
 			
 		}
-		System.out.println(currentPlayer.getName()+ " won");
+//		System.out.println(currentPlayer.getName()+ " won");
+		return currentPlayer.getColor();
 		}
 
 	

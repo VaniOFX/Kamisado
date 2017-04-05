@@ -4,14 +4,15 @@ public class State implements java.io.Serializable  {
 	
 	private Position currentInitial;
 	private Position lastPieceOn;
+	private Board board;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 755892029592219797L;
 	private Piece[][] pieces;
 	
-	public State(){
-		
+	public State(Board board){
+		this.board = board;
 		initPieces();
 	
 	}
@@ -32,28 +33,27 @@ public class State implements java.io.Serializable  {
 	private void initPieces(){
 		// Initialize pieces
 		pieces = new Piece[8][8];
-		pieces[0][0] = new Piece(Color.BLACK, Color.ORANGE);
-		pieces[0][1] = new Piece(Color.BLACK, Color.BLUE);
-		pieces[0][2] = new Piece(Color.BLACK, Color.PURPLE);
-		pieces[0][3] = new Piece(Color.BLACK, Color.PINK);
-		pieces[0][4] = new Piece(Color.BLACK, Color.YELLOW);
-		pieces[0][5] = new Piece(Color.BLACK, Color.RED);
-		pieces[0][6] = new Piece(Color.BLACK, Color.GREEN);
-		pieces[0][7] = new Piece(Color.BLACK, Color.BROWN);
+		pieces[0][0] = new Piece(Color.BLACK, board.getColor(new Position(0,0)));
+		pieces[0][1] = new Piece(Color.BLACK, board.getColor(new Position(0,1)));
+		pieces[0][2] = new Piece(Color.BLACK, board.getColor(new Position(0,2)));
+		pieces[0][3] = new Piece(Color.BLACK, board.getColor(new Position(0,3)));
+		pieces[0][4] = new Piece(Color.BLACK, board.getColor(new Position(0,4)));
+		pieces[0][5] = new Piece(Color.BLACK, board.getColor(new Position(0,5)));
+		pieces[0][6] = new Piece(Color.BLACK, board.getColor(new Position(0,6)));
+		pieces[0][7] = new Piece(Color.BLACK, board.getColor(new Position(0,7)));
 		
-		pieces[7][0] = new Piece(Color.WHITE, Color.BROWN);
-		pieces[7][1] = new Piece(Color.WHITE, Color.GREEN);
-		pieces[7][2] = new Piece(Color.WHITE, Color.RED);
-		pieces[7][3] = new Piece(Color.WHITE, Color.YELLOW);
-		pieces[7][4] = new Piece(Color.WHITE, Color.PINK);
-		pieces[7][5] = new Piece(Color.WHITE, Color.PURPLE);
-		pieces[7][6] = new Piece(Color.WHITE, Color.BLUE);
-		pieces[7][7] = new Piece(Color.WHITE, Color.ORANGE);
+		pieces[7][0] = new Piece(Color.WHITE, board.getColor(new Position(7,0)));
+		pieces[7][1] = new Piece(Color.WHITE, board.getColor(new Position(7,1)));
+		pieces[7][2] = new Piece(Color.WHITE, board.getColor(new Position(7,2)));
+		pieces[7][3] = new Piece(Color.WHITE, board.getColor(new Position(7,3)));
+		pieces[7][4] = new Piece(Color.WHITE, board.getColor(new Position(7,4)));
+		pieces[7][5] = new Piece(Color.WHITE, board.getColor(new Position(7,5)));
+		pieces[7][6] = new Piece(Color.WHITE, board.getColor(new Position(7,6)));
+		pieces[7][7] = new Piece(Color.WHITE, board.getColor(new Position(7,7)));
 	}
 	
 	
 	public State move(Move move){
-		
 		return new State(pieces,move);
 	}
 
@@ -110,6 +110,10 @@ public class State implements java.io.Serializable  {
 
 	public void setLastPieceOn(Position lastPieceOn) {
 		this.lastPieceOn = lastPieceOn;
+	}
+	
+	public Board getBoard(){
+		return board;
 	}
 
 }

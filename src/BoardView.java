@@ -9,7 +9,7 @@ public class BoardView extends JPanel {
 	    public BoardView() {
 	       GridLayout grid = new GridLayout(8,8);
 	       this.setLayout(grid);
-	       board = new Board();
+	       board = new Board(1);
 	       for(int i = 0; i < 8; i++){	
 				for(int j = 0; j < 8; j++){
 					Color tileColor = board.getColor(new Position(i, j));

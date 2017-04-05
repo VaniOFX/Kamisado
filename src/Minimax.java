@@ -26,7 +26,7 @@ public class Minimax {
 			State newState = new State(state.getPieces());
 			newState.move(new Move(state.getCurrentInitial(), p));
 			newState.setLastPieceOn(p);
-			newState.setCurrentInitial(newState.getPiecePosition(playerColor, new Board().getColor(p)));
+			newState.setCurrentInitial(newState.getPiecePosition(playerColor, new Board(0).getColor(p)));
 			children.add(newState);
 		}
 		
@@ -66,7 +66,7 @@ public class Minimax {
 			State newState = new State(state.getPieces());
 			newState.move(new Move(state.getCurrentInitial(), p));
 			newState.setLastPieceOn(p);
-			newState.setCurrentInitial(newState.getPiecePosition(playerColor, new Board().getColor(p)));
+			newState.setCurrentInitial(newState.getPiecePosition(playerColor, new Board(0).getColor(p)));
 			children.add(newState);
 		}
 		
