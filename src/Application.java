@@ -15,8 +15,8 @@ public class Application {
 			if(modePlayers.equals("duo")){
 				String playerWhite = Xterm.setWhitePlayer();
 				String playerBlack = Xterm.setBlackPlayer();
-				AbstractPlayer white = new AIPlayer("AIPlayer",Color.WHITE,4);
-				AbstractPlayer black = new AIPlayer("AIPlayer",Color.BLACK,2);
+				AbstractPlayer white = new LocalPlayer(playerWhite,Color.WHITE);
+				AbstractPlayer black = new LocalPlayer(playerBlack,Color.BLACK);
 				String modeSpeed = Xterm.chooseGameMode("normal","speed");
 				if(modeSpeed.equals("speed")){
 					int moveTime = Xterm.moveTime();
@@ -33,7 +33,7 @@ public class Application {
 						}
 					}
 				}else if(modeSpeed.equals("normal")){
-					SingleGameDriver game = new SingleGameDriver(white, black);
+					DuoGameDriver game = new DuoGameDriver(white, black);
 					
 					game.subscribe(new StateView());
 					game.startGame();
@@ -56,7 +56,7 @@ public class Application {
 					LocalPlayerCol = Color.BLACK;
 				}
 				
-				AbstractPlayer LocalPlayer = new LocalPlayer(name,LocalPlayerCol);	
+				AbstractPlayer LocalPlayer = new AIPlayer(name,LocalPlayerCol,2);	
 				AbstractPlayer AIPlayer = null;
 				String modeDiff = Xterm.chooseGameMode("easy", "hard");
 				if(modeDiff.equals("easy")){
@@ -68,7 +68,7 @@ public class Application {
 				SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
 				game.subscribe(new StateView());
 				game.startGame();
-				game.play();
+				game.countScore(3);
 			}
 		}else if(newGame.equals("restore")){
 			DuoGameDriver game = SaveManager.restoreState();
