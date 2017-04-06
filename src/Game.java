@@ -90,7 +90,7 @@ public class Game implements Observable, Serializable {
 			}
 			
 			//validate move
-			if(GameRules.isLegalMove(currentState, move)){
+			if(GameRules.isLegalMove(currentState, move,0)){
 				if(GameRules.isWinningMove(currentState, move)){
 					//generate match report
 					running = false;

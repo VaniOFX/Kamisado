@@ -56,7 +56,7 @@ public class Application {
 					LocalPlayerCol = Color.BLACK;
 				}
 				
-				AbstractPlayer LocalPlayer = new AIPlayer(name,LocalPlayerCol,2);	
+				AbstractPlayer LocalPlayer = new LocalPlayer(name,LocalPlayerCol);	
 				AbstractPlayer AIPlayer = null;
 				String modeDiff = Xterm.chooseGameMode("easy", "hard");
 				if(modeDiff.equals("easy")){

@@ -14,7 +14,7 @@ public class GameRules {
 			for(int x = initialX+1; x < 8; x++){
 				for(int y = 0; y < 8; y++){
 					pos = new Position(x,y);
-					if(isLegalMove(state, new Move(initial, pos)))
+					if(isLegalMove(state, new Move(initial, pos),state.getPiece(initial).getSumo()))
 						positions.add(pos);
 				}
 			}
@@ -22,7 +22,7 @@ public class GameRules {
 			for(int x = initialX-1; x >= 0; x--){
 				for(int y = 0; y < 8; y++){
 					pos = new Position(x,y);
-					if(isLegalMove(state, new Move(initial, pos)))
+					if(isLegalMove(state, new Move(initial, pos),state.getPiece(initial).getSumo()))
 						positions.add(pos);
 				}
 			}
@@ -30,7 +30,14 @@ public class GameRules {
 		return positions;
 		
 	}
-	public static boolean isLegalMove(State state, Move move){
+	public static boolean isLegalMove(State state, Move move,int sumo){
+		int limit = 0;
+		int counter = 0;
+		if(sumo == 0) limit = 7;
+		else if(sumo == 1) limit = 5;
+		else if(sumo == 2) limit = 3;
+		else if(sumo == 3) limit = 1;
+		
 		int initialX = move.getInitial().getPosX();
 		int initialY = move.getInitial().getPosY();
 		int targetX = move.getTarget().getPosX();
@@ -46,16 +53,24 @@ public class GameRules {
 				//straight
 				if(initialY == targetY){
 					int x = initialX+1;
+					counter = 1;
 					while(x != targetX){
 						if(state.getPiece(new Position(x, initialY)) != null) return false;
+						
+						if(counter >= limit) return false;
+						
+						counter++;
 						x++;
 					}
 				}//left diagonal
 				else if((targetX - initialX) == (initialY - targetY)){
 					int x = initialX+1;
 					int y = initialY-1;
+					counter = 1;
 					while(x != targetX && y != targetY){
 						if(state.getPiece(new Position(x, y)) != null) return false;
+						if(counter > limit) return false;
+						counter++;
 						x++;
 						y--;
 					}
@@ -63,8 +78,11 @@ public class GameRules {
 				else if((targetX - initialX) == (targetY - initialY)){
 					int x = initialX+1;
 					int y = initialY+1;
+					counter = 1;
 					while(x != targetX && y != targetY){
 						if(state.getPiece(new Position(x, y)) != null) return false;
+						if(counter > limit) return false;
+						counter++;
 						x++;
 						y++;
 					}
@@ -81,16 +99,22 @@ public class GameRules {
 				//straight
 				if(initialY == targetY){
 					int x = initialX-1;
+					counter = 1;
 					while(x != targetX){
 						if(state.getPiece(new Position(x, initialY)) != null) return false;
+						if(counter > limit) return false;
+						counter++;
 						x--;
 					}
 				}//left diagonal
 				else if((initialX - targetX) == (initialY - targetY)){
 					int x = initialX-1;
 					int y = initialY-1;
+					counter = 1;
 					while(x != targetX && y != targetY){
 						if(state.getPiece(new Position(x, y)) != null) return false;
+						if(counter > limit) return false;
+						counter++;
 						x--;
 						y--;
 					}
@@ -99,8 +123,11 @@ public class GameRules {
 				else if((initialY - targetY) == (targetX - initialX)){
 					int x = initialX-1;
 					int y = initialY+1;
+					counter = 1;
 					while(x != targetX && y != targetY){
 						if(state.getPiece(new Position(x, y)) != null) return false;
+						if(counter > limit) return false;
+						counter++;
 						x--;
 						y++;
 					}

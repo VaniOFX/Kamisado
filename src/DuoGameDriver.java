@@ -68,7 +68,10 @@ public class DuoGameDriver implements Observable, Serializable{
 					break;
 				}
 			}
-			currentState = new State(board);
+			State newState = new State(board);
+			newState.refillLeftToRight(currentState.getPieces());
+			newState.printState();
+			currentState = newState;
 			startGame();
 			System.out.println("New GAME!");
 		}
@@ -106,17 +109,21 @@ public class DuoGameDriver implements Observable, Serializable{
 				}
 			}
 			
-			
+			int curSumo = currentState.getPiece(currentState.getCurrentInitial()).getSumo();
 			//validate move
-			if(GameRules.isLegalMove(currentState, move)){
+			if(GameRules.isLegalMove(currentState, move, curSumo)){
 				if(GameRules.isWinningMove(currentState, move)){
 					//generate match report
 					running = false;
+					
+
+					currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
 				}
 				//update board
 				State newState = new State(currentState.getPieces());
 				newState.move(move);
 				
+
 								
 				if(historyEnabled){
 					history.push(newState);

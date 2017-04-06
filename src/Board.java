@@ -132,7 +132,6 @@ public class Board implements Serializable{
 	public void printBoard(){
 		for (int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
-				if(board[i][j] != null)
 				System.out.print("|"+board[i][j].toString()+"|");
 			}
 			System.out.println();
