@@ -21,7 +21,7 @@ public class Application {
 				if(modeSpeed.equals("speed")){
 					int moveTime = Xterm.moveTime();
 					DuoSpeedGameDriver game = new DuoSpeedGameDriver(white,black);
-					game.subscribe(new StateView());
+					//game.subscribe(new StateView());
 					long startTime = System.currentTimeMillis();
 					Thread t = new Thread(game);
 					t.start();
@@ -34,8 +34,8 @@ public class Application {
 					}
 				}else if(modeSpeed.equals("normal")){
 					DuoGameDriver game = new DuoGameDriver(white, black);
-					
-					game.subscribe(new StateView());
+
+					//game.subscribe(new StateView());
 					game.startGame();
 					game.countScore(3);
 				}
@@ -66,7 +66,7 @@ public class Application {
 					AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol,4);
 				}
 				SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
-				game.subscribe(new StateView());
+				//game.subscribe(new StateView());
 				game.startGame();
 				game.countScore(3);
 			}

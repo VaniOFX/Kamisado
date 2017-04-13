@@ -13,9 +13,11 @@ public class Board implements Serializable{
 	public Board(int mode){
 		if(mode == 0){
 			initBoard();
+		}
+		else if(mode == 1){
+			initBoard();
 			initRandomBoard();
 		}
-		else if(mode == 1) initRandomBoard();
 		else System.out.println("Error Wrong mode");
 		
 	}
