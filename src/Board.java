@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Random;
 
 public class Board implements Serializable{
 	
@@ -10,8 +11,13 @@ public class Board implements Serializable{
 	private Color[][] board;
 	
 	public Board(int mode){
-		if(mode == 0) initBoard();
-		else if(mode == 1) initRandomBoard();
+		if(mode == 0){
+			initBoard();
+		}
+		else if(mode == 1){
+			initBoard();
+			initRandomBoard();
+		}
 		else System.out.println("Error Wrong mode");
 		
 	}
@@ -94,36 +100,42 @@ public class Board implements Serializable{
 	}
 	
 	private void initRandomBoard(){
-		board = new Color[8][8];
-		Color c;
-		for(int row = 0; row < 8; row++){
-			for(int col = 0; col < 8; col++){
-				c =  Color.getRandomColor();
-				if(isLegalColor(row,col,c)){
-					board[row][col] = c;
-				}else{
-					col--;
-				}
-			}
-		}
 
-	}
+		Random rand = new Random();
+		int newRow;
+		for(int row = 0; row < 8; row++){
+			do{
+				newRow = rand.nextInt(8);
+			}while(newRow == row);
+			
+			Color tmp[] = board[row];
+		    board[row] = board[newRow];
+		    board[newRow] = tmp;
+
+		}
+		Color tmpColor;
+		int newCol;
+		for(int col = 0; col < 8; col++){
+			do{
+				newCol = rand.nextInt(8);
+			}while(newCol == col);
+			
+			for(int row = 0; row < 8; row++){
+				
+				tmpColor = board[row][col];
+				board[row][col] = board[row][newCol];
+				board[row][newCol] = tmpColor;
+
+			}
+		}
+//		for(int row = 0; row < 8; row++){
+//			for(int col = 0; col < 8; col++){
+//				System.out.print(board[row][col].toString().substring(0, 2)+"|");
+//			}
+//			System.out.println("\n");
+//		}
+}
 	
-	private boolean isLegalColor(int row,int col, Color c){
-		if(col > 0){
-			for(int j = 0; j < col; j++){
-				if(board[row][j].equals(c))
-					return false;
-			}
-		}
-		if(row > 0){
-			for(int i = 0; i < row; i++){
-				if(board[i][col].equals(c))
-					return false;
-			}
-		}
-		return true;
-	}
 	
 	public Color getColor(Position pos){
 		return board[pos.getPosX()][pos.getPosY()];

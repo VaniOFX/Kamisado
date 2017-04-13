@@ -95,6 +95,10 @@ public class GameRules {
 				
 		}else if(piece.getPlayerColor() == Color.WHITE){
 			if(initialX > targetX){
+<<<<<<< HEAD
+=======
+				//check if target position is within range
+>>>>>>> 51682934b39346198758c3b8375600dbcf15f150
 				if(initialX - targetX > limit) return false;
 				//straight
 				if(initialY == targetY){
