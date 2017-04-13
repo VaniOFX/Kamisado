@@ -111,18 +111,16 @@ public class DuoGameDriver implements Observable, Serializable{
 			
 			int curSumo = currentState.getPiece(currentState.getCurrentInitial()).getSumo();
 			//validate move
+			
 			if(GameRules.isLegalMove(currentState, move, curSumo)){
 				if(GameRules.isWinningMove(currentState, move)){
 					//generate match report
 					running = false;
-					
-
 					currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
 				}
 				//update board
 				State newState = new State(currentState.getPieces());
 				newState.move(move);
-				
 
 								
 				if(historyEnabled){
@@ -130,6 +128,15 @@ public class DuoGameDriver implements Observable, Serializable{
 				}
 				
 				currentState = newState;
+				
+				if(curSumo > 0 && newState.isSumoPushable(move.getTarget(), currentPlayer.getColor())){
+					Position nextPosition = currentState.sumoPush(move.getTarget(), currentPlayer.getColor());
+					currentState.setCurrentInitial(currentState.getPiecePosition((currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK, board.getColor(nextPosition)));
+					System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
+					notifyObservers();
+					moveExecuted = true;
+					continue;
+				}
 				
 				notifyObservers();
 				
@@ -149,10 +156,8 @@ public class DuoGameDriver implements Observable, Serializable{
 				
 			}else{
 				System.out.println("Illegal move.");
-			}
-			
+			}			
 		}
-//		System.out.println(currentPlayer.getName()+ " won");
 		return currentPlayer.getColor();
 		}
 

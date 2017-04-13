@@ -171,6 +171,51 @@ public class State implements java.io.Serializable  {
 			}
 		}
 	}
+	
+	public Position sumoPush(Position target, Color col){
+		int targetX = target.getPosX();
+		int targetY = target.getPosY();
+		Position nextPosition = null;
+		int count = 0;
+		if(col.equals(Color.BLACK)){
+			while(pieces[targetX+1][targetY] != null){
+				count++;
+				targetX++;
+			}
+			targetX = target.getPosX();
+			nextPosition = new Position(targetX+count+1, targetY);
+			while(count > 0){
+				pieces[targetX+count+1][targetY] = pieces[targetX+count][targetY];
+				pieces[targetX+count][targetY] = null;
+				count--;
+			}
+		}
+		else if(col.equals(Color.WHITE)){
+			while(pieces[targetX-1][targetY] != null){
+				count++;
+				targetX--;
+			}
+			targetX = target.getPosX();
+			nextPosition = new Position(targetX-count-1, targetY);
+			while(count > 0){
+				pieces[targetX-count-1][targetY] = pieces[targetX-count][targetY];
+				pieces[targetX-count][targetY] = null;
+				count--;
+			}
+		}
+		return nextPosition;
+	}
+	
+	public boolean isSumoPushable(Position target,Color col){
+		int targetX = target.getPosX();
+		int targetY = target.getPosY();
+		if(col.equals(Color.BLACK)){
+			if(pieces[targetX + 1][targetY] == null) return false;
+		}else if(col.equals(Color.WHITE)){
+			if(pieces[targetX - 1][targetY] == null) return false;
+		}
+		return true;
+	}
 
 }
 
