@@ -53,7 +53,7 @@ public class DuoGameDriver implements Observable, Serializable{
 	
 	public void countScore(int winScore){
 		while(true){
-			if(play().equals(Color.BLACK)){
+			if(getRoundWinner().equals(Color.BLACK)){
 				scoreBlack++;
 				if(scoreBlack == winScore){
 					System.out.println(playerWhite.getName()+ " won");
@@ -78,7 +78,7 @@ public class DuoGameDriver implements Observable, Serializable{
 	}
 	
 	
-	public Color play(){
+	public Color getRoundWinner(){
 		while(running){
 			moveExecuted = false;
 			SaveManager.saveGame(this);

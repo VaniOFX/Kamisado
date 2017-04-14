@@ -77,7 +77,7 @@ public class Application {
 			System.out.println("The next piece to move is on " +
 					game.getCurrentState().getCurrentInitial().getPosX() + " " +
 					game.getCurrentState().getCurrentInitial().getPosY());
-			game.play();
+			game.getRoundWinner();
 			
 		}
 

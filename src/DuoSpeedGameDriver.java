@@ -17,7 +17,7 @@ public class DuoSpeedGameDriver extends DuoGameDriver implements Runnable{
 	@Override
 	public void run() {
 		super.startGame();
-		super.play();
+		super.getRoundWinner();
 		
 	}
 	
