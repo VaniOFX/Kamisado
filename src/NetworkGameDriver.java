@@ -105,6 +105,14 @@ public class NetworkGameDriver implements Runnable {
 				int curSumo = currentState.getPiece(currentState.getCurrentInitial()).getSumo();
 				if(GameRules.isLegalMove(currentState, move, curSumo)){
 					currentState.move(move);
+					
+					if(curSumo > 0 && currentState.isSumoPushable(move.getTarget(), client ? Color.WHITE : Color.BLACK)){
+						Position nextPosition = currentState.sumoPush(move.getTarget(), client ? Color.WHITE : Color.BLACK);
+						currentState.setCurrentInitial(currentState.getPiecePosition(client ? Color.WHITE : Color.BLACK, board.getColor(move.getTarget())));						System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
+
+						continue;
+					}
+					
 					currentState.printState();
 					
 					currentState.setCurrentInitial(currentState.getPiecePosition(client ? Color.WHITE : Color.BLACK, board.getColor(move.getTarget())));
@@ -132,6 +140,8 @@ public class NetworkGameDriver implements Runnable {
 				NetworkProtocol state = (NetworkProtocol) ois.readObject();
 				currentState = (State) state.getMessage();
 				currentState.printState();
+				System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
+				
 				yourTurn = true;
 			} catch (IOException e) {
 				e.printStackTrace();

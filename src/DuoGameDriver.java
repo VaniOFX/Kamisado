@@ -190,6 +190,7 @@ public class DuoGameDriver implements Observable, Serializable{
 
 	@Override
 	public void notifyObservers() {
+		currentState.printState();
 		for(Observer ob : observers){
 			ob.update(currentState);
 		}

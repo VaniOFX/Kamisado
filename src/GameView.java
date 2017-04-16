@@ -11,7 +11,9 @@ import java.io.Serializable;
 
 
 public class GameView extends Application implements Observer, Serializable{
+	
 	private Controller controller;
+	
 	public static void main(String[] args){
 		launch(args);
 	}
@@ -48,5 +50,11 @@ public class GameView extends Application implements Observer, Serializable{
 	@Override
 	public void update(State currentState) {
 		controller.initialize(currentState);
+	}
+
+	@Override
+	public void update(int screenMode) {
+		// TODO Auto-generated method stub
+		
 	}
 }

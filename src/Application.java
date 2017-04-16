@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.Timer;
 
-public class Application {
+public class Application {	
 
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
