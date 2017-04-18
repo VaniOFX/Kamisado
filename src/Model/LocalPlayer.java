@@ -10,28 +10,25 @@ public class LocalPlayer implements AbstractPlayer{
 		this.name = name;
 		this.playerColor = playerColor;
 	}
-
-	public Move getMove(Position initial) {
-		return new Move(initial, Xterm.getPositionInput());
-	}
 	
-	public Position getInitialPosition(){
-		return Xterm.getInitialPosition();
+	public Move getMove(State state) {
+		Position initial = state.getCurrentInitial();
+		return new Move(initial, Xterm.getPositionInput());
 	}
 	
 	public Color getColor() {
 		return playerColor;
 	}
+
+	public Position getInitialPosition(){
+		Position pos = null;
+		if(playerColor == Color.WHITE) pos = Xterm.getInitialPositionWhite();
+		else if (playerColor == Color.BLACK) pos = Xterm.getInitialPositionBlack();
+		return pos;
+	}
 	
 	public String getName(){
 		return name;
 	}
-
-	@Override
-	public Move getMove(State state) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	
 }

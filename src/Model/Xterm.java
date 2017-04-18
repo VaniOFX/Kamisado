@@ -47,7 +47,7 @@ public class Xterm{
 	}
 	
 	
-	public static Position getInitialPosition(){
+	public static Position getInitialPositionWhite(){
 		in = new Scanner(System.in);
 		int x,y;
 		System.out.println("Enter X and Y coordinates for the desired move");
@@ -59,6 +59,32 @@ public class Xterm{
 			}
 			x = in.nextInt();
 		}while(x != 7);
+		
+		do{
+			System.out.println("Please enter a number between 1 and 8 for Y:");
+			while(!in.hasNextInt()){
+				checkQuit(in.next());
+				System.out.println("Please enter an integer");
+			}
+			y = in.nextInt();
+		}while(y > 7 || y < 0);
+		
+		System.out.println("The initial position is "+ x +" and " + y);
+		return new Position(x,y);
+	}
+	
+	public static Position getInitialPositionBlack(){
+		in = new Scanner(System.in);
+		int x,y;
+		System.out.println("Enter X and Y coordinates for the desired move");
+		do{
+			System.out.println("Please enter the number 0 for X:");
+			while(!in.hasNextInt()){
+				checkQuit(in.next());
+				System.out.println("Please enter an integer");
+			}
+			x = in.nextInt();
+		}while(x != 0);
 		
 		do{
 			System.out.println("Please enter a number between 1 and 8 for Y:");

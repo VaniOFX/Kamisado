@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class AIPlayer implements AbstractPlayer{
 
@@ -32,18 +33,12 @@ public class AIPlayer implements AbstractPlayer{
 
 	@Override
 	public Position getInitialPosition() {
-		return Xterm.getInitialPosition();
+		return new Position(7,new Random().nextInt(7));
 	}
 
 	@Override
 	public String getName() {
 		return name;
-	}
-
-	@Override
-	public Move getMove(Position initial) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

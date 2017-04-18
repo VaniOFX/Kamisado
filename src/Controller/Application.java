@@ -1,5 +1,5 @@
-package Model;
-
+package Controller;
+import Model.*;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.Timer;
@@ -35,11 +35,10 @@ public class Application {
 						}
 					}
 				}else if(modeSpeed.equals("normal")){
-					DuoGameDriver game = new DuoGameDriver(white, black);
+					GameDriver game = new GameDriver(white, black,false,Board.NORMAL);
 
 					//game.subscribe(new StateView());
-					game.startGame();
-					game.countScore(3);
+					game.playGame(3);
 				}
 				
 			}else if(modePlayers.equals("single")){
@@ -67,18 +66,17 @@ public class Application {
 				else if(modeDiff.equals("hard")){
 					AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol,4);
 				}
-				SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
+				GameDriver game = new GameDriver(LocalPlayer, AIPlayer,false,Board.NORMAL);
 				//game.subscribe(new StateView());
-				game.startGame();
-				game.countScore(3);
+				game.playGame(3);
 			}
 		}else if(newGame.equals("restore")){
 			DuoGameDriver game = SaveManager.restoreState();
-			game.getCurrentState().printState();
-			System.out.println("The next player to move is " + game.getCurrentPlayer().getColor());
-			System.out.println("The next piece to move is on " +
-					game.getCurrentState().getCurrentInitial().getPosX() + " " +
-					game.getCurrentState().getCurrentInitial().getPosY());
+//			game.getCurrentState().printState();
+//			System.out.println("The next player to move is " + game.getCurrentPlayer().getColor());
+//			System.out.println("The next piece to move is on " +
+//					game.getCurrentState().getCurrentInitial().getPosX() + " " +
+//					game.getCurrentState().getCurrentInitial().getPosY());
 			game.getRoundWinner();
 			
 		}

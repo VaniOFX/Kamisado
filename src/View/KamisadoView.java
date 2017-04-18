@@ -21,11 +21,9 @@ public class KamisadoView extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 		Scene menu1;
-		AnchorPane ap = new AnchorPane();
-		//Parent root = FXMLLoader.load(getClass().getResource("View/MainMenu.fxml"));
-		menu1 = new Scene(ap, 800, 500);
+		Parent root = FXMLLoader.load(getClass().getResource("FXMLFiles/MainMenu.fxml"));
 		
-		primaryStage.setScene(menu1);
+		primaryStage.setScene(new Scene(root, 800, 500));
 		primaryStage.show();
 
 	}

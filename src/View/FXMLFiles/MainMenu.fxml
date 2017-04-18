@@ -16,8 +16,8 @@
                   <Tooltip text="Empty Tooltip" />
                </tooltip>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Muliplayer Game" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Network Game" />
+            <Button fx:id="mButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Muliplayer Game" />
+            <Button fx:id="nButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Network Game" />
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="View Stats" />
          </children>
          <BorderPane.margin>

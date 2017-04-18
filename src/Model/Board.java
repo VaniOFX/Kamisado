@@ -12,11 +12,14 @@ public class Board implements Serializable{
 	private static final long serialVersionUID = 4126546523662966923L;
 	private Color[][] board;
 	
+	public static final int NORMAL = 0;
+	public static final int RANDOM = 1;
+	
 	public Board(int mode){
-		if(mode == 0){
+		if(mode == NORMAL){
 			initBoard();
 		}
-		else if(mode == 1){
+		else if(mode == RANDOM){
 			initBoard();
 			initRandomBoard();
 		}

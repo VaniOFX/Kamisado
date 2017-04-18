@@ -16,8 +16,8 @@
                <children>
                   <Label prefHeight="42.0" prefWidth="101.0" text="Select Game Mode" />
                   <Label prefHeight="32.0" prefWidth="30.0" text="Timer" />
-                  <Label prefHeight="31.0" prefWidth="82.0" text="Select Difficulty" />
-                  <Label prefHeight="48.0" prefWidth="76.0" text="Choose Pieces" />
+                  <Label prefHeight="27.0" prefWidth="113.0" text="White Player Name" />
+                  <Label prefHeight="46.0" prefWidth="121.0" text="Black Player Name" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="100.0" right="100.0" top="120.0" />
@@ -35,16 +35,9 @@
                      </children>
                   </HBox>
                   <TextField VBox.vgrow="ALWAYS" />
-                  <Slider blockIncrement="20.0" max="50.0" min="1.0" showTickLabels="true" showTickMarks="true" value="1.0" />
-                  <HBox>
-                     <children>
-                        <ToggleButton fx:id="whitePiece" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="White" VBox.vgrow="ALWAYS">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="piecesGroup" />
-                           </toggleGroup></ToggleButton>
-                        <ToggleButton fx:id="blackPIece" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="Black" toggleGroup="$piecesGroup" />
-                     </children>
-                  </HBox>
+                  <HBox />
+                  <TextField />
+                  <TextField />
                </children>
             </VBox>
          </children>

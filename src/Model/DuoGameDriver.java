@@ -54,6 +54,7 @@ public class DuoGameDriver implements Observable, Serializable{
 	}
 	
 	public void countScore(int winScore){
+		startGame();
 		while(true){
 			if(getRoundWinner().equals(Color.BLACK)){
 				scoreBlack++;
@@ -91,7 +92,7 @@ public class DuoGameDriver implements Observable, Serializable{
 				newState.setCurrentInitial(currentState.getCurrentInitial());
 				move = currentPlayer.getMove(newState);
 			}else{
-				move = currentPlayer.getMove(currentState.getCurrentInitial());
+				move = currentPlayer.getMove(currentState);
 			}
 			
 			
@@ -164,21 +165,6 @@ public class DuoGameDriver implements Observable, Serializable{
 		}
 
 	
-	public State getCurrentState(){
-		return currentState;
-	}
-	
-	public AbstractPlayer getCurrentPlayer(){
-		return currentPlayer;
-	}
-	
-	public AbstractPlayer getPlayerBlack(){
-		return playerBlack;
-	}
-	
-	public AbstractPlayer getPlayerWhite(){
-		return playerWhite;
-	}
 	@Override
 	public void subscribe(Observer observer) {
 		observers.add(observer);

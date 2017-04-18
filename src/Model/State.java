@@ -19,15 +19,6 @@ public class State implements java.io.Serializable  {
 	
 	}
 	
-	public State(Piece[][] pieces, Move move){
-		this.pieces = pieces;
-		Position initial = move.getInitial();
-		Position target = move.getTarget();
-		lastPieceOn = target;
-		pieces[target.getPosX()][target.getPosY()] = pieces[initial.getPosX()][initial.getPosY()];
-		pieces[initial.getPosX()][initial.getPosY()] = null;
-	}
-	
 	public State(Piece[][] pieces){
 		this.pieces = pieces;
 	}
@@ -55,8 +46,18 @@ public class State implements java.io.Serializable  {
 	}
 	
 	
-	public State move(Move move){
-		return new State(pieces,move);
+	public void move(Move move){
+		Position initial = move.getInitial();
+		Position target = move.getTarget();
+		lastPieceOn = target;
+		pieces[target.getPosX()][target.getPosY()] = pieces[initial.getPosX()][initial.getPosY()];
+		pieces[initial.getPosX()][initial.getPosY()] = null;
+	}
+	
+	public State clone(){
+		State state = new State(pieces);
+		state.setCurrentInitial(currentInitial);
+		return state;
 	}
 
 	

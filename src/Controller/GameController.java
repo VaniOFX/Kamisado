@@ -1,5 +1,6 @@
 package Controller;
 import Model.*;
+import View.*;
 import java.awt.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class GameController{
 	private String playerWhite;
 	private String playerBlack;
 	private int piecesSelected;
+	private String singleName;
 	
 	@FXML
 	private ToggleButton normalMode;
@@ -61,11 +63,11 @@ public class GameController{
 	private static final int BLACKPIECES = 13;
 	
 	//Scene Modes
-	public static final String MAINMENU = "View/MainMenu.fxml";
-	public static final String SMENU = "View/SingleGameMenu.fxml";
-	public static final String MMENU = "View/MultiplayerGameMenu.fxml";
-	public static final String NMENU = "View/NetworkGameMenu.fxml";
-	public static final String GAMEVIEW = "View/GameView.fxml";
+	public static final String MAINMENU = "FXMLFiles/MainMenu.fxml";
+	public static final String SMENU = "FXMLFiles/SingleGameMenu.fxml";
+	public static final String MMENU = "FXMLFiles/MultiplayerGameMenu.fxml";
+	public static final String NMENU = "FXMLFiles/NetworkGameMenu.fxml";
+	public static final String GAMEVIEW = "FXMLFiles/GameView.fxml";
 	
 	
 	public GameController(){
@@ -73,7 +75,7 @@ public class GameController{
 	}
 
 	public void handleMenus(ActionEvent e) throws IOException{
-		System.out.println("blabla");
+
 		if(e.getSource() == sButton ){
 			showScene(SMENU,sButton);
 		}else if(e.getSource() == mButton){
@@ -84,10 +86,9 @@ public class GameController{
 	}
 	
 	public void showScene(String location,Button butt) throws IOException{
-		Parent root;
 		Stage stage = (Stage) butt.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource(location));
-		stage.setScene(new Scene(root));
+		Parent root = FXMLLoader.load(getClass().getResource(location));
+		stage.setScene(new Scene(root,800,500));
 		stage.show();
 		
 	}
@@ -130,11 +131,50 @@ public class GameController{
 	}
 	
 	public void playSingleGame(){
-
+		Color AIPlayerCol = null, LocalPlayerCol = null;
+		if(piecesSelected == WHITEPIECES){
+			AIPlayerCol = Color.BLACK;
+			LocalPlayerCol = Color.WHITE;
+		}
+		else if(piecesSelected == BLACKPIECES)
+		{
+			AIPlayerCol = Color.WHITE;
+			LocalPlayerCol = Color.BLACK;
+		}
+		AbstractPlayer LocalPlayer = new LocalPlayer(singleName,LocalPlayerCol);	
+		AbstractPlayer AIPlayer = null;
+		String modeDiff = Xterm.chooseGameMode("easy", "hard");
+		if(modeDiff.equals("easy")){
+			AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol,2);
+		}
+		else if(modeDiff.equals("hard")){
+			AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol,4);
+		}
+		SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
+		game.countScore(3);
+		
 	}
 	
 	public void playMultiplayerGame(){
-		
+		AbstractPlayer white = new LocalPlayer(playerWhite,Color.WHITE);
+		AbstractPlayer black = new LocalPlayer(playerBlack,Color.BLACK);
+		if(mode == NORMALMODE){
+			DuoGameDriver game = new DuoGameDriver(white, black);
+			game.countScore(3);
+		}
+		else if(mode == SPEEDMODE){
+			DuoSpeedGameDriver game = new DuoSpeedGameDriver(white,black);
+			long startTime = System.currentTimeMillis();
+			Thread t = new Thread(game);
+			t.start();
+			while(t.isAlive()){
+				if(game.moveExecuted) startTime = System.currentTimeMillis();
+				if(System.currentTimeMillis() - startTime > timer && t.isAlive() && !t.isInterrupted()){
+					t.interrupt();
+					game.onTimeOut();
+				}
+			}
+		}
 	}
 	
 	public void playNetworkGame(){
