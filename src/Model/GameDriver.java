@@ -22,9 +22,8 @@ public class GameDriver implements Observable, Serializable {
 	private boolean running;
 	private int scoreWhite;
 	private int scoreBlack;
-	private long moveStarted;
-	private long moveTime;
-	private MoveTimer mt;
+	protected long moveStarted;
+	protected long moveTime;
 	
 	public static final boolean HISTORYENABLED = true;
 	public static final boolean HISTORYDISABLED = false;
@@ -42,18 +41,13 @@ public class GameDriver implements Observable, Serializable {
 		this.historyEnabled = historyEnabled;
 		this.moveTime = moveTime;
 		initGameDriver(boardMode);
-		moveStarted = System.currentTimeMillis();
-		mt = new MoveTimer(moveStarted,moveTime);
+		MoveTimer mt = new MoveTimer();
 		mt.run();
 	}
 	
 	private class MoveTimer implements Runnable{
-		private long moveStarted;
-		private long moveTime;
-		
-		public MoveTimer(long moveStarted,long moveTime){ 
-			this.moveTime = moveTime;
-			this.moveStarted = moveStarted;}
+
+
 		@Override
 		public void run() {
 			while(true){
@@ -67,9 +61,6 @@ public class GameDriver implements Observable, Serializable {
 			System.out.println(" ran out of time!");
 			System.exit(1);
 			
-		}
-		public void updateMoveTimer(long moveStarted){
-			this.moveStarted = moveStarted;
 		}
 		
 	}
@@ -134,7 +125,7 @@ public class GameDriver implements Observable, Serializable {
 	
 	public Color getRoundWinner(){
 		while(running){
-			if(mt!= null) mt.updateMoveTimer(System.currentTimeMillis());
+			moveStarted = System.currentTimeMillis();
 			//current player makes a move
 			Move move;
 			if(currentPlayer.getName().equals("AIPlayer")){
