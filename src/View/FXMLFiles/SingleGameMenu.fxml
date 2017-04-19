@@ -27,22 +27,22 @@
                <children>
                   <HBox>
                      <children>
-                        <ToggleButton fx:id="normalMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" text="Normal">
+                        <ToggleButton fx:id="normalMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" selected="true" text="Normal">
                            <toggleGroup>
                               <ToggleGroup fx:id="modeGroup" />
                            </toggleGroup></ToggleButton>
                         <ToggleButton fx:id="speedMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" text="Speed" toggleGroup="$modeGroup" />
                      </children>
                   </HBox>
-                  <TextField VBox.vgrow="ALWAYS" />
-                  <Slider blockIncrement="1.0" majorTickUnit="2.0" max="5.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+                  <TextField fx:id="timerText" onAction="#setTimer" VBox.vgrow="ALWAYS" />
+                  <Slider fx:id="diffSlider" blockIncrement="1.0" majorTickUnit="2.0" max="5.0" min="1.0" minorTickCount="1" onDragDetected="#setDifficulty" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                   <HBox>
                      <children>
-                        <ToggleButton fx:id="whitePiece" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="White" VBox.vgrow="ALWAYS">
+                        <ToggleButton fx:id="whitePieceButton" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" selected="true" text="White" VBox.vgrow="ALWAYS">
                            <toggleGroup>
                               <ToggleGroup fx:id="piecesGroup" />
                            </toggleGroup></ToggleButton>
-                        <ToggleButton fx:id="blackPIece" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="Black" toggleGroup="$piecesGroup" />
+                        <ToggleButton fx:id="blackPieceButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="Black" toggleGroup="$piecesGroup" />
                      </children>
                   </HBox>
                </children>
@@ -54,7 +54,7 @@
       </HBox>
    </center>
    <bottom>
-      <Button mnemonicParsing="false" prefHeight="92.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
+      <Button fx:id="playButton" mnemonicParsing="false" onAction="#startGame" prefHeight="92.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="30.0" />
          </BorderPane.margin>
