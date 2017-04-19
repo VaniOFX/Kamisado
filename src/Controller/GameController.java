@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class GameController{
@@ -28,6 +29,12 @@ public class GameController{
 	private int piecesSelected;
 	private String singleName;
 	
+	@FXML
+	private BorderPane singlePlayerScene;
+	@FXML
+	private BorderPane multiplayerScene;
+	@FXML
+	private BorderPane networkScene;
 	@FXML
 	private ToggleButton normalMode;
 	@FXML
@@ -54,6 +61,8 @@ public class GameController{
 	private Button mButton;
 	@FXML
 	private Button netButton;
+	@FXML
+	private Button playButton;
 	
 	//Game settings 
 	private static final int SPEEDMODE = 10;
@@ -63,11 +72,11 @@ public class GameController{
 	private static final int BLACKPIECES = 13;
 	
 	//Scene Modes
-	public static final String MAINMENU = "FXMLFiles/MainMenu.fxml";
-	public static final String SMENU = "FXMLFiles/SingleGameMenu.fxml";
-	public static final String MMENU = "FXMLFiles/MultiplayerGameMenu.fxml";
-	public static final String NMENU = "FXMLFiles/NetworkGameMenu.fxml";
-	public static final String GAMEVIEW = "FXMLFiles/GameView.fxml";
+	public static final String MAINMENU = "../View/FXMLFiles/MainMenu.fxml";
+	public static final String SMENU = "../View/FXMLFiles/SingleGameMenu.fxml";
+	public static final String MMENU = "../View/FXMLFiles/MultiplayerGameMenu.fxml";
+	public static final String NMENU = "../View/FXMLFiles/NetworkGameMenu.fxml";
+	public static final String GAMEVIEW = "../View/FXMLFiles/GameView.fxml";
 	
 	
 	public GameController(){
@@ -85,6 +94,25 @@ public class GameController{
 		}
 	}
 	
+	public void startGame(ActionEvent e)throws IOException{
+		if(e.getSource() == playButton){
+			Scene currentScene = playButton.getScene();
+			if(singlePlayerScene != null && currentScene == singlePlayerScene.getScene()){
+				startSinglePlayerGame();
+				playSingleGame();
+			}else if(multiplayerScene != null && currentScene == multiplayerScene.getScene()){
+				startMultiplayerGame();
+				playMultiplayerGame();
+			}else if(networkScene != null && currentScene == networkScene.getScene()){
+				startNetworkGame();
+				playNetworkGame();
+			}
+			showScene(GAMEVIEW,playButton);
+		}
+	}
+	
+
+
 	public void showScene(String location,Button butt) throws IOException{
 		Stage stage = (Stage) butt.getScene().getWindow();
 		Parent root = FXMLLoader.load(getClass().getResource(location));
@@ -92,6 +120,11 @@ public class GameController{
 		stage.show();
 		
 	}
+	
+	private void startSinglePlayerGame() {
+		
+	}
+	
 	public void startMultiplayerGame(){
 		
 	}

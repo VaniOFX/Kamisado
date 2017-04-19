@@ -1,3 +1,7 @@
 .pane {
     -fx-background-color: #8fbc8f;
 }
+
+*{
+	-fx-margin: 10px;
+}

@@ -8,22 +8,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController">
+<BorderPane fx:id="networkScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
       <HBox spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="228.0" prefWidth="250.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="228.0" prefWidth="301.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="42.0" prefWidth="101.0" text="Select Game Mode" />
-                  <Label prefHeight="32.0" prefWidth="30.0" text="Timer" />
-                  <Label prefHeight="31.0" prefWidth="82.0" text="Select Difficulty" />
-                  <Label prefHeight="48.0" prefWidth="76.0" text="Choose Pieces" />
+                  <Label prefHeight="40.0" prefWidth="144.0" text="Select Game Mode" />
+                  <Label prefHeight="28.0" prefWidth="101.0" text="Timer" />
+                  <Label prefHeight="46.0" prefWidth="128.0" text="Choose Pieces" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="100.0" right="100.0" top="120.0" />
                </BorderPane.margin>
             </VBox>
-            <VBox spacing="30.0">
+            <VBox prefHeight="228.0" prefWidth="387.0" spacing="30.0">
                <children>
                   <HBox>
                      <children>
@@ -35,7 +34,6 @@
                      </children>
                   </HBox>
                   <TextField VBox.vgrow="ALWAYS" />
-                  <Slider blockIncrement="20.0" max="50.0" min="1.0" showTickLabels="true" showTickMarks="true" value="1.0" />
                   <HBox>
                      <children>
                         <ToggleButton fx:id="whitePiece" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="White" VBox.vgrow="ALWAYS">
@@ -53,11 +51,17 @@
          </BorderPane.margin>
       </HBox>
    </center>
-   <top>
-      <Button mnemonicParsing="false" prefHeight="92.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
+   <bottom>
+      <Button fx:id="playButton" mnemonicParsing="false" onAction="#startGame" prefHeight="92.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="30.0" />
          </BorderPane.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </Button>
+   </bottom>
+   <top>
+      <Label text="Network Game" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>

@@ -9,15 +9,15 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="274.0" prefWidth="400.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="sButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Single Game">
+            <Button fx:id="sButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Single Game">
                <tooltip>
                   <Tooltip text="Empty Tooltip" />
                </tooltip>
             </Button>
             <Button fx:id="mButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Muliplayer Game" />
-            <Button fx:id="nButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Network Game" />
+            <Button fx:id="netButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Network Game" />
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="View Stats" />
          </children>
          <BorderPane.margin>
@@ -28,4 +28,7 @@
          </padding>
       </VBox>
    </center>
+   <top>
+      <Label text="Kamisado" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>
