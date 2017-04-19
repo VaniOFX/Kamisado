@@ -22,9 +22,12 @@ public class GameDriver implements Observable, Serializable {
 	private boolean running;
 	private int scoreWhite;
 	private int scoreBlack;
-	protected long moveStarted;
-	protected long moveTime;
+	private long moveStarted;
+	private long moveTime;
+	private MoveTimer mt;
 	
+	public static final boolean HISTORYENABLED = true;
+	public static final boolean HISTORYDISABLED = false;
 	
 	public GameDriver(AbstractPlayer playerWhite, AbstractPlayer playerBlack, boolean historyEnabled, int boardMode){
 		this.playerWhite = playerWhite;
@@ -33,18 +36,24 @@ public class GameDriver implements Observable, Serializable {
 		initGameDriver(boardMode);
 	}
 	
-	public GameDriver(AbstractPlayer playerWhite, AbstractPlayer playerBlack, boolean historyEnabled, long moveTime, int boardMode){
+	public GameDriver(AbstractPlayer playerWhite, AbstractPlayer playerBlack, boolean historyEnabled, int boardMode, long moveTime){
 		this.playerWhite = playerWhite;
 		this.playerBlack = playerBlack;
 		this.historyEnabled = historyEnabled;
 		this.moveTime = moveTime;
 		initGameDriver(boardMode);
-		MoveTimer mt = new MoveTimer();
+		moveStarted = System.currentTimeMillis();
+		mt = new MoveTimer(moveStarted,moveTime);
 		mt.run();
 	}
 	
 	private class MoveTimer implements Runnable{
-
+		private long moveStarted;
+		private long moveTime;
+		
+		public MoveTimer(long moveStarted,long moveTime){ 
+			this.moveTime = moveTime;
+			this.moveStarted = moveStarted;}
 		@Override
 		public void run() {
 			while(true){
@@ -55,14 +64,12 @@ public class GameDriver implements Observable, Serializable {
 		}
 
 		private void onTimeOut() {
-			System.out.println(currentPlayer.getName()+ " ran out of time!");
-			if (currentPlayer.getColor() == Color.WHITE){
-				System.out.println(playerBlack.getName()+ " won");
-			}else{
-				System.out.println(playerWhite.getName()+ " won");
-			}
+			System.out.println(" ran out of time!");
 			System.exit(1);
 			
+		}
+		public void updateMoveTimer(long moveStarted){
+			this.moveStarted = moveStarted;
 		}
 		
 	}
@@ -127,7 +134,7 @@ public class GameDriver implements Observable, Serializable {
 	
 	public Color getRoundWinner(){
 		while(running){
-			moveStarted = System.currentTimeMillis();
+			if(mt!= null) mt.updateMoveTimer(System.currentTimeMillis());
 			//current player makes a move
 			Move move;
 			if(currentPlayer.getName().equals("AIPlayer")){

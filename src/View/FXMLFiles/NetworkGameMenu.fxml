@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
       <HBox spacing="50.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="228.0" prefWidth="250.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="42.0" prefWidth="101.0" text="Select Game Mode" />
+                  <Label prefHeight="36.0" prefWidth="101.0" text="Select Game Mode" />
                   <Label prefHeight="32.0" prefWidth="30.0" text="Timer" />
                   <Label prefHeight="31.0" prefWidth="82.0" text="Select Difficulty" />
                   <Label prefHeight="48.0" prefWidth="76.0" text="Choose Pieces" />

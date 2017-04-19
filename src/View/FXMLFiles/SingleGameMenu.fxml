@@ -8,16 +8,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
-      <HBox spacing="50.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="288.0" prefWidth="400.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="228.0" prefWidth="250.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="228.0" prefWidth="250.0" spacing="25.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="42.0" prefWidth="101.0" text="Select Game Mode" />
-                  <Label prefHeight="32.0" prefWidth="30.0" text="Timer" />
-                  <Label prefHeight="31.0" prefWidth="82.0" text="Select Difficulty" />
-                  <Label prefHeight="48.0" prefWidth="76.0" text="Choose Pieces" />
+                  <Label prefHeight="29.0" prefWidth="101.0" text="Select Game Mode" />
+                  <Label prefHeight="27.0" prefWidth="30.0" text="Timer" />
+                  <Label prefHeight="43.0" prefWidth="82.0" text="Select Difficulty" />
+                  <Label prefHeight="47.0" prefWidth="76.0" text="Player Name" />
+                  <Label prefHeight="75.0" prefWidth="76.0" text="Choose Pieces" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="100.0" right="100.0" top="120.0" />
@@ -27,24 +28,26 @@
                <children>
                   <HBox>
                      <children>
-                        <ToggleButton fx:id="normalMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" text="Normal">
+                        <ToggleButton fx:id="normalMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" selected="true" text="Normal">
                            <toggleGroup>
                               <ToggleGroup fx:id="modeGroup" />
                            </toggleGroup></ToggleButton>
                         <ToggleButton fx:id="speedMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" text="Speed" toggleGroup="$modeGroup" />
                      </children>
                   </HBox>
-                  <TextField VBox.vgrow="ALWAYS" />
-                  <Slider blockIncrement="20.0" max="50.0" min="1.0" showTickLabels="true" showTickMarks="true" value="1.0" />
+                  <TextField fx:id="timerText" disable="true" onAction="#setTimer" promptText="Insert time in seconds" VBox.vgrow="ALWAYS" />
+                  <Slider fx:id="diffSlider" blockIncrement="20.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" onMouseReleased="#setDifficulty" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
+                  <TextField fx:id="singlePlayerNameText" onAction="#setSinglePlayerName" />
                   <HBox>
                      <children>
-                        <ToggleButton fx:id="whitePiece" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="White" VBox.vgrow="ALWAYS">
+                        <ToggleButton fx:id="whitePiece" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" selected="true" text="White" VBox.vgrow="ALWAYS">
                            <toggleGroup>
                               <ToggleGroup fx:id="piecesGroup" />
                            </toggleGroup></ToggleButton>
                         <ToggleButton fx:id="blackPIece" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="Black" toggleGroup="$piecesGroup" />
                      </children>
                   </HBox>
+                  <CheckBox fx:id="randomBox" mnemonicParsing="false" onAction="#setRandom" prefHeight="17.0" prefWidth="213.0" text="Random Board" />
                </children>
             </VBox>
          </children>
@@ -54,7 +57,7 @@
       </HBox>
    </center>
    <top>
-      <Button mnemonicParsing="false" prefHeight="92.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#playSingleGame" prefHeight="87.0" prefWidth="558.0" text="PLAY!" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="30.0" />
          </BorderPane.margin>
