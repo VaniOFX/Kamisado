@@ -15,6 +15,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class GameController{
@@ -30,6 +31,12 @@ public class GameController{
 	private int piecesSelected;
 	private String singleName;
 	
+	@FXML
+	private BorderPane singlePlayerScene;
+	@FXML
+	private BorderPane multiplayerScene;
+	@FXML
+	private BorderPane networkScene;
 	@FXML
 	private ToggleButton normalMode;
 	@FXML
@@ -59,7 +66,11 @@ public class GameController{
 	@FXML
 	private Button netButton;
 	@FXML
+
+	private Button playButton;
+
 	private CheckBox randomBox;
+
 	
 	//Game settings 
 	private static final int SPEEDMODE = 10;
@@ -69,11 +80,12 @@ public class GameController{
 	private static final int BLACKPIECES = 13;
 	
 	//Scene Modes
-	public static final String MAINMENU = "/View/FXMLFiles/MainMenu.fxml";
-	public static final String SMENU = "/View/FXMLFiles/SingleGameMenu.fxml";
-	public static final String MMENU = "/View/FXMLFiles/MultiplayerGameMenu.fxml";
-	public static final String NMENU = "/View/FXMLFiles/NetworkGameMenu.fxml";
-	public static final String GAMEVIEW = "/View/FXMLFiles/GameView.fxml";
+	public static final String MAINMENU = "../View/FXMLFiles/MainMenu.fxml";
+	public static final String SMENU = "../View/FXMLFiles/SingleGameMenu.fxml";
+	public static final String MMENU = "../View/FXMLFiles/MultiplayerGameMenu.fxml";
+	public static final String NMENU = "../View/FXMLFiles/NetworkGameMenu.fxml";
+	public static final String GAMEVIEW = "../View/FXMLFiles/GameView.fxml";
+
 	
 	
 	public GameController(){
@@ -95,6 +107,25 @@ public class GameController{
 		}
 	}
 	
+	public void startGame(ActionEvent e)throws IOException{
+		if(e.getSource() == playButton){
+			Scene currentScene = playButton.getScene();
+			if(singlePlayerScene != null && currentScene == singlePlayerScene.getScene()){
+				if(startSinglePlayerGame())
+					playSingleGame();
+			}else if(multiplayerScene != null && currentScene == multiplayerScene.getScene()){
+				if(startMultiplayerGame())
+					playMultiplayerGame();
+			}else if(networkScene != null && currentScene == networkScene.getScene()){
+				startNetworkGame();
+				playNetworkGame();
+			}
+			showScene(GAMEVIEW,playButton);
+		}
+	}
+	
+
+
 	public void showScene(String location,Button butt) throws IOException{
 		Stage stage = (Stage) butt.getScene().getWindow();
 		Parent root = FXMLLoader.load(getClass().getResource(location));
@@ -102,6 +133,28 @@ public class GameController{
 		stage.show();
 		
 	}
+
+	
+	private boolean startSinglePlayerGame() {
+		selectGameMode();
+		if(!setTimer() ||
+				!setSinglePlayerName())
+			return false;
+		return true;
+	}
+	
+	public boolean startMultiplayerGame(){
+		selectGameMode();
+		if(!setTimer() ||
+				!setWhitePlayerName() || !setBlackPlayerName())
+			return false;
+		return true;
+	}
+	
+	public void startNetworkGame(){
+		
+	}
+
 	
 	public void selectGameMode(){
 		if(normalMode.isSelected()){
@@ -120,11 +173,11 @@ public class GameController{
 	public void selectPieces(){
 		if(whitePieceButton.isSelected()){
 			piecesSelected = WHITEPIECES;
-			System.out.println("normal");
+			System.out.println("white");
 		}
 		else if (blackPieceButton.isSelected()){
 			piecesSelected = BLACKPIECES;
-			System.out.println("speed");		
+			System.out.println("black");		
 		}
 	}
 
@@ -133,9 +186,11 @@ public class GameController{
 		else boardMode = Board.NORMAL;
 	}
 	
-	public void setSinglePlayerName(){
+	public boolean setSinglePlayerName(){
 		singleName = singlePlayerNameText.getText();
+		if(singleName.trim().isEmpty()) return false;
 		System.out.println(singleName);
+		return true;
 	}
 	
 	public void setDifficulty(){
@@ -143,8 +198,13 @@ public class GameController{
 		System.out.println(difficulty);
 	}
 	
-	public void setTimer(){
+	public boolean setTimer(){
 		String newValue = timerText.getText();
+		if(!timerText.isDisabled() && newValue.trim().isEmpty()){
+			return false;
+		}else if(timerText.isDisabled()){
+			return true;
+		}
 		 if (!newValue.matches("\\d*")) {
 		 	String newString = newValue.replaceAll("[^\\d]", "");
 	        timerText.setText(newString);
@@ -155,6 +215,7 @@ public class GameController{
 			 timer = Integer.parseInt(newValue);
 		 }
 		System.out.println(timer);
+		return true;
 	}
 	
 	private boolean containsDigits(String s) {
@@ -170,14 +231,18 @@ public class GameController{
 	    return containsDigits;
 	}
 	
-	public void setWhitePlayerName(){
+	public boolean setWhitePlayerName(){
 		playerWhite = whitePlayerNameText.getText();
+		if(playerWhite.trim().isEmpty()) return false;
 		System.out.println(playerWhite);
+		return true;
 	}
 	
-	public void setBlackPlayerName(){
+	public boolean setBlackPlayerName(){
 		playerBlack = blackPlayerNameText.getText();
+		if(playerBlack.trim().isEmpty()) return false;
 		System.out.println(playerBlack);
+		return true;
 	}
 	
 	public void playSingleGame(){

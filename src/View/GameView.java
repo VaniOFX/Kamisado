@@ -23,7 +23,7 @@ public class GameView extends Application implements Observer, Serializable{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("GameView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFiles/GameView.fxml"));
 		Parent root = loader.load();
 		controller = (Controller) loader.getController();
 //		primaryStage.setTitle("Kamisado board");

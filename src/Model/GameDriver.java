@@ -24,6 +24,7 @@ public class GameDriver implements Observable, Serializable {
 	private int scoreBlack;
 	protected long moveStarted;
 	protected long moveTime;
+	private MoveTimer mt;
 	
 	public static final boolean HISTORYENABLED = true;
 	public static final boolean HISTORYDISABLED = false;
@@ -41,28 +42,35 @@ public class GameDriver implements Observable, Serializable {
 		this.historyEnabled = historyEnabled;
 		this.moveTime = moveTime;
 		initGameDriver(boardMode);
-		MoveTimer mt = new MoveTimer();
-		mt.run();
+		moveStarted = System.currentTimeMillis();
+		mt = new MoveTimer(moveStarted,moveTime);
+		Thread t = new Thread(mt);
+		t.start();
 	}
 	
 	private class MoveTimer implements Runnable{
-
-
+		private long moveStarted;
+		private long moveTime;
+		
+		public MoveTimer(long moveStarted,long moveTime){ 
+			this.moveTime = moveTime;
+			this.moveStarted = moveStarted;}
 		@Override
 		public void run() {
 			while(true){
-				if(System.currentTimeMillis() - moveStarted >= moveTime){
+				if(System.currentTimeMillis() - moveStarted >= moveTime*1000){
 					onTimeOut();
 				}
 			}
 		}
-
 		private void onTimeOut() {
 			System.out.println(" ran out of time!");
 			System.exit(1);
 			
 		}
-		
+		public void updateMoveTimer(long moveStarted){
+			this.moveStarted = moveStarted;
+		}
 	}
 	
 	private void initGameDriver(int boardMode){

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<BorderPane fx:id="multiplayerScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
       <HBox spacing="50.0" BorderPane.alignment="CENTER">
          <children>
@@ -46,11 +46,14 @@
          </BorderPane.margin>
       </HBox>
    </center>
-   <top>
-      <Button mnemonicParsing="false" onAction="#playMultiplayerGame" prefHeight="121.0" prefWidth="567.0" text="PLAY!" BorderPane.alignment="CENTER">
+   <bottom>
+      <Button fx:id="playButton" mnemonicParsing="false" onAction="#startGame" prefHeight="92.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets top="30.0" />
          </BorderPane.margin>
       </Button>
+   </bottom>
+   <top>
+      <Label text="Multiplayer Game" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>

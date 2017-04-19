@@ -37,7 +37,13 @@
          </children>
       </HBox>
    </center>
+
+   <top>
+      <Label text="Kamisado" BorderPane.alignment="CENTER" />
+   </top>
+
    <padding>
       <Insets top="100.0" />
    </padding>
+
 </BorderPane>
