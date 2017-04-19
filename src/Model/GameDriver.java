@@ -44,7 +44,8 @@ public class GameDriver implements Observable, Serializable {
 		initGameDriver(boardMode);
 		moveStarted = System.currentTimeMillis();
 		mt = new MoveTimer(moveStarted,moveTime);
-		mt.run();
+		Thread t = new Thread(mt);
+		t.start();
 	}
 	
 	private class MoveTimer implements Runnable{
@@ -57,7 +58,7 @@ public class GameDriver implements Observable, Serializable {
 		@Override
 		public void run() {
 			while(true){
-				if(System.currentTimeMillis() - moveStarted >= moveTime){
+				if(System.currentTimeMillis() - moveStarted >= moveTime*1000){
 					onTimeOut();
 				}
 			}
