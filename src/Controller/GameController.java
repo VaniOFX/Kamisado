@@ -1,7 +1,6 @@
 package Controller;
 import Model.*;
 import View.*;
-import java.awt.TextField;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -11,7 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
@@ -24,6 +25,7 @@ public class GameController{
 	private int mode;
 	private int timer;
 	private int difficulty;
+	private int boardMode;
 	private String playerWhite;
 	private String playerBlack;
 	private int piecesSelected;
@@ -42,19 +44,21 @@ public class GameController{
 	@FXML
 	private ToggleGroup modeGroup;
 	@FXML
-	private ToggleButton whitePiece;
+	private ToggleButton whitePieceButton;
 	@FXML
-	private ToggleButton blackPiece;
+	private ToggleButton blackPieceButton;
 	@FXML
 	private ToggleGroup piecesGroup;
 	@FXML
-	private Slider diff;
+	private Slider diffSlider;
 	@FXML
-	private TextField singlePlayerName;
+	private TextField singlePlayerNameText;
 	@FXML
-	private TextField whitePlayerName;
+	private TextField whitePlayerNameText;
 	@FXML
-	private TextField blackPlayerName;
+	private TextField blackPlayerNameText;
+	@FXML
+	private TextField timerText;
 	@FXML
 	private Button sButton;
 	@FXML
@@ -62,7 +66,11 @@ public class GameController{
 	@FXML
 	private Button netButton;
 	@FXML
+
 	private Button playButton;
+
+	private CheckBox randomBox;
+
 	
 	//Game settings 
 	private static final int SPEEDMODE = 10;
@@ -77,16 +85,21 @@ public class GameController{
 	public static final String MMENU = "../View/FXMLFiles/MultiplayerGameMenu.fxml";
 	public static final String NMENU = "../View/FXMLFiles/NetworkGameMenu.fxml";
 	public static final String GAMEVIEW = "../View/FXMLFiles/GameView.fxml";
+
 	
 	
 	public GameController(){
 		observers = new ArrayList<Observer>();
+		mode = NORMALMODE;
+		boardMode = Board.NORMAL;
+		timer = 0;
 	}
 
 	public void handleMenus(ActionEvent e) throws IOException{
 
 		if(e.getSource() == sButton ){
 			showScene(SMENU,sButton);
+			piecesSelected = WHITEPIECES;
 		}else if(e.getSource() == mButton){
 			showScene(MMENU,mButton);
 		}else if(e.getSource() == netButton){
@@ -120,6 +133,7 @@ public class GameController{
 		stage.show();
 		
 	}
+
 	
 	private void startSinglePlayerGame() {
 		
@@ -132,81 +146,120 @@ public class GameController{
 	public void startNetworkGame(){
 		
 	}
+
 	
 	public void selectGameMode(){
-		modeGroup.selectedToggleProperty().addListener(e -> { 
-			if(normalMode.isSelected()) System.out.println("normal");
-			else if (speedMode.isSelected()) System.out.println("speed");		
-		});
+		if(normalMode.isSelected()){
+			mode = NORMALMODE;
+			System.out.println("normal");
+			timerText.setDisable(true);
+			
+		}
+		else if (speedMode.isSelected()) {
+			mode = SPEEDMODE;
+			System.out.println("speed");	
+			timerText.setDisable(false);
+		}
 	}
 	
 	public void selectPieces(){
-		piecesGroup.selectedToggleProperty().addListener(e -> { 
-			if(whitePiece.isSelected()) System.out.println("normal");
-			else if (blackPiece.isSelected()) System.out.println("speed");		
-		});
+		if(whitePieceButton.isSelected()){
+			piecesSelected = WHITEPIECES;
+			System.out.println("normal");
+		}
+		else if (blackPieceButton.isSelected()){
+			piecesSelected = BLACKPIECES;
+			System.out.println("speed");		
+		}
 	}
 
-	public void setSinglePlayerName(){
-		
+	public void setRandom(){
+		if(randomBox.isSelected()) boardMode = Board.RANDOM;
+		else boardMode = Board.NORMAL;
 	}
 	
-	public void selectDifficulty(){
-		
+	public void setSinglePlayerName(){
+		singleName = singlePlayerNameText.getText();
+		System.out.println(singleName);
+	}
+	
+	public void setDifficulty(){
+		difficulty = (int) diffSlider.getValue();
+		System.out.println(difficulty);
 	}
 	
 	public void setTimer(){
-		
+		String newValue = timerText.getText();
+		 if (!newValue.matches("\\d*")) {
+		 	String newString = newValue.replaceAll("[^\\d]", "");
+	        timerText.setText(newString);
+	        if(containsDigits(newString)){
+	        	timer = Integer.parseInt(newString);
+	        }   
+		 }else{
+			 timer = Integer.parseInt(newValue);
+		 }
+		System.out.println(timer);
 	}
 	
-	public void setMultiplayerNames(){
-		
+	private boolean containsDigits(String s) {
+	    boolean containsDigits = false;
+
+	    if (s != null && !s.isEmpty()) {
+	        for (char c : s.toCharArray()) {
+	            if (containsDigits = Character.isDigit(c)) {
+	                break;
+	            }
+	        }
+	    }
+	    return containsDigits;
+	}
+	
+	public void setWhitePlayerName(){
+		playerWhite = whitePlayerNameText.getText();
+		System.out.println(playerWhite);
+	}
+	
+	public void setBlackPlayerName(){
+		playerBlack = blackPlayerNameText.getText();
+		System.out.println(playerBlack);
 	}
 	
 	public void playSingleGame(){
-		Color AIPlayerCol = null, LocalPlayerCol = null;
 		if(piecesSelected == WHITEPIECES){
-			AIPlayerCol = Color.BLACK;
-			LocalPlayerCol = Color.WHITE;
+			AbstractPlayer LocalPlayer = new LocalPlayer(singleName,Color.WHITE);	
+			AbstractPlayer AIPlayer = new AIPlayer("AIPlayer",Color.BLACK,difficulty);
+			startGame(LocalPlayer,AIPlayer);
 		}
 		else if(piecesSelected == BLACKPIECES)
 		{
-			AIPlayerCol = Color.WHITE;
-			LocalPlayerCol = Color.BLACK;
+			AbstractPlayer LocalPlayer = new LocalPlayer(singleName,Color.BLACK);	
+			AbstractPlayer AIPlayer = new AIPlayer("AIPlayer",Color.WHITE,difficulty);
+			startGame(AIPlayer,LocalPlayer);
 		}
-		AbstractPlayer LocalPlayer = new LocalPlayer(singleName,LocalPlayerCol);	
-		AbstractPlayer AIPlayer = null;
-		String modeDiff = Xterm.chooseGameMode("easy", "hard");
-		if(modeDiff.equals("easy")){
-			AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol,2);
-		}
-		else if(modeDiff.equals("hard")){
-			AIPlayer = new AIPlayer("AIPlayer",AIPlayerCol,4);
-		}
-		SingleGameDriver game = new SingleGameDriver(LocalPlayer,AIPlayer);
-		game.countScore(3);
 		
+	}
+	private void startGame(AbstractPlayer whitePlayer,AbstractPlayer blackPlayer){
+		if(mode == NORMALMODE){
+			GameDriver game = new GameDriver(whitePlayer,blackPlayer,GameDriver.HISTORYENABLED,boardMode);
+			game.playGame(3);
+		}
+		else if(mode == SPEEDMODE){
+			GameDriver game = new GameDriver(whitePlayer,blackPlayer,GameDriver.HISTORYENABLED,boardMode,timer);
+			game.playGame(3);
+		}
 	}
 	
 	public void playMultiplayerGame(){
-		AbstractPlayer white = new LocalPlayer(playerWhite,Color.WHITE);
-		AbstractPlayer black = new LocalPlayer(playerBlack,Color.BLACK);
+		AbstractPlayer whitePlayer = new LocalPlayer(playerWhite,Color.WHITE);
+		AbstractPlayer blackPlayer = new LocalPlayer(playerBlack,Color.BLACK);
 		if(mode == NORMALMODE){
-			DuoGameDriver game = new DuoGameDriver(white, black);
-			game.countScore(3);
+			GameDriver game = new GameDriver(whitePlayer, blackPlayer ,GameDriver.HISTORYDISABLED,boardMode);
+			game.playGame(3);
 		}
 		else if(mode == SPEEDMODE){
-			DuoSpeedGameDriver game = new DuoSpeedGameDriver(white,black);
-			long startTime = System.currentTimeMillis();
-			Thread t = new Thread(game);
-			t.start();
-			while(t.isAlive()){
-				if(game.moveExecuted) startTime = System.currentTimeMillis();
-				if(System.currentTimeMillis() - startTime > timer && t.isAlive() && !t.isInterrupted()){
-					t.interrupt();
-					game.onTimeOut();
-				}
-			}
+			GameDriver game = new GameDriver(whitePlayer,blackPlayer,GameDriver.HISTORYDISABLED,boardMode,timer);
+			game.playGame(3);
 		}
 	}
 	
