@@ -159,9 +159,12 @@ public class GameDriver implements Observable, Serializable {
 
 	public Color getRoundWinner(){
 		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
+		//used to check for deadlock
+		ArrayList<Position> positions = new ArrayList<Position>();
 		while(running){
 			Move move = null;
-			
+			if(positions.size() > 4 ) positions.remove(0);
+			positions.add(currentPlayer.getInitialPosition());
 				if(GameRules.hasNoLegalMoves(currentState, currentState.getCurrentInitial())){
 					if(deadlocked){
 						System.out.println("deadlock");
@@ -172,7 +175,11 @@ public class GameDriver implements Observable, Serializable {
 					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), current));
 					deadlocked = true;
 				}else{
-					deadlocked = false;
+					if(positions.get(0) == positions.get(2) && positions.get(1) == positions.get(3)){
+						deadlocked = true;
+					}else{
+						deadlocked = false;
+					}
 				}
 				
 				moveStarted = System.currentTimeMillis();
