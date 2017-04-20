@@ -25,7 +25,8 @@ public class GameView extends Application implements Observer, Serializable{
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFiles/GameView.fxml"));
 		Parent root = loader.load();
-		controller = (Controller) loader.getController();
+		//controller = (Controller) loader.getController();
+		
 //		primaryStage.setTitle("Kamisado board");
 //		BorderPane bp = new BorderPane();
 //		HBox top = new HBox();
@@ -42,7 +43,6 @@ public class GameView extends Application implements Observer, Serializable{
 //		GridPane board = new GridPane();
 //		bp.setTop(top);
 //		bp.setCenter(board);
-
 		Scene gameScene = new Scene(root, 800, 500);
 		primaryStage.setScene(gameScene);
 		primaryStage.show();

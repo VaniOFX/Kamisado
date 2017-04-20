@@ -8,13 +8,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<BorderPane fx:id="singlePlayerScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
       <HBox spacing="50.0" BorderPane.alignment="CENTER">
          <children>
             <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="228.0" prefWidth="301.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
                   <Label prefHeight="40.0" prefWidth="144.0" text="Select Game Mode" />
+                  <Label text="Player name" />
                   <Label prefHeight="28.0" prefWidth="101.0" text="Timer" />
                   <Label prefHeight="28.0" prefWidth="122.0" text="Select Difficulty" />
                   <Label prefHeight="46.0" prefWidth="128.0" text="Choose Pieces" />
@@ -34,7 +35,8 @@
                         <ToggleButton fx:id="speedMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" text="Speed" toggleGroup="$modeGroup" />
                      </children>
                   </HBox>
-                  <TextField fx:id="timerText" onAction="#setTimer" VBox.vgrow="ALWAYS" />
+                  <TextField fx:id="singlePlayerNameText" onAction="#setSinglePlayerName" />
+                  <TextField fx:id="timerText" disable="true" onAction="#setTimer" VBox.vgrow="ALWAYS" />
                   <Slider fx:id="diffSlider" blockIncrement="1.0" majorTickUnit="2.0" max="5.0" min="1.0" minorTickCount="1" onDragDetected="#setDifficulty" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
                   <HBox>
                      <children>

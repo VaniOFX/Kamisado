@@ -6,10 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Stack;
 
 public class SaveManager {
-	public static void saveGame(DuoGameDriver game){
+	public static void saveGame(GameDriver game){
 		
 		try {
 			ObjectOutputStream outputWriter = new ObjectOutputStream(new FileOutputStream("gameDriver.ser"));
@@ -17,27 +16,24 @@ public class SaveManager {
 			outputWriter.flush();  
 			outputWriter.close(); 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public static DuoGameDriver restoreState(){
+	public static GameDriver restoreState(){
 		ObjectInputStream inputReader;
 		try {
 			inputReader = new ObjectInputStream(new FileInputStream("gameDriver.ser"));
-			DuoGameDriver game = (DuoGameDriver) inputReader.readObject();
+			GameDriver game = (GameDriver) inputReader.readObject();
 			inputReader.close();
 			return game;
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
-			e.printStackTrace();
+			return null;
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			return null;
 		}
-		
-		return null;
 	}
 }

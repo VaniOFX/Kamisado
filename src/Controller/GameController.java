@@ -68,7 +68,11 @@ public class GameController{
 	@FXML
 	private Button playButton;
 	@FXML
+	private Button exitButton;
+	@FXML
 	private CheckBox randomBox;
+	@FXML
+	private Button loadGameButton;
 
 	
 	//Game settings 
@@ -103,9 +107,19 @@ public class GameController{
 			showScene(MMENU,mButton);
 		}else if(e.getSource() == netButton){
 			showScene(NMENU,netButton);
+		}else if(e.getSource() == exitButton){
+			Stage stage = (Stage) exitButton.getScene().getWindow();
+			stage.close();
+		}else if(e.getSource() == loadGameButton){
+			loadGame();
 		}
 	}
 	
+	private void loadGame() {
+		GameDriver game = SaveManager.restoreState();
+		if(game != null) game.playGame(-1);
+	}
+
 	public void startGame(ActionEvent e)throws IOException{
 		if(e.getSource() == playButton){
 			Scene currentScene = playButton.getScene();
@@ -136,6 +150,8 @@ public class GameController{
 	
 	private boolean startSinglePlayerGame() {
 		selectGameMode();
+		setDifficulty();
+		selectPieces();
 		if(!setTimer() ||
 				!setSinglePlayerName())
 			return false;
@@ -159,12 +175,14 @@ public class GameController{
 		if(normalMode.isSelected()){
 			mode = NORMALMODE;
 			System.out.println("normal");
+			speedMode.setSelected(false);
 			timerText.setDisable(true);
 			
 		}
 		else if (speedMode.isSelected()) {
 			mode = SPEEDMODE;
 			System.out.println("speed");	
+			normalMode.setSelected(false);
 			timerText.setDisable(false);
 		}
 	}
@@ -172,10 +190,12 @@ public class GameController{
 	public void selectPieces(){
 		if(whitePieceButton.isSelected()){
 			piecesSelected = WHITEPIECES;
+			blackPieceButton.setSelected(false);
 			System.out.println("white");
 		}
 		else if (blackPieceButton.isSelected()){
 			piecesSelected = BLACKPIECES;
+			whitePieceButton.setSelected(false);
 			System.out.println("black");		
 		}
 	}
@@ -285,6 +305,7 @@ public class GameController{
 	public void playNetworkGame(){
 		
 	}
+	
 	
 	
 }

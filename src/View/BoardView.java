@@ -1,55 +1,69 @@
 package View;
-import Model.*;
-import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.HashMap;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import Model.Observer;
+import Model.Piece;
+import Model.State;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
-public class BoardView extends JPanel {
-	    
-	    private Board board;
-	    public BoardView() {
-	       GridLayout grid = new GridLayout(8,8);
-	       this.setLayout(grid);
-	       board = new Board(1);
-	       for(int i = 0; i < 8; i++){	
-				for(int j = 0; j < 8; j++){
-					Color tileColor = board.getColor(new Position(i, j));
-					JButton pieceIcon = new JButton();
-					switch(tileColor){
-					case ORANGE:
-						pieceIcon.setBackground(java.awt.Color.ORANGE);
-						break;
-					case BLUE:
-						pieceIcon.setBackground(java.awt.Color.BLUE);
-						break;
-					case PURPLE:
-						pieceIcon.setBackground(new java.awt.Color(147,112,219));
-						break;
-					case PINK:
-						pieceIcon.setBackground(java.awt.Color.PINK);
-						break;
-					case YELLOW:
-						pieceIcon.setBackground(java.awt.Color.YELLOW);
-						break;
-					case RED:
-						pieceIcon.setBackground(java.awt.Color.RED);
-						break;
-					case GREEN:
-						pieceIcon.setBackground(java.awt.Color.GREEN);
-						break;
-					case BROWN:
-						pieceIcon.setBackground(new java.awt.Color(139,69,19));
-						break;
-					}
-					
-					pieceIcon.setOpaque(true);
-					
-					this.add(pieceIcon);
-				
-					
-				}
-			}
-	    }
+public class BoardView extends GridPane implements Observer{
+	@FXML private GridPane gridPane;
+	HashMap<Piece,Image> hashMap;
+	
+	public BoardView(){
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+				"FXMLFiles/BoardView.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+	}
+
+	@FXML
+	public void initialize(State currentState){
+    	System.out.println("inside controller");
+        gridPane.setGridLinesVisible(true);
+        ObservableList<Node> childrens = gridPane.getChildren();
+        Piece[][] pieces = currentState.getPieces();
+        hashMap.put(pieces[0][0], new Image("C:\\Users\\Damyan\\Desktop\\damyan_kalev.jpg"));
+        for (Node node : childrens) {
+            gridPane.getChildren().remove(node);
+        }
+
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                System.out.println("I'm in!");
+                Pane current = new Pane();
+                if(hashMap.get(pieces[i][j]) != null) {
+                    ImageView iv = new ImageView(hashMap.get(pieces[i][j]));
+                    current.getChildren().add(iv);
+                }
+                gridPane.getChildren().add(current);
+            }
+        }
+    }
+	@Override
+	public void update(State currentState) {
+		initialize(currentState);
+		
+	}
+
+	@Override
+	public void update(int screenMode) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

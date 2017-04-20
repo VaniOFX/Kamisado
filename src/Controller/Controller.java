@@ -26,7 +26,7 @@ public class Controller{
 	}
     @FXML
 	public void initialize(State currentState){
-
+    	System.out.println("inside controller");
         boardPane.setGridLinesVisible(true);
         ObservableList<Node> childrens = boardPane.getChildren();
         Piece[][] pieces = currentState.getPieces();

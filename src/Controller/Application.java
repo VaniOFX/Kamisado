@@ -71,13 +71,13 @@ public class Application {
 				game.playGame(3);
 			}
 		}else if(newGame.equals("restore")){
-			DuoGameDriver game = SaveManager.restoreState();
+			//GameDriver game = SaveManager.restoreState();
 //			game.getCurrentState().printState();
 //			System.out.println("The next player to move is " + game.getCurrentPlayer().getColor());
 //			System.out.println("The next piece to move is on " +
 //					game.getCurrentState().getCurrentInitial().getPosX() + " " +
 //					game.getCurrentState().getCurrentInitial().getPosY());
-			game.getRoundWinner();
+			//game.getRoundWinner();
 			
 		}
 

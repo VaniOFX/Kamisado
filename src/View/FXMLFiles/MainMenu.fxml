@@ -15,7 +15,7 @@
                <children>
                   <Button fx:id="sButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Single Game" />
                   <Button fx:id="mButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Muliplayer Game" />
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Load Game" />
+                  <Button fx:id="loadGameButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Load Game" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="100.0" right="100.0" top="120.0" />
@@ -31,7 +31,7 @@
                <children>
                   <Button fx:id="nButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Network Game" />
                   <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="View Stats" />
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Exit" />
+                  <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Exit" />
                </children>
             </VBox>
          </children>

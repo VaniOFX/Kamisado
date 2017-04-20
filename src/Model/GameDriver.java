@@ -27,6 +27,8 @@ public class GameDriver implements Observable, Serializable {
 	private Piece winnerPiece;
 	private int boardMode;
 	private boolean deadlocked;
+	private int winScore;
+	private boolean restored;
 	
 	public static final boolean HISTORYENABLED = true;
 	public static final boolean HISTORYDISABLED = false;
@@ -96,7 +98,6 @@ public class GameDriver implements Observable, Serializable {
 		notifyObservers();
 		currentPlayer = playerWhite;
 		running = true;
-		
 	}
 	private void initNextGame(){
 		board = new Board(boardMode);
@@ -110,9 +111,15 @@ public class GameDriver implements Observable, Serializable {
 
 	}
 	
-	
 	public void playGame(int winScore){
-		initGame();
+		if(winScore == -1){
+			winScore = this.winScore;
+			restored = true;
+		}else{
+			this.winScore = winScore;
+			restored = false;
+			initGame();
+		}
 		while(scoreBlack < winScore && scoreWhite < winScore){
 			if(getRoundWinner().equals(Color.BLACK)){
 				if(winnerPiece != null){
@@ -158,10 +165,11 @@ public class GameDriver implements Observable, Serializable {
 	
 
 	public Color getRoundWinner(){
-		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
+		if(!restored) currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		//used to check for deadlock
 		ArrayList<Position> positions = new ArrayList<Position>();
 		while(running){
+			SaveManager.saveGame(this);
 			Move move = null;
 			if(positions.size() > 4 ) positions.remove(0);
 			positions.add(currentState.getCurrentInitial());
