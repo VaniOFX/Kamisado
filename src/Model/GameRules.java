@@ -146,9 +146,9 @@ public class GameRules {
 		return false;
 	}
 	
-	public static boolean hasNoLegalMoves(State state, Move move){
+	public static boolean hasNoLegalMoves(State state, Position initial){
 		
-		return legalPositions(state, move.getInitial()).size() == 0;
+		return legalPositions(state, initial).size() == 0;
 	}
 	
 }

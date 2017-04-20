@@ -26,6 +26,7 @@ public class GameDriver implements Observable, Serializable {
 	private MoveTimer mt;
 	private Piece winnerPiece;
 	private int boardMode;
+	private boolean deadlocked;
 	
 	public static final boolean HISTORYENABLED = true;
 	public static final boolean HISTORYDISABLED = false;
@@ -160,13 +161,25 @@ public class GameDriver implements Observable, Serializable {
 		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		while(running){
 			Move move = null;
-			if(!GameRules.legalPositions(currentState, currentState.getCurrentInitial()).isEmpty()){
+			
+				if(GameRules.hasNoLegalMoves(currentState, currentState.getCurrentInitial())){
+					if(deadlocked){
+						System.out.println("deadlock");
+						return currentPlayer.getColor();
+					}
+					Color current = board.getColor(currentPlayer.getInitialPosition());
+					switchPlayer();
+					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), current));
+					deadlocked = true;
+				}else{
+					deadlocked = false;
+				}
+				
 				moveStarted = System.currentTimeMillis();
 				//current player makes a move
 				
 				if(currentPlayer.getName().equals("AIPlayer")){
-					State stateCopy = currentState.clone();
-					move = currentPlayer.getMove(stateCopy);
+					move = currentPlayer.getMove(currentState.clone());
 				}else{
 					move = currentPlayer.getMove(currentState);
 				}
@@ -218,39 +231,28 @@ public class GameDriver implements Observable, Serializable {
 					}
 					
 					notifyObservers();
-					
-					//switch current player
-					if(running){
-						if(currentPlayer == playerWhite){
-							currentPlayer = playerBlack;
-						}else{
-							currentPlayer = playerWhite;
-						}
-					}
-					
+		
+					switchPlayer();
 					
 					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
+					System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
+							+currentState.getCurrentInitial().getPosY());
 					
 				}else{
 					System.out.println("Illegal move.");
 				}
-			}else{
-				if(running){
-					if(currentPlayer == playerWhite){
-						currentPlayer = playerBlack;
-					}else{
-						currentPlayer = playerWhite;
-					}
-				}
-				currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getInitial())));
-				System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
-						+currentState.getCurrentInitial().getPosY());
-
+				
 			}
-		}
 		return currentPlayer.getColor();
 		}
 	
+	private void switchPlayer(){
+		if(currentPlayer == playerWhite){
+			currentPlayer = playerBlack;
+		}else{
+			currentPlayer = playerWhite;
+		}
+	}
 
 	@Override
 	public void subscribe(Observer observer) {
