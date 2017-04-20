@@ -170,7 +170,7 @@ public class NetworkGameDriver implements Observable, Runnable {
 					}
 					currentState.move(move);
 					
-					if(curSumo > 0 && currentState.isSumoPushable(move.getTarget(), client ? Color.WHITE : Color.BLACK)){
+					if(curSumo > 0 && currentState.isSumoPushable(move, client ? Color.WHITE : Color.BLACK,curSumo)){
 						
 						Position nextPosition = currentState.sumoPush(move.getTarget(), client ? Color.WHITE : Color.BLACK);
 						

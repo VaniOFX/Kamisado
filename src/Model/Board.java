@@ -133,12 +133,12 @@ public class Board implements Serializable{
 
 			}
 		}
-//		for(int row = 0; row < 8; row++){
-//			for(int col = 0; col < 8; col++){
-//				System.out.print(board[row][col].toString().substring(0, 2)+"|");
-//			}
-//			System.out.println("\n");
-//		}
+		for(int row = 0; row < 8; row++){
+			for(int col = 0; col < 8; col++){
+				System.out.print(board[row][col].toString().substring(0, 2)+"|");
+			}
+			System.out.println("\n");
+		}
 }
 	
 	

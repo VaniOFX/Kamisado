@@ -35,7 +35,7 @@ public class Application {
 						}
 					}
 				}else if(modeSpeed.equals("normal")){
-					GameDriver game = new GameDriver(white, black,false,Board.NORMAL);
+					GameDriver game = new GameDriver(white, black,false,Board.RANDOM);
 
 					//game.subscribe(new StateView());
 					game.playGame(3);

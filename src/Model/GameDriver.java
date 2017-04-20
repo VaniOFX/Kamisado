@@ -18,13 +18,14 @@ public class GameDriver implements Observable, Serializable {
 	private State currentState;
 	private Stack<State> history;
 	private boolean historyEnabled;
-	private Position currentInitial;
 	private boolean running;
 	private int scoreWhite;
 	private int scoreBlack;
 	protected long moveStarted;
 	protected long moveTime;
 	private MoveTimer mt;
+	private Piece winnerPiece;
+	private int boardMode;
 	
 	public static final boolean HISTORYENABLED = true;
 	public static final boolean HISTORYDISABLED = false;
@@ -33,7 +34,8 @@ public class GameDriver implements Observable, Serializable {
 		this.playerWhite = playerWhite;
 		this.playerBlack = playerBlack;
 		this.historyEnabled = historyEnabled;
-		initGameDriver(boardMode);
+		this.boardMode = boardMode;
+		initGameDriver();
 	}
 	
 	public GameDriver(AbstractPlayer playerWhite, AbstractPlayer playerBlack, boolean historyEnabled, int boardMode, long moveTime){
@@ -41,7 +43,8 @@ public class GameDriver implements Observable, Serializable {
 		this.playerBlack = playerBlack;
 		this.historyEnabled = historyEnabled;
 		this.moveTime = moveTime;
-		initGameDriver(boardMode);
+		this.boardMode = boardMode;
+		initGameDriver();
 		moveStarted = System.currentTimeMillis();
 		mt = new MoveTimer(moveStarted,moveTime);
 		Thread t = new Thread(mt);
@@ -73,7 +76,7 @@ public class GameDriver implements Observable, Serializable {
 		}
 	}
 	
-	private void initGameDriver(int boardMode){
+	private void initGameDriver(){
 		scoreWhite = 0;
 		scoreBlack = 0;
 		board = new Board(boardMode);
@@ -91,11 +94,11 @@ public class GameDriver implements Observable, Serializable {
 		}
 		notifyObservers();
 		currentPlayer = playerWhite;
-		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		running = true;
 		
 	}
 	private void initNextGame(){
+		board = new Board(boardMode);
 		State newState = new State(board);
 		
 		newState.refillLeftToRight(currentState.getPieces());
@@ -109,29 +112,52 @@ public class GameDriver implements Observable, Serializable {
 	
 	public void playGame(int winScore){
 		initGame();
-		while(true){
+		while(scoreBlack < winScore && scoreWhite < winScore){
 			if(getRoundWinner().equals(Color.BLACK)){
-				scoreBlack++;
-				if(scoreBlack == winScore){
-					System.out.println(playerWhite.getName()+ " won");
-					break;
-				}
-				
+				if(winnerPiece != null){
+					switch(winnerPiece.getSumo()){
+					case 1: scoreBlack = scoreBlack + 1;
+							break;
+							
+					case 2: scoreBlack = scoreBlack + 3;
+							break;
+							
+					case 3: scoreBlack = scoreBlack + 7;
+							break;
+							
+					default:
+							break;
+					}
+				}	
 			}				
 			else{
-				scoreWhite++;
-				if(scoreWhite == winScore){
-					System.out.println(playerWhite.getName()+ " won");
-					break;
+				if(winnerPiece != null){
+					switch(winnerPiece.getSumo()){
+					case 1: scoreWhite = scoreWhite + 1;
+							break;
+							
+					case 2: scoreWhite = scoreWhite + 3;
+							break;
+							
+					case 3: scoreWhite = scoreWhite + 7;
+							break;
+							
+					default:
+							break;
+					}
 				}
-			}
+			}	
+			System.out.println("The score is" + scoreWhite + ":" + scoreBlack);
 			initNextGame();
-			
-			System.out.println("New GAME!");
+
 		}
+		if(scoreWhite>scoreBlack) System.out.print(playerWhite.getName() + " has won.");
+		else System.out.println(playerBlack.getName()+ " has won.");
 	}
 	
+
 	public Color getRoundWinner(){
+		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		while(running){
 			moveStarted = System.currentTimeMillis();
 			//current player makes a move
@@ -161,36 +187,55 @@ public class GameDriver implements Observable, Serializable {
 			
 			int curSumo = currentState.getPiece(move.getInitial()).getSumo();
 			//validate move
-			if(GameRules.isLegalMove(currentState, move, curSumo)){
-				if(GameRules.isWinningMove(currentState, move)){
-					//generate match report
-					running = false;
-					currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
-				}
-				//update board
-				State newState = currentState.clone();
-				newState.move(move);
-
-								
-				if(historyEnabled){
-					history.push(newState);
-				}
-				
-				currentState = newState;
-				
-				if(curSumo > 0 && newState.isSumoPushable(move.getTarget(), currentPlayer.getColor())){
-					Position nextPosition = currentState.sumoPush(move.getTarget(), currentPlayer.getColor());
-					currentState.setCurrentInitial(currentState.getPiecePosition(
-													(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
-															board.getColor(nextPosition)));
-					System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
+			if(!GameRules.legalPositions(currentState, currentState.getCurrentInitial()).isEmpty())
+				if(GameRules.isLegalMove(currentState, move, curSumo)){
+					if(GameRules.isWinningMove(currentState, move)){
+						//generate match report
+						running = false;
+						winnerPiece = currentState.getPiece(move.getInitial());
+						currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
+					}
+					//update board
+					State newState = currentState.clone();
+					newState.move(move);
+	
+									
+					if(historyEnabled){
+						history.push(newState);
+					}
+					
+					currentState = newState;
+					
+					if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
+						Position nextPosition = currentState.sumoPush(move.getTarget(), currentPlayer.getColor());
+						currentState.setCurrentInitial(currentState.getPiecePosition(
+														(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
+																board.getColor(nextPosition)));
+						System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
+						notifyObservers();
+						continue;
+					}
+					
 					notifyObservers();
-					continue;
+					
+					//switch current player
+					if(running){
+						if(currentPlayer == playerWhite){
+							currentPlayer = playerBlack;
+						}else{
+							currentPlayer = playerWhite;
+						}
+					}
+					
+					
+					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
+					System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
+																	+currentState.getCurrentInitial().getPosY());
+					
+				}else{
+					System.out.println("Illegal move.");
 				}
-				
-				notifyObservers();
-				
-				//switch current player
+			else{
 				if(running){
 					if(currentPlayer == playerWhite){
 						currentPlayer = playerBlack;
@@ -198,15 +243,10 @@ public class GameDriver implements Observable, Serializable {
 						currentPlayer = playerWhite;
 					}
 				}
-				
-				
-				currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
+				currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getInitial())));
 				System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
-																+currentState.getCurrentInitial().getPosY());
-				
-			}else{
-				System.out.println("Illegal move.");
-			}			
+						+currentState.getCurrentInitial().getPosY());
+			}
 		}
 		return currentPlayer.getColor();
 		}

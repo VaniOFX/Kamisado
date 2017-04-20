@@ -60,15 +60,7 @@ public class GameRules {
 					while(x != targetX){
 						if(state.getPiece(new Position(x, initialY)) != null) return false;
 						x++;
-					}
-					if(state.getPiece(new Position(x, initialY)) != null && sumo != 0){
-						int numPieces = 1;
-						while(state.getPiece(new Position(x, initialY)) != null){
-							if(numPieces>sumo || x+1>7)	return false;
-							numPieces++;
-							x++;
-						}
-					}
+					}					
 				}//left diagonal
 				else if((targetX - initialX) == (initialY - targetY)){
 					int x = initialX+1;
@@ -105,16 +97,6 @@ public class GameRules {
 					while(x != targetX){
 						if(state.getPiece(new Position(x, initialY)) != null) return false;
 						x--;
-					}
-					if(state.getPiece(new Position(x, initialY)) != null && sumo != 0){
-						int numPieces = 1;
-						while(state.getPiece(new Position(x, initialY)) != null){
-							if(numPieces>sumo || x-1<0){
-								return false;
-							}
-							numPieces++;
-							x--;
-						}
 					}
 				}//left diagonal
 				else if((initialX - targetX) == (initialY - targetY)){

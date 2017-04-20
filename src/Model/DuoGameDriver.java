@@ -132,7 +132,7 @@ public class DuoGameDriver implements Observable, Serializable{
 				
 				currentState = newState;
 				
-				if(curSumo > 0 && newState.isSumoPushable(move.getTarget(), currentPlayer.getColor())){
+				if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(),curSumo)){
 					Position nextPosition = currentState.sumoPush(move.getTarget(), currentPlayer.getColor());
 					currentState.setCurrentInitial(currentState.getPiecePosition((currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK, board.getColor(nextPosition)));
 					System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());

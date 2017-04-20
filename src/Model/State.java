@@ -187,7 +187,7 @@ public class State implements java.io.Serializable  {
 			}
 			targetX = target.getPosX();
 			nextPosition = new Position(targetX+count+1, targetY);
-			while(count > 0){
+			while(count >= 0){
 				pieces[targetX+count+1][targetY] = pieces[targetX+count][targetY];
 				pieces[targetX+count][targetY] = null;
 				count--;
@@ -200,7 +200,7 @@ public class State implements java.io.Serializable  {
 			}
 			targetX = target.getPosX();
 			nextPosition = new Position(targetX-count-1, targetY);
-			while(count > 0){
+			while(count >= 0){
 				pieces[targetX-count-1][targetY] = pieces[targetX-count][targetY];
 				pieces[targetX-count][targetY] = null;
 				count--;
@@ -209,17 +209,42 @@ public class State implements java.io.Serializable  {
 		return nextPosition;
 	}
 	
-	public boolean isSumoPushable(Position target,Color col){
+	public boolean isSumoPushable(Move move,Color col,int curSumo){
+		Position target = move.getTarget();
 		int targetX = target.getPosX();
 		int targetY = target.getPosY();
-		if(col.equals(Color.BLACK)){
-			if(pieces[targetX + 1][targetY] == null) return false;
-		}else if(col.equals(Color.WHITE)){
-			if(pieces[targetX - 1][targetY] == null) return false;
+		if(move.getInitial().getPosY() == move.getTarget().getPosY()){
+			if(col.equals(Color.BLACK)){
+				if(pieces[targetX+1][targetY] != null){
+					int numPieces = 1;
+					int x = targetX +1;
+					while(pieces[x][targetY] != null){
+						if(numPieces > curSumo || x+1>7 || pieces[x][targetY].getSumo()>= curSumo) return false;
+						numPieces++;
+						x++;
+					}
+				}else{
+					return false;
+				}
+				
+				
+			}else if(col.equals(Color.WHITE)){
+				if(pieces[targetX-1][targetY] != null){
+					int numPieces = 1;
+					int x = targetX-1;
+					while(pieces[x][targetY] != null){
+						if(numPieces > curSumo || x-1<0 || pieces[x][targetY].getSumo()>= curSumo) return false;
+						numPieces++;
+						x--;
+					}
+				}else{
+					return false;
+				}
+			}
+			return true;
 		}
-		return true;
+		return false;
 	}
-
 }
 
 

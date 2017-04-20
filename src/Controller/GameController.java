@@ -66,9 +66,8 @@ public class GameController{
 	@FXML
 	private Button netButton;
 	@FXML
-
 	private Button playButton;
-
+	@FXML
 	private CheckBox randomBox;
 
 	
