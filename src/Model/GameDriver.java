@@ -159,35 +159,36 @@ public class GameDriver implements Observable, Serializable {
 	public Color getRoundWinner(){
 		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		while(running){
-			moveStarted = System.currentTimeMillis();
-			//current player makes a move
-			Move move;
-			if(currentPlayer.getName().equals("AIPlayer")){
-				State stateCopy = currentState.clone();
-				move = currentPlayer.getMove(stateCopy);
-			}else{
-				move = currentPlayer.getMove(currentState);
-			}
-			
-			if(historyEnabled){
-				if(move.getTarget().equals(new Position(-1,-1))){
-					if(history.empty()){
-						System.out.println("The history is empty");
-						continue;
-					}
-					else{
-						history.pop();
-						history.pop();
-						currentState = history.pop();
-						notifyObservers();
-						continue;
+			Move move = null;
+			if(!GameRules.legalPositions(currentState, currentState.getCurrentInitial()).isEmpty()){
+				moveStarted = System.currentTimeMillis();
+				//current player makes a move
+				
+				if(currentPlayer.getName().equals("AIPlayer")){
+					State stateCopy = currentState.clone();
+					move = currentPlayer.getMove(stateCopy);
+				}else{
+					move = currentPlayer.getMove(currentState);
+				}
+				
+				if(historyEnabled){
+					if(move.getTarget().equals(new Position(-1,-1))){
+						if(history.empty()){
+							System.out.println("The history is empty");
+							continue;
+						}
+						else{
+							history.pop();
+							history.pop();
+							currentState = history.pop();
+							notifyObservers();
+							continue;
+						}
 					}
 				}
-			}
-			
-			int curSumo = currentState.getPiece(move.getInitial()).getSumo();
-			//validate move
-			if(!GameRules.legalPositions(currentState, currentState.getCurrentInitial()).isEmpty())
+				
+				int curSumo = currentState.getPiece(move.getInitial()).getSumo();
+				//validate move
 				if(GameRules.isLegalMove(currentState, move, curSumo)){
 					if(GameRules.isWinningMove(currentState, move)){
 						//generate match report
@@ -229,13 +230,11 @@ public class GameDriver implements Observable, Serializable {
 					
 					
 					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
-					System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
-																	+currentState.getCurrentInitial().getPosY());
 					
 				}else{
 					System.out.println("Illegal move.");
 				}
-			else{
+			}else{
 				if(running){
 					if(currentPlayer == playerWhite){
 						currentPlayer = playerBlack;
@@ -246,6 +245,7 @@ public class GameDriver implements Observable, Serializable {
 				currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getInitial())));
 				System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
 						+currentState.getCurrentInitial().getPosY());
+
 			}
 		}
 		return currentPlayer.getColor();
