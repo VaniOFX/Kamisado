@@ -164,18 +164,18 @@ public class GameDriver implements Observable, Serializable {
 		while(running){
 			Move move = null;
 			if(positions.size() > 4 ) positions.remove(0);
-			positions.add(currentPlayer.getInitialPosition());
+			positions.add(currentState.getCurrentInitial());
 				if(GameRules.hasNoLegalMoves(currentState, currentState.getCurrentInitial())){
 					if(deadlocked){
 						System.out.println("deadlock");
 						return currentPlayer.getColor();
 					}
-					Color current = board.getColor(currentPlayer.getInitialPosition());
+					Color current = board.getColor(currentState.getCurrentInitial());
 					switchPlayer();
 					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), current));
 					deadlocked = true;
 				}else{
-					if(positions.get(0) == positions.get(2) && positions.get(1) == positions.get(3)){
+					if(positions.size() == 4 && positions.get(0) == positions.get(2) && positions.get(1) == positions.get(3)){
 						deadlocked = true;
 					}else{
 						deadlocked = false;
