@@ -1,21 +1,24 @@
 package View;
+import java.io.Serializable;
+
 import Controller.Controller;
-import Model.*;
+import Model.Observer;
+import Model.State;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.io.Serializable;
 
 
 public class GameView extends Application implements Observer, Serializable{
 	
-	private Controller controller;
+
+	private BoardView bv;
+	@FXML
+	private BorderPane borderPane;
 	
 	public static void main(String[] args){
 		launch(args);
@@ -24,10 +27,8 @@ public class GameView extends Application implements Observer, Serializable{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFiles/GameView.fxml"));
-		//Parent root = loader.load();
-		//controller = (Controller) loader.getController();
+		Parent root = loader.load();
 		
-//		primaryStage.setTitle("Kamisado board");
 //		BorderPane bp = new BorderPane();
 //		HBox top = new HBox();
 //		Label wPlayerName = new Label("Jim");
@@ -46,20 +47,17 @@ public class GameView extends Application implements Observer, Serializable{
 		
 		
 		
-		BoardView root = new BoardView(e-> System.out.println("HUI"));
-		HBox top =  new HBox();
-		top.getChildren().add(root);
-		Scene gameScene = new Scene(top);
+		bv = new BoardView(e-> System.out.println("HUI"));
+		Scene gameScene = new Scene(bv);
 		primaryStage.setTitle("Kamisado board");
 		primaryStage.setScene(gameScene);
 		primaryStage.show();
 
 	}
 
-
 	@Override
 	public void update(State currentState) {
-		controller.initialize(currentState);
+		bv.update(currentState);
 	}
 
 }

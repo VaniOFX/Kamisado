@@ -1,8 +1,9 @@
 package View;
 
 import Model.Board;
-
+import Model.ColorManager;
 import Model.Observer;
+import Model.Piece;
 import Model.Position;
 import Model.State;
 import javafx.event.EventHandler;
@@ -10,17 +11,18 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-public class BoardView extends Parent implements Observer{
+public class BoardView extends Parent{
 	
 //	@FXML
 //	private GridPane gridPane;
 //	
-//	HashMap<Piece,Image> hashMap;
+//	HashMap<PieceView,Image> hashMap;
 //	
 //	
 //	public BoardView(){
@@ -40,7 +42,7 @@ public class BoardView extends Parent implements Observer{
 //    	System.out.println("inside controller");
 //        gridPane.setGridLinesVisible(true);
 //        ObservableList<Node> childrens = gridPane.getChildren();
-//        Piece[][] pieces = currentState.getPieces();
+//        PieceView[][] pieces = currentState.getPieces();
 //        hashMap.put(pieces[0][0], new Image("C:\\Users\\Damyan\\Desktop\\damyan_kalev.jpg"));
 //        
 //        for (Node node : childrens) {
@@ -61,52 +63,100 @@ public class BoardView extends Parent implements Observer{
 //    }
 	
 	private VBox rows = new VBox();
-	private Board board;
+	private Board board = new Board(Board.NORMAL);
 	
 	public BoardView(EventHandler<? super MouseEvent> handler){
 		for(int i = 0; i < 8; i++){
 			HBox row = new HBox();
 			for(int j = 0; j < 8; j++){
-				Cell c = new Cell(i,j,Color.BLACK);
+				Color local = ColorManager.convertColor(board.getColor(new Position(i,j)));
+				PieceView p = new PieceView(local);
+				Cell c = new Cell(local);
+				addPiece(c,p);
 				c.setOnMouseClicked(handler);
 				row.getChildren().add(c);
 			}
 			rows.getChildren().add(row);
+		}	
+	}
+	
+	
+	public Cell getCell(int x,int y){
+		return (Cell) ((HBox) rows.getChildren().get(y)).getChildren().get(x);
+	}
+	
+	public void addPiece(Cell cell, PieceView p){
+		cell.getChildren().add(p);
+	}
+	
+	public void removePiece(Cell cell){
+		cell.getChildren().remove(0);
+	}
+	
+	public class Cell extends Pane{
+		
+		private PieceView PieceView;
+		
+		public Cell(Color col){
+			Rectangle rect = new Rectangle(20, 20);
+			rect.setFill(col);
+			rect.setStroke(Color.BLACK);
 		}
+		
+		public void setPiece(PieceView p){
+			this.PieceView = p;
+		}
+		
+		public PieceView getPiece(){
+			return PieceView;
+		}
+		
 		
 	}
 	
-	public class Cell extends Rectangle{
-		public int x,y;
-		public Piece piece;
-		public Color col;
+	public class PieceView extends Pane{
 		
-		public Cell(int x, int y,Color col){
-			super(30,30,col);
-			this.x = x;
-			this.y = y;
+		private Color col;
+		
+		public PieceView(Color col){
 			this.col = col;
-			setStroke(Color.BLACK);
+			Circle c = new Circle(15);
+			c.setFill(col);
+			c.setStroke(Color.WHITE);
 		}
 		
-		
-	}
-	
-	public class Piece extends Circle{
-		
-		public Piece(Color col){
-			super(10);
-			setFill(col);
-			setStroke(Color.WHITE);
+		public Color getColor(){
+			return col;
 		}
 			
 	}
 	
-	@Override
+	
 	public void update(State currentState) {
-//		initialize(currentState);
-		
+		for(int x = 0; x < 8; x++){
+			for(int y = 0; y < 8; y++){
+				Piece statePiece = currentState.getPiece(new Position(x,y));
+				Cell currentCell = getCell(x,y);
+				
+				if(statePiece != null){
+					if(currentCell.getPiece() == null){
+						PieceView p = new PieceView(ColorManager.convertColor(statePiece.getColor()));
+						currentCell.setPiece(p);
+						addPiece(currentCell,p);
+					}else if(ColorManager.convertColor(statePiece.getColor()) !=  currentCell.getPiece().getColor()){
+						removePiece(currentCell);
+						PieceView p = new PieceView(ColorManager.convertColor(statePiece.getColor()));
+						currentCell.setPiece(p);
+						addPiece(currentCell,p);
+					}
+				}else{
+					if(currentCell.getPiece() != null){
+						currentCell.setPiece(null);
+						removePiece(currentCell);
+					}
+				}
+			}
+		}
 	}
-
 }
 
