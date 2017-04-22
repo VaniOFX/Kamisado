@@ -29,6 +29,7 @@ public class GameDriver implements Observable, Serializable {
 	private boolean deadlocked;
 	private int winScore;
 	private boolean restored;
+	private boolean sumoPushed;
 	
 	public static final boolean HISTORYENABLED = true;
 	public static final boolean HISTORYDISABLED = false;
@@ -226,30 +227,34 @@ public class GameDriver implements Observable, Serializable {
 					}
 					//update board
 					State newState = currentState.clone();
-					newState.move(move);
-	
-									
+					
+					if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
+						Position nextPosition = newState.sumoPush(move.getInitial(), currentPlayer.getColor());
+						newState.setCurrentInitial(newState.getPiecePosition(
+														(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
+																board.getColor(nextPosition)));
+//						System.out.println(newState.getCurrentInitial().getPosX()+" "+newState.getCurrentInitial().getPosY());
+//						notifyObservers();
+//						continue;
+						sumoPushed = true;
+					}else{
+						newState.move(move);
+						sumoPushed = false;
+					}
+					
 					if(historyEnabled){
 						history.push(newState);
 					}
 					
 					currentState = newState;
 					
-					if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
-						Position nextPosition = currentState.sumoPush(move.getTarget(), currentPlayer.getColor());
-						currentState.setCurrentInitial(currentState.getPiecePosition(
-														(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
-																board.getColor(nextPosition)));
-						System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
-						notifyObservers();
-						continue;
-					}
-					
 					notifyObservers();
 		
-					switchPlayer();
+					if(!sumoPushed){
+						switchPlayer();
+						currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
+					}
 					
-					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
 					System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
 							+currentState.getCurrentInitial().getPosY());
 					

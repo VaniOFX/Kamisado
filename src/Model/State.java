@@ -175,34 +175,36 @@ public class State implements java.io.Serializable  {
 		}
 	}
 	
-	public Position sumoPush(Position target, Color col){
-		int targetX = target.getPosX();
-		int targetY = target.getPosY();
+	public Position sumoPush(Position initial, Color col){
+		int initialX = initial.getPosX();
+		int initialY = initial.getPosY();
 		Position nextPosition = null;
-		int count = 0;
+		int count = 1;
 		if(col.equals(Color.BLACK)){
-			while(pieces[targetX+1][targetY] != null){
+			while(pieces[initialX+1][initialY] != null){
 				count++;
-				targetX++;
+				initialX++;
 			}
-			targetX = target.getPosX();
-			nextPosition = new Position(targetX+count+1, targetY);
-			while(count >= 0){
-				pieces[targetX+count+1][targetY] = pieces[targetX+count][targetY];
-				pieces[targetX+count][targetY] = null;
+			initialX = initial.getPosX();
+			nextPosition = new Position(initialX+count, initialY);
+			while(count > 0){
+				pieces[initialX+count][initialY] = pieces[initialX+count-1][initialY];
+				pieces[initialX+count-1][initialY] = null;
 				count--;
 			}
 		}
 		else if(col.equals(Color.WHITE)){
-			while(pieces[targetX-1][targetY] != null){
+			while(pieces[initialX-1][initialY] != null){
 				count++;
-				targetX--;
+				initialX--;
 			}
-			targetX = target.getPosX();
-			nextPosition = new Position(targetX-count-1, targetY);
-			while(count >= 0){
-				pieces[targetX-count-1][targetY] = pieces[targetX-count][targetY];
-				pieces[targetX-count][targetY] = null;
+			initialX = initial.getPosX();
+			nextPosition = new Position(initialX-count, initialY);
+			while(count > 0){
+				printState();
+				pieces[initialX-count][initialY] = pieces[initialX-count+1][initialY];
+				printState();
+				pieces[initialX-count+1][initialY] = null;
 				count--;
 			}
 		}
@@ -215,13 +217,16 @@ public class State implements java.io.Serializable  {
 		int targetY = target.getPosY();
 		if(move.getInitial().getPosY() == move.getTarget().getPosY()){
 			if(col.equals(Color.BLACK)){
-				if(pieces[targetX+1][targetY] != null){
+				if(targetX + 1 <= 7 && pieces[targetX+1][targetY] == null){
 					int numPieces = 1;
-					int x = targetX +1;
+					int x = move.getInitial().getPosX() +1;
 					while(pieces[x][targetY] != null){
 						if(numPieces > curSumo || x+1>7 || pieces[x][targetY].getSumo()>= curSumo) return false;
 						numPieces++;
 						x++;
+					}
+					for(int i = x; i < i + numPieces; i++){
+						if(i > 7 || pieces[i][targetY] != null) return false;
 					}
 				}else{
 					return false;
@@ -229,13 +234,16 @@ public class State implements java.io.Serializable  {
 				
 				
 			}else if(col.equals(Color.WHITE)){
-				if(pieces[targetX-1][targetY] != null){
+				if(targetX - 1 >= 0 && pieces[targetX-1][targetY] == null){
 					int numPieces = 1;
-					int x = targetX-1;
+					int x = move.getInitial().getPosX()-1;
 					while(pieces[x][targetY] != null){
 						if(numPieces > curSumo || x-1<0 || pieces[x][targetY].getSumo()>= curSumo) return false;
 						numPieces++;
 						x--;
+					}
+					for(int i = x; i >= x - numPieces; i--){
+						if(i < 0 || pieces[i][targetY] != null) return false;
 					}
 				}else{
 					return false;
