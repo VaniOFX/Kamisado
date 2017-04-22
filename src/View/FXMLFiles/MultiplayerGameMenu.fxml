@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane fx:id="multiplayerScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<BorderPane fx:id="multiplayerScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
       <HBox spacing="50.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,6 +18,7 @@
                   <Label prefHeight="32.0" prefWidth="30.0" text="Timer" />
                   <Label prefHeight="27.0" prefWidth="113.0" text="White Player Name" />
                   <Label prefHeight="46.0" prefWidth="121.0" text="Black Player Name" />
+                  <Label prefHeight="31.0" prefWidth="121.0" text="Select Game Length" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="100.0" right="100.0" top="120.0" />
@@ -37,6 +38,16 @@
                   <TextField fx:id="timerText" disable="true" onAction="#setTimer" VBox.vgrow="ALWAYS" />
                   <TextField fx:id="whitePlayerNameText" onAction="#setWhitePlayerName" />
                   <TextField fx:id="blackPlayerNameText" onAction="#setBlackPlayerName" />
+                  <HBox>
+                     <children>
+                        <ToggleButton fx:id="shortModeButton" mnemonicParsing="false" onAction="#selectLengthMode" prefHeight="50.0" prefWidth="175.0" selected="true" text="Short">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="lengthGroup" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="longModeButton" mnemonicParsing="false" onAction="#selectLengthMode" prefHeight="50.0" prefWidth="175.0" text="Long" toggleGroup="$lengthGroup" />
+                     </children>
+                  </HBox>
                   <CheckBox fx:id="randomBox" mnemonicParsing="false" onAction="#setRandom" text="Random Board" />
                </children>
             </VBox>
@@ -47,13 +58,16 @@
       </HBox>
    </center>
    <bottom>
-      <Button fx:id="playButton" mnemonicParsing="false" onAction="#startGame" prefHeight="92.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
+      <Button fx:id="playButton" mnemonicParsing="false" onAction="#startGame" prefHeight="67.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets top="30.0" />
+            <Insets bottom="20.0" top="30.0" />
          </BorderPane.margin>
       </Button>
    </bottom>
    <top>
-      <Label text="Multiplayer Game" BorderPane.alignment="CENTER" />
+      <Label text="Multiplayer Game" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin></Label>
    </top>
 </BorderPane>

@@ -47,7 +47,7 @@ public class DuoGameDriver implements Observable, Serializable{
 			history.push(currentState);
 		}
 
-		SaveManager.saveGame(this);
+		//SaveManager.saveGame(this);
 		currentPlayer = playerWhite;
 		currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		running = true;
@@ -84,7 +84,7 @@ public class DuoGameDriver implements Observable, Serializable{
 	public Color getRoundWinner(){
 		while(running){
 			moveExecuted = false;
-			SaveManager.saveGame(this);
+			//SaveManager.saveGame(this);
 			//current player makes a move
 			Move move;
 			if(currentPlayer.getName().equals("AIPlayer")){

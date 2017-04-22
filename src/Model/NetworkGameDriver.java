@@ -210,9 +210,7 @@ public class NetworkGameDriver implements Observable, Runnable {
 		if (!unableToCommunicateWithOpponent) {
 			try {
 				incoming = (NetworkProtocol) ois.readObject();
-				
 				if(incoming==null)return false;
-				
 				return true;
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -30,7 +30,7 @@ public class DuoSpeedGameDriver extends DuoGameDriver implements Runnable{
 		}else{
 			System.out.println(playerWhite.getName()+ " won");
 		}
-		SaveManager.saveGame(this);
+		//SaveManager.saveGame(this);
 		System.exit(1);
 	}
 		

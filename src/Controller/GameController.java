@@ -23,6 +23,7 @@ public class GameController{
 	private ArrayList<Observer> observers;
 	
 	private int mode;
+	private int lengthMode;
 	private int timer;
 	private int difficulty;
 	private int boardMode;
@@ -42,13 +43,13 @@ public class GameController{
 	@FXML
 	private ToggleButton speedMode;
 	@FXML
-	private ToggleGroup modeGroup;
-	@FXML
 	private ToggleButton whitePieceButton;
 	@FXML
 	private ToggleButton blackPieceButton;
 	@FXML
-	private ToggleGroup piecesGroup;
+	private ToggleButton shortModeButton;
+	@FXML
+	private ToggleButton longModeButton;
 	@FXML
 	private Slider diffSlider;
 	@FXML
@@ -82,6 +83,9 @@ public class GameController{
 	private static final int WHITEPIECES = 12;
 	private static final int BLACKPIECES = 13;
 	
+	private static final int SHORTMODE = 1;
+	private static final int LONGMODE = 17;
+	
 	//Scene Modes
 	public static final String MAINMENU = "../View/FXMLFiles/MainMenu.fxml";
 	public static final String SMENU = "../View/FXMLFiles/SingleGameMenu.fxml";
@@ -96,6 +100,7 @@ public class GameController{
 		mode = NORMALMODE;
 		boardMode = Board.NORMAL;
 		timer = 0;
+		lengthMode = SHORTMODE;
 	}
 
 	public void handleMenus(ActionEvent e) throws IOException{
@@ -142,7 +147,7 @@ public class GameController{
 	public void showScene(String location,Button butt) throws IOException{
 		Stage stage = (Stage) butt.getScene().getWindow();
 		Parent root = FXMLLoader.load(getClass().getResource(location));
-		stage.setScene(new Scene(root,800,500));
+		stage.setScene(new Scene(root,800,600));
 		stage.show();
 		
 	}
@@ -150,6 +155,7 @@ public class GameController{
 	
 	private boolean startSinglePlayerGame() {
 		selectGameMode();
+		selectLengthMode();
 		setDifficulty();
 		selectPieces();
 		if(!setTimer() ||
@@ -160,6 +166,7 @@ public class GameController{
 	
 	public boolean startMultiplayerGame(){
 		selectGameMode();
+		selectLengthMode();
 		if(!setTimer() ||
 				!setWhitePlayerName() || !setBlackPlayerName())
 			return false;
@@ -175,14 +182,12 @@ public class GameController{
 		if(normalMode.isSelected()){
 			mode = NORMALMODE;
 			System.out.println("normal");
-			speedMode.setSelected(false);
 			timerText.setDisable(true);
 			
 		}
 		else if (speedMode.isSelected()) {
 			mode = SPEEDMODE;
 			System.out.println("speed");	
-			normalMode.setSelected(false);
 			timerText.setDisable(false);
 		}
 	}
@@ -190,13 +195,22 @@ public class GameController{
 	public void selectPieces(){
 		if(whitePieceButton.isSelected()){
 			piecesSelected = WHITEPIECES;
-			blackPieceButton.setSelected(false);
 			System.out.println("white");
 		}
 		else if (blackPieceButton.isSelected()){
 			piecesSelected = BLACKPIECES;
-			whitePieceButton.setSelected(false);
 			System.out.println("black");		
+		}
+	}
+	
+	public void selectLengthMode(){
+		if(shortModeButton.isSelected()){
+			lengthMode = SHORTMODE;
+			System.out.println("short");
+		}
+		else if (longModeButton.isSelected()){
+			lengthMode = LONGMODE;
+			System.out.println("long");		
 		}
 	}
 
@@ -270,8 +284,7 @@ public class GameController{
 			AbstractPlayer AIPlayer = new AIPlayer("AIPlayer",Color.BLACK,difficulty);
 			startGame(LocalPlayer,AIPlayer);
 		}
-		else if(piecesSelected == BLACKPIECES)
-		{
+		else if(piecesSelected == BLACKPIECES){
 			AbstractPlayer LocalPlayer = new LocalPlayer(singleName,Color.BLACK);	
 			AbstractPlayer AIPlayer = new AIPlayer("AIPlayer",Color.WHITE,difficulty);
 			startGame(AIPlayer,LocalPlayer);
@@ -281,11 +294,11 @@ public class GameController{
 	private void startGame(AbstractPlayer whitePlayer,AbstractPlayer blackPlayer){
 		if(mode == NORMALMODE){
 			GameDriver game = new GameDriver(whitePlayer,blackPlayer,GameDriver.HISTORYENABLED,boardMode);
-			game.playGame(3);
+			game.playGame(lengthMode);
 		}
 		else if(mode == SPEEDMODE){
 			GameDriver game = new GameDriver(whitePlayer,blackPlayer,GameDriver.HISTORYENABLED,boardMode,timer);
-			game.playGame(3);
+			game.playGame(lengthMode);
 		}
 	}
 	
@@ -294,16 +307,16 @@ public class GameController{
 		AbstractPlayer blackPlayer = new LocalPlayer(playerBlack,Color.BLACK);
 		if(mode == NORMALMODE){
 			GameDriver game = new GameDriver(whitePlayer, blackPlayer ,GameDriver.HISTORYDISABLED,boardMode);
-			game.playGame(3);
+			game.playGame(lengthMode);
 		}
 		else if(mode == SPEEDMODE){
 			GameDriver game = new GameDriver(whitePlayer,blackPlayer,GameDriver.HISTORYDISABLED,boardMode,timer);
-			game.playGame(3);
+			game.playGame(lengthMode);
 		}
 	}
 	
 	public void playNetworkGame(){
-		
+		NetworkGameDriver gameDriver = new NetworkGameDriver(lengthMode,boardMode);
 	}
 	
 	

@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
-      <HBox>
+      <HBox alignment="CENTER">
          <children>
-            <VBox prefHeight="400.0" prefWidth="321.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="321.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="sButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Single Game" />
                   <Button fx:id="mButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Muliplayer Game" />
@@ -24,12 +24,12 @@
                   <Insets left="80.0" right="80.0" />
                </padding>
             </VBox>
-            <VBox layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="318.0" spacing="30.0">
+            <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="318.0" spacing="30.0">
                <padding>
                   <Insets left="80.0" right="80.0" />
                </padding>
                <children>
-                  <Button fx:id="nButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Network Game" />
+                  <Button fx:id="netButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Network Game" />
                   <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="View Stats" />
                   <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Exit" />
                </children>
@@ -39,7 +39,7 @@
    </center>
 
    <top>
-      <Label text="Kamisado" BorderPane.alignment="CENTER" />
+      <Label prefHeight="55.0" prefWidth="61.0" text="Kamisado" BorderPane.alignment="CENTER" />
    </top>
 
    <padding>

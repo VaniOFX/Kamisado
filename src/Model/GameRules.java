@@ -51,6 +51,10 @@ public class GameRules {
 		Piece piece = state.getPiece(move.getInitial());
 		
 		if(piece.getPlayerColor() == Color.BLACK){
+			if(initialX == targetX){
+				if(state.isSumoPushable(move, piece.getPlayerColor(), sumo))
+					return true;
+			}
 			if(initialX < targetX){
 				//check if target position is within range
 				if(targetX - initialX > limit) return false;
@@ -88,6 +92,10 @@ public class GameRules {
 			
 				
 		}else if(piece.getPlayerColor() == Color.WHITE){
+			if(initialX == targetX){
+				if(state.isSumoPushable(move, piece.getPlayerColor(), sumo))
+					return true;
+			}
 			if(initialX > targetX){
 				//check if target position is within range
 				if(initialX - targetX > limit) return false;

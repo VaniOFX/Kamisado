@@ -8,16 +8,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<BorderPane fx:id="networkScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<BorderPane fx:id="networkScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <center>
       <HBox spacing="50.0" BorderPane.alignment="CENTER">
          <children>
             <VBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="228.0" prefWidth="301.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
                   <Label prefHeight="40.0" prefWidth="144.0" text="Select Game Mode" />
-                  <Label prefHeight="28.0" prefWidth="101.0" text="Timer" />
-                  <Label prefHeight="46.0" prefWidth="128.0" text="Choose Pieces" />
+                  <Label prefHeight="47.0" prefWidth="101.0" text="Timer" />
+                  <Label prefHeight="65.0" prefWidth="128.0" text="Select Game length" />
                </children>
                <BorderPane.margin>
                   <Insets bottom="20.0" left="100.0" right="100.0" top="120.0" />
@@ -27,23 +26,26 @@
                <children>
                   <HBox>
                      <children>
-                        <ToggleButton fx:id="normalMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" text="Normal">
+                        <ToggleButton fx:id="normalMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" selected="true" text="Normal">
                            <toggleGroup>
                               <ToggleGroup fx:id="modeGroup" />
                            </toggleGroup></ToggleButton>
                         <ToggleButton fx:id="speedMode" mnemonicParsing="false" onAction="#selectGameMode" prefHeight="50.0" prefWidth="175.0" text="Speed" toggleGroup="$modeGroup" />
                      </children>
                   </HBox>
-                  <TextField VBox.vgrow="ALWAYS" />
+                  <TextField fx:id="timerText" disable="true" onAction="#setTimer" VBox.vgrow="ALWAYS" />
+                  <HBox />
                   <HBox>
                      <children>
-                        <ToggleButton fx:id="whitePiece" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="White" VBox.vgrow="ALWAYS">
+                        <ToggleButton fx:id="shortModeButton" mnemonicParsing="false" onAction="#selectLengthMode" prefHeight="50.0" prefWidth="175.0" selected="true" text="Short">
                            <toggleGroup>
-                              <ToggleGroup fx:id="piecesGroup" />
-                           </toggleGroup></ToggleButton>
-                        <ToggleButton fx:id="blackPIece" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectPieces" prefHeight="50.0" prefWidth="175.0" text="Black" toggleGroup="$piecesGroup" />
+                              <ToggleGroup fx:id="lengthGroup" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="longModeButton" mnemonicParsing="false" onAction="#selectLengthMode" prefHeight="50.0" prefWidth="175.0" text="Long" toggleGroup="$lengthGroup" />
                      </children>
                   </HBox>
+                  <CheckBox fx:id="randomBox" mnemonicParsing="false" onAction="#setRandom" text="Random Board" />
                </children>
             </VBox>
          </children>
@@ -55,7 +57,7 @@
    <bottom>
       <Button fx:id="playButton" mnemonicParsing="false" onAction="#startGame" prefHeight="92.0" prefWidth="400.0" text="PLAY!" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets top="30.0" />
+            <Insets bottom="20.0" top="30.0" />
          </BorderPane.margin>
          <opaqueInsets>
             <Insets />
@@ -63,6 +65,9 @@
       </Button>
    </bottom>
    <top>
-      <Label text="Network Game" BorderPane.alignment="CENTER" />
+      <Label text="Network Game" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin></Label>
    </top>
 </BorderPane>
