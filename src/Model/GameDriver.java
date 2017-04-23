@@ -14,7 +14,7 @@ public class GameDriver implements Observable, Serializable {
 	private AbstractPlayer playerBlack;
 	private AbstractPlayer currentPlayer;
 	private Board board;
-	private ArrayList<Observer> observers;
+	private transient ArrayList<Observer> observers;
 	private State currentState;
 	private Stack<State> history;
 	private boolean historyEnabled;
@@ -167,6 +167,8 @@ public class GameDriver implements Observable, Serializable {
 
 	public Color getRoundWinner(){
 		if(!restored) currentState.setCurrentInitial(currentPlayer.getInitialPosition());
+		currentState.setCurrentPlayer(playerBlack);
+		notifyObservers();
 		//used to check for deadlock
 		ArrayList<Position> positions = new ArrayList<Position>();
 		while(running){
@@ -190,7 +192,7 @@ public class GameDriver implements Observable, Serializable {
 						deadlocked = false;
 					}
 				}
-				
+
 				moveStarted = System.currentTimeMillis();
 				//current player makes a move
 				
@@ -248,12 +250,14 @@ public class GameDriver implements Observable, Serializable {
 					
 					currentState = newState;
 					
-					notifyObservers();
-		
 					if(!sumoPushed){
 						switchPlayer();
 						currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
 					}
+					
+					currentState.setCurrentPlayer(currentPlayer);
+					
+					notifyObservers();
 					
 					System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
 							+currentState.getCurrentInitial().getPosY());

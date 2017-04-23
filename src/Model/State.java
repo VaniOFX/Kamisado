@@ -1,12 +1,11 @@
 package Model;
 
-import java.util.Arrays;
-
 public class State implements java.io.Serializable  {
 	
 	private Position currentInitial;
 	private Position lastPieceOn;
 	private Board board;
+	private AbstractPlayer currentPlayer;
 	/**
 	 * 
 	 */
@@ -252,6 +251,14 @@ public class State implements java.io.Serializable  {
 			return true;
 		}
 		return false;
+	}
+
+	public AbstractPlayer getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayer(AbstractPlayer currentPlayer) {
+		this.currentPlayer = currentPlayer;
 	}
 }
 

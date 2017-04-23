@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainMenuController">
    <center>
       <HBox alignment="CENTER">
          <children>
@@ -39,7 +39,7 @@
    </center>
 
    <top>
-      <Label prefHeight="55.0" prefWidth="61.0" text="Kamisado" BorderPane.alignment="CENTER" />
+      <Label alignment="CENTER" prefHeight="55.0" prefWidth="100.0" text="Kamisado" BorderPane.alignment="CENTER" />
    </top>
 
    <padding>
