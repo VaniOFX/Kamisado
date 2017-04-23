@@ -45,10 +45,15 @@ public class GameRules {
 		int targetX = move.getTarget().getPosX();
 		int targetY = move.getTarget().getPosY();
 		
+		Piece piece = state.getPiece(move.getInitial());
+		
+		if(sumo != 0 && state.isSumoPushable(move, piece.getPlayerColor(), sumo))
+			return true;
+		
 		if (state.getPiece(move.getTarget()) != null) 
 			return false;
 		
-		Piece piece = state.getPiece(move.getInitial());
+		
 		
 		if(piece.getPlayerColor() == Color.BLACK){
 			if(initialX == targetX){
