@@ -13,6 +13,7 @@ public class GameDriver implements Observable, Serializable {
 	private AbstractPlayer playerWhite;
 	private AbstractPlayer playerBlack;
 	private AbstractPlayer currentPlayer;
+	private AbstractPlayer winner;
 	private Board board;
 	private ArrayList<Observer> observers;
 	private State currentState;
@@ -98,6 +99,7 @@ public class GameDriver implements Observable, Serializable {
 		notifyObservers();
 		currentPlayer = playerWhite;
 		running = true;
+		deadlocked = false;
 	}
 	private void initNextGame(){
 		board = new Board(boardMode);
@@ -168,98 +170,109 @@ public class GameDriver implements Observable, Serializable {
 		if(!restored) currentState.setCurrentInitial(currentPlayer.getInitialPosition());
 		//used to check for deadlock
 		ArrayList<Position> positions = new ArrayList<Position>();
+		int counter = 0;
 		while(running){
 			SaveManager.saveGame(this);
 			Move move = null;
 			if(positions.size() > 4 ) positions.remove(0);
 			positions.add(currentState.getCurrentInitial());
-				if(GameRules.hasNoLegalMoves(currentState, currentState.getCurrentInitial())){
-					if(deadlocked){
-						System.out.println("deadlock");
-						return currentPlayer.getColor();
-					}
-					Color current = board.getColor(currentState.getCurrentInitial());
-					switchPlayer();
-					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), current));
-					deadlocked = true;
-				}else{
-					if(positions.size() == 4 && positions.get(0) == positions.get(2) && positions.get(1) == positions.get(3)){
-						deadlocked = true;
-					}else{
-						deadlocked = false;
-					}
-				}
+			
+			if(deadlocked || counter >= 20){
+				System.out.println("deadlock");
+				return winner.getColor();
+			}
+			
+			if(GameRules.hasNoLegalMoves(currentState, currentState.getCurrentInitial())){
+				if(counter == 0) winner = currentPlayer;
+				switchPlayer();
+				setNextPiece(currentState.getCurrentInitial());
+				counter++;
+				continue;
 				
-				moveStarted = System.currentTimeMillis();
-				//current player makes a move
-				
-				if(currentPlayer.getName().equals("AIPlayer")){
-					move = currentPlayer.getMove(currentState.clone());
-				}else{
-					move = currentPlayer.getMove(currentState);
-				}
-				
-				if(historyEnabled){
-					if(move.getTarget().equals(new Position(-1,-1))){
-						if(history.empty()){
-							System.out.println("The history is empty");
-							continue;
-						}
-						else{
-							history.pop();
-							history.pop();
-							currentState = history.pop();
-							notifyObservers();
-							continue;
-						}
+			}
+			
+			if(positions.size() == 4 && positions.get(0) == positions.get(2) && positions.get(1) == positions.get(3)){
+				deadlocked = true;
+				switchPlayer();
+				winner = currentPlayer;
+				continue;
+			}
+			
+			moveStarted = System.currentTimeMillis();
+			//current player makes a move
+			
+			if(currentPlayer.getName().equals("AIPlayer")){
+				move = currentPlayer.getMove(currentState.clone());
+			}else{
+				move = currentPlayer.getMove(currentState);
+			}
+			
+			if(historyEnabled){
+				if(move.getTarget().equals(new Position(-1,-1))){
+					if(history.empty()){
+						System.out.println("The history is empty");
+						continue;
 					}
-				}
-				
-				int curSumo = currentState.getPiece(move.getInitial()).getSumo();
-				//validate move
-				if(GameRules.isLegalMove(currentState, move, curSumo)){
-					if(GameRules.isWinningMove(currentState, move)){
-						//generate match report
-						running = false;
-						winnerPiece = currentState.getPiece(move.getInitial());
-						currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
-					}
-					//update board
-					State newState = currentState.clone();
-					newState.move(move);
-	
-									
-					if(historyEnabled){
-						history.push(newState);
-					}
-					
-					currentState = newState;
-					
-					if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
-						Position nextPosition = currentState.sumoPush(move.getTarget(), currentPlayer.getColor());
-						currentState.setCurrentInitial(currentState.getPiecePosition(
-														(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
-																board.getColor(nextPosition)));
-						System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
+					else{
+						history.pop();
+						history.pop();
+						currentState = history.pop();
 						notifyObservers();
 						continue;
 					}
-					
-					notifyObservers();
-		
-					switchPlayer();
-					
-					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
-					System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
-							+currentState.getCurrentInitial().getPosY());
-					
-				}else{
-					System.out.println("Illegal move.");
+				}
+			}
+			
+			int curSumo = currentState.getPiece(move.getInitial()).getSumo();
+			//validate move
+			if(GameRules.isLegalMove(currentState, move, curSumo)){
+				if(GameRules.isWinningMove(currentState, move)){
+					//generate match report
+					running = false;
+					winnerPiece = currentState.getPiece(move.getInitial());
+					currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
+				}
+				//update board
+				State newState = currentState.clone();
+				newState.move(move);
+
+								
+				if(historyEnabled){
+					history.push(newState);
 				}
 				
+				currentState = newState;
+				
+				if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
+					Position nextPosition = currentState.sumoPush(move.getTarget(), currentPlayer.getColor());
+					currentState.setCurrentInitial(currentState.getPiecePosition(
+													(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
+															board.getColor(nextPosition)));
+					System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
+					notifyObservers();
+					continue;
+				}
+				
+				notifyObservers();
+	
+				switchPlayer();
+				setNextPiece(move.getTarget());
+				
+				
+			}else{
+				System.out.println("Illegal move.");
 			}
+			
+				
+		}
 		return currentPlayer.getColor();
 		}
+	
+	private void setNextPiece(Position lastPiece){
+		currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(lastPiece)));
+		System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
+				+currentState.getCurrentInitial().getPosY());
+	}
 	
 	private void switchPlayer(){
 		if(currentPlayer == playerWhite){
