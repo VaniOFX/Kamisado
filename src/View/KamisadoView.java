@@ -17,9 +17,9 @@ public class KamisadoView extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-		Parent root = FXMLLoader.load(getClass().getResource("FXMLFiles/MainMenu.fxml"));
-		
-		primaryStage.setScene(new Scene(root, 800, 500));
+//		Parent root = FXMLLoader.load(getClass().getResource("FXMLFiles/MainMenu.fxml"));
+		Parent root =  new StatsView();
+		primaryStage.setScene(new Scene(((StatsView) root).createTable(), 800, 500));
 		primaryStage.show();
 
 	}

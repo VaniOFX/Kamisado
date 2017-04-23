@@ -10,7 +10,12 @@ import java.util.StringTokenizer;
 
 public class StatsManager {
 
-	public static void updateWins(AbstractPlayer winner){
+	public static void updateStats(AbstractPlayer winner, AbstractPlayer loser){
+		updateWins(winner);
+		updateLosses(loser);
+	}
+	
+	private static void updateWins(AbstractPlayer winner){
 		try{
 			int[] arr = removePrev(winner);
 			File inputFile = new File("gameStats.txt");
@@ -24,7 +29,7 @@ public class StatsManager {
 		}
 	}
 	
-	public static void updateLosses(AbstractPlayer loser){
+	private static void updateLosses(AbstractPlayer loser){
 		try{
 			int[] arr = removePrev(loser);
 			File inputFile = new File("gameStats.txt");

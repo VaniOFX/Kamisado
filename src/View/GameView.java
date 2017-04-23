@@ -1,8 +1,10 @@
 package View;
 import java.io.Serializable;
 
-import Controller.Controller;
+import Model.Board;
+import Model.Move;
 import Model.Observer;
+import Model.Position;
 import Model.State;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -26,8 +28,8 @@ public class GameView extends Application implements Observer, Serializable{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFiles/GameView.fxml"));
-		Parent root = loader.load();
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLFiles/GameView.fxml"));
+//		Parent root = loader.load();
 		
 //		BorderPane bp = new BorderPane();
 //		HBox top = new HBox();
@@ -47,7 +49,10 @@ public class GameView extends Application implements Observer, Serializable{
 		
 		
 		bv = new BoardView(e-> System.out.println("HUI"));
-		Scene gameScene = new Scene(bv);
+		State state = new State(new Board(0));
+		state.move(new Move(new Position(0,0),new Position(1,0)));
+		bv.createBoard();
+		Scene gameScene = new Scene(bv.update(state));
 		primaryStage.setTitle("Kamisado board");
 		primaryStage.setScene(gameScene);
 		primaryStage.show();

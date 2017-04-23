@@ -24,7 +24,6 @@ public class GameDriver implements Observable, Serializable {
 	private int scoreBlack;
 	protected long moveStarted;
 	protected long moveTime;
-	private MoveTimer mt;
 	private Piece winnerPiece;
 	private int boardMode;
 	private boolean deadlocked;
@@ -51,18 +50,12 @@ public class GameDriver implements Observable, Serializable {
 		this.boardMode = boardMode;
 		initGameDriver();
 		moveStarted = System.currentTimeMillis();
-		mt = new MoveTimer(moveStarted,moveTime);
+		MoveTimer mt = new MoveTimer();
 		Thread t = new Thread(mt);
 		t.start();
 	}
 	
 	private class MoveTimer implements Runnable{
-		private long moveStarted;
-		private long moveTime;
-		
-		public MoveTimer(long moveStarted,long moveTime){ 
-			this.moveTime = moveTime;
-			this.moveStarted = moveStarted;}
 		@Override
 		public void run() {
 			while(true){
@@ -75,9 +68,6 @@ public class GameDriver implements Observable, Serializable {
 			System.out.println(" ran out of time!");
 			System.exit(1);
 			
-		}
-		public void updateMoveTimer(long moveStarted){
-			this.moveStarted = moveStarted;
 		}
 	}
 	
@@ -228,6 +218,7 @@ public class GameDriver implements Observable, Serializable {
 			}
 			
 
+
 			int curSumo = currentState.getPiece(move.getInitial()).getSumo();
 			//validate move
 			if(GameRules.isLegalMove(currentState, move, curSumo)){
@@ -236,40 +227,24 @@ public class GameDriver implements Observable, Serializable {
 					running = false;
 					winnerPiece = currentState.getPiece(move.getInitial());
 					currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
-
 				}
 				//update board
 				State newState = currentState.clone();
-
-				newState.move(move);
-
-								
-				if(historyEnabled){
-					history.push(newState);
-				}
-				
-				currentState = newState;
-
 				
 				if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
 					Position nextPosition = newState.sumoPush(move.getInitial(), currentPlayer.getColor());
 					newState.setCurrentInitial(newState.getPiecePosition(
 													(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
 															board.getColor(nextPosition)));
-
-//						System.out.println(newState.getCurrentInitial().getPosX()+" "+newState.getCurrentInitial().getPosY());
-//						notifyObservers();
-//						continue;
+//					System.out.println(newState.getCurrentInitial().getPosX()+" "+newState.getCurrentInitial().getPosY());
+//					notifyObservers();
+//					continue;
 					sumoPushed = true;
 				}else{
 					newState.move(move);
 					sumoPushed = false;
-					System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
-					notifyObservers();
-					continue;
-
-
 				}
+				
 				
 				if(historyEnabled){
 					history.push(newState);

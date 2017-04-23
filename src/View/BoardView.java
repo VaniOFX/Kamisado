@@ -2,161 +2,98 @@ package View;
 
 import Model.Board;
 import Model.ColorManager;
-import Model.Observer;
 import Model.Piece;
 import Model.Position;
 import Model.State;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public class BoardView extends Parent{
 	
-//	@FXML
-//	private GridPane gridPane;
-//	
-//	HashMap<PieceView,Image> hashMap;
-//	
-//	
-//	public BoardView(){
-//		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-//				"FXMLFiles/BoardView.fxml"));
-//        fxmlLoader.setRoot(this);
-//        fxmlLoader.setController(this);
-//        try {
-//            fxmlLoader.load();
-//        } catch (IOException exception) {
-//            throw new RuntimeException(exception);
-//        }
-//	}
-//
-//	@FXML
-//	public void initialize(State currentState){
-//    	System.out.println("inside controller");
-//        gridPane.setGridLinesVisible(true);
-//        ObservableList<Node> childrens = gridPane.getChildren();
-//        PieceView[][] pieces = currentState.getPieces();
-//        hashMap.put(pieces[0][0], new Image("C:\\Users\\Damyan\\Desktop\\damyan_kalev.jpg"));
-//        
-//        for (Node node : childrens) {
-//            gridPane.getChildren().remove(node);
-//        }
-//
-//        for(int i = 0; i < 8; i++){
-//            for(int j = 0; j < 8; j++){
-//                System.out.println("I'm in!");
-//                Pane current = new Pane();
-//                if(hashMap.get(pieces[i][j]) != null) {
-//                    ImageView iv = new ImageView(hashMap.get(pieces[i][j]));
-//                    current.getChildren().add(iv);
-//                }
-//                gridPane.getChildren().add(current);
-//            }
-//        }
-//    }
-	
 	private VBox rows = new VBox();
 	private Board board = new Board(Board.NORMAL);
+	private EventHandler<? super MouseEvent> handler;
 	
 	public BoardView(EventHandler<? super MouseEvent> handler){
+		this.handler = handler;
+	}
+	
+	public Parent createBoard(){
 		for(int i = 0; i < 8; i++){
 			HBox row = new HBox();
 			for(int j = 0; j < 8; j++){
 				Color local = ColorManager.convertColor(board.getColor(new Position(i,j)));
-				PieceView p = new PieceView(local);
-				Cell c = new Cell(local);
-				addPiece(c,p);
-				c.setOnMouseClicked(handler);
-				row.getChildren().add(c);
+				StackPane stack = new StackPane();	
+				Rectangle cell = new Rectangle(75,75,local);
+				cell.setStroke(Color.BLACK);
+				cell.setOnMouseClicked(handler);
+				stack.getChildren().addAll(cell);
+				if(i==0 || i ==7){
+					Circle piece = new Circle(25,local);
+					piece.setStroke(Color.BLACK);
+					stack.getChildren().addAll(piece);
+				}
+				row.getChildren().addAll(stack);
+				
 			}
 			rows.getChildren().add(row);
 		}	
+		return rows;
 	}
 	
-	
-	public Cell getCell(int x,int y){
-		return (Cell) ((HBox) rows.getChildren().get(y)).getChildren().get(x);
+	private StackPane getCell(int x,int y){
+		return (StackPane) ((HBox) rows.getChildren().get(y)).getChildren().get(x);
 	}
 	
-	public void addPiece(Cell cell, PieceView p){
-		cell.getChildren().add(p);
-	}
-	
-	public void removePiece(Cell cell){
-		cell.getChildren().remove(0);
-	}
-	
-	public class Cell extends Pane{
+	private Node getPiece(StackPane pane){
+		if(pane.getChildren().size()>1) return pane.getChildren().get(1);
+		return null;
 		
-		private PieceView PieceView;
-		
-		public Cell(Color col){
-			Rectangle rect = new Rectangle(20, 20);
-			rect.setFill(col);
-			rect.setStroke(Color.BLACK);
+	}
+	
+	private void addPiece(StackPane pane, Circle piece){
+		if(pane.getChildren().size() == 1) pane.getChildren().add(piece);
+		else System.out.println("Existing piece");
+	}
+	
+	private void removePiece(StackPane pane){
+		if(pane.getChildren().size()>1){
+			pane.getChildren().remove(1);
 		}
-		
-		public void setPiece(PieceView p){
-			this.PieceView = p;
-		}
-		
-		public PieceView getPiece(){
-			return PieceView;
-		}
-		
-		
 	}
+
 	
-	public class PieceView extends Pane{
-		
-		private Color col;
-		
-		public PieceView(Color col){
-			this.col = col;
-			Circle c = new Circle(15);
-			c.setFill(col);
-			c.setStroke(Color.WHITE);
-		}
-		
-		public Color getColor(){
-			return col;
-		}
-			
-	}
-	
-	
-	public void update(State currentState) {
+	public Parent update(State currentState) {
 		for(int x = 0; x < 8; x++){
 			for(int y = 0; y < 8; y++){
 				Piece statePiece = currentState.getPiece(new Position(x,y));
-				Cell currentCell = getCell(x,y);
-				
+				StackPane currentCell = getCell(x,y);
 				if(statePiece != null){
-					if(currentCell.getPiece() == null){
-						PieceView p = new PieceView(ColorManager.convertColor(statePiece.getColor()));
-						currentCell.setPiece(p);
-						addPiece(currentCell,p);
-					}else if(ColorManager.convertColor(statePiece.getColor()) !=  currentCell.getPiece().getColor()){
+					if(getPiece(currentCell) == null){
+						Circle piece = new Circle(25,ColorManager.convertColor(statePiece.getColor()));
+						addPiece(currentCell,piece);
+					}else if(ColorManager.convertColor(statePiece.getColor()) !=  ((Shape) getPiece(currentCell)).getFill()){
 						removePiece(currentCell);
-						PieceView p = new PieceView(ColorManager.convertColor(statePiece.getColor()));
-						currentCell.setPiece(p);
-						addPiece(currentCell,p);
+						Circle piece = new Circle(25,ColorManager.convertColor(statePiece.getColor()));
+						addPiece(currentCell,piece);
 					}
 				}else{
-					if(currentCell.getPiece() != null){
-						currentCell.setPiece(null);
+					if(getPiece(currentCell) != null){
 						removePiece(currentCell);
 					}
 				}
 			}
 		}
+		return rows;
 	}
 }
 
