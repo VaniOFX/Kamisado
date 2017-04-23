@@ -15,7 +15,7 @@ public class GameDriver implements Observable, Serializable {
 	private AbstractPlayer currentPlayer;
 	private AbstractPlayer winner;
 	private Board board;
-	private ArrayList<Observer> observers;
+	private transient ArrayList<Observer> observers;
 	private State currentState;
 	private Stack<State> history;
 	private boolean historyEnabled;
@@ -169,6 +169,8 @@ public class GameDriver implements Observable, Serializable {
 
 	public Color getRoundWinner(){
 		if(!restored) currentState.setCurrentInitial(currentPlayer.getInitialPosition());
+		currentState.setCurrentPlayer(playerBlack);
+		notifyObservers();
 		//used to check for deadlock
 		ArrayList<Position> positions = new ArrayList<Position>();
 		int counter = 0;
@@ -222,6 +224,7 @@ public class GameDriver implements Observable, Serializable {
 						continue;
 					}
 				}
+
 			}
 			
 
@@ -233,15 +236,27 @@ public class GameDriver implements Observable, Serializable {
 					running = false;
 					winnerPiece = currentState.getPiece(move.getInitial());
 					currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
+
 				}
 				//update board
 				State newState = currentState.clone();
+
+				newState.move(move);
+
+								
+				if(historyEnabled){
+					history.push(newState);
+				}
+				
+				currentState = newState;
+
 				
 				if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
 					Position nextPosition = newState.sumoPush(move.getInitial(), currentPlayer.getColor());
 					newState.setCurrentInitial(newState.getPiecePosition(
 													(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
 															board.getColor(nextPosition)));
+
 //						System.out.println(newState.getCurrentInitial().getPosX()+" "+newState.getCurrentInitial().getPosY());
 //						notifyObservers();
 //						continue;
@@ -249,6 +264,11 @@ public class GameDriver implements Observable, Serializable {
 				}else{
 					newState.move(move);
 					sumoPushed = false;
+					System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
+					notifyObservers();
+					continue;
+
+
 				}
 				
 				if(historyEnabled){
