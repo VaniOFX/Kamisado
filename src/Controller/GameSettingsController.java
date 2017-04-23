@@ -262,7 +262,7 @@ public class GameSettingsController {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(GAMEVIEW));
 			Parent root = (Parent) loader.load();
 			game.subscribe(loader.getController());
-			//game.playGame(lengthMode);
+//			game.playGame(lengthMode);
 		}
 		else if(mode == SPEEDMODE){
 			GameDriver game = new GameDriver(whitePlayer,blackPlayer,GameDriver.HISTORYDISABLED,boardMode,timer);
