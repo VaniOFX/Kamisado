@@ -224,6 +224,7 @@ public class GameDriver implements Observable, Serializable {
 				}
 			}
 			
+
 			int curSumo = currentState.getPiece(move.getInitial()).getSumo();
 			//validate move
 			if(GameRules.isLegalMove(currentState, move, curSumo)){
@@ -235,84 +236,42 @@ public class GameDriver implements Observable, Serializable {
 				}
 				//update board
 				State newState = currentState.clone();
-				newState.move(move);
-
-								
+				
+				if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
+					Position nextPosition = newState.sumoPush(move.getInitial(), currentPlayer.getColor());
+					newState.setCurrentInitial(newState.getPiecePosition(
+													(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
+															board.getColor(nextPosition)));
+//						System.out.println(newState.getCurrentInitial().getPosX()+" "+newState.getCurrentInitial().getPosY());
+//						notifyObservers();
+//						continue;
+					sumoPushed = true;
+				}else{
+					newState.move(move);
+					sumoPushed = false;
+				}
+				
 				if(historyEnabled){
 					history.push(newState);
 				}
 				
-<<<<<<< HEAD
 				currentState = newState;
-				
-				if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
-					Position nextPosition = currentState.sumoPush(move.getTarget(), currentPlayer.getColor());
-					currentState.setCurrentInitial(currentState.getPiecePosition(
-													(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
-															board.getColor(nextPosition)));
-					System.out.println(currentState.getCurrentInitial().getPosX()+" "+currentState.getCurrentInitial().getPosY());
-					notifyObservers();
-					continue;
-=======
-				int curSumo = currentState.getPiece(move.getInitial()).getSumo();
-				//validate move
-				if(GameRules.isLegalMove(currentState, move, curSumo)){
-					if(GameRules.isWinningMove(currentState, move)){
-						//generate match report
-						running = false;
-						winnerPiece = currentState.getPiece(move.getInitial());
-						currentState.getPiece(move.getInitial()).setSumo(curSumo + 1);
-					}
-					//update board
-					State newState = currentState.clone();
-					
-					if(curSumo > 0 && newState.isSumoPushable(move, currentPlayer.getColor(), curSumo)){
-						Position nextPosition = newState.sumoPush(move.getInitial(), currentPlayer.getColor());
-						newState.setCurrentInitial(newState.getPiecePosition(
-														(currentPlayer.getColor() == Color.WHITE) ? Color.WHITE : Color.BLACK,
-																board.getColor(nextPosition)));
-//						System.out.println(newState.getCurrentInitial().getPosX()+" "+newState.getCurrentInitial().getPosY());
-//						notifyObservers();
-//						continue;
-						sumoPushed = true;
-					}else{
-						newState.move(move);
-						sumoPushed = false;
-					}
-					
-					if(historyEnabled){
-						history.push(newState);
-					}
-					
-					currentState = newState;
-					
-					notifyObservers();
-		
-					if(!sumoPushed){
-						switchPlayer();
-						currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
-					}
-					
-					System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
-							+currentState.getCurrentInitial().getPosY());
-					
-				}else{
-					System.out.println("Illegal move.");
->>>>>>> 09fe8916056879cd16b9a0d0659827a8f4906854
-				}
 				
 				notifyObservers();
 	
-				switchPlayer();
-				setNextPiece(move.getTarget());
+				if(!sumoPushed){
+					switchPlayer();
+					currentState.setCurrentInitial(currentState.getPiecePosition(currentPlayer.getColor(), board.getColor(move.getTarget())));
+				}
 				
+				System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
+						+currentState.getCurrentInitial().getPosY());
 				
 			}else{
 				System.out.println("Illegal move.");
+
 			}
-			
-				
-		}
+		}		
 		return currentPlayer.getColor();
 		}
 	

@@ -15,7 +15,8 @@ public class StatsManager {
 			int[] arr = removePrev(winner);
 			File inputFile = new File("gameStats.txt");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile,true));
-			writer.write(winner.getName()+" "+ arr[0]+1 +" "+arr[1]+System.clearProperty("line.separator"));
+			int wins = arr[0]+1;
+			writer.write(winner.getName()+" "+ wins +" "+ arr[1]+System.clearProperty("line.separator"));
 			writer.close();
 		}
 		catch(IOException e){
@@ -23,12 +24,14 @@ public class StatsManager {
 		}
 	}
 	
-	public static void updateLoses(AbstractPlayer loser){
+	public static void updateLosses(AbstractPlayer loser){
 		try{
 			int[] arr = removePrev(loser);
 			File inputFile = new File("gameStats.txt");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile,true));
-			writer.write(loser.getName()+(arr[0])+(arr[1]+1));
+			int losses = arr[1]+1;
+			writer.write(loser.getName()+" "+ arr[0] +" "+ losses +System.clearProperty("line.separator"));
+			writer.close();
 		}
 		catch(IOException e){
 			e.printStackTrace();
@@ -66,6 +69,7 @@ public class StatsManager {
 			}
 			reader.close();
 			writer.close();
+			inputFile.delete();
 			boolean successful = tempFile.renameTo(inputFile);
 			return arr;
 		}

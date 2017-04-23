@@ -46,7 +46,6 @@ public class GameView extends Application implements Observer, Serializable{
 //		bp.setCenter(board);
 		
 		
-		
 		bv = new BoardView(e-> System.out.println("HUI"));
 		Scene gameScene = new Scene(bv);
 		primaryStage.setTitle("Kamisado board");

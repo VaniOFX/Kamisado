@@ -9,7 +9,7 @@ public class Application {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
-		StatsManager.updateWins(new LocalPlayer("SUCKITT",Color.WHITE));
+		StatsManager.updateWins(new LocalPlayer("Damyan",Color.WHITE));
 		//MainView mv = new MainView();
 		String newGame = Xterm.setNewGame();
 		if(newGame.equals("new")){
