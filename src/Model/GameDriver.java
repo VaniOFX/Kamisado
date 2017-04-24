@@ -107,6 +107,7 @@ public class GameDriver implements Observable, Serializable {
 	public void playGame(int winScore){
 		if(winScore == -1){
 			winScore = this.winScore;
+			observers = new ArrayList<Observer>();
 			restored = true;
 		}else{
 			this.winScore = winScore;
@@ -158,7 +159,12 @@ public class GameDriver implements Observable, Serializable {
 	
 
 	public Color getRoundWinner(){
-		if(!restored) currentState.setCurrentInitial(currentPlayer.getInitialPosition());
+		if(!restored){
+			currentState.setCurrentInitial(currentPlayer.getInitialPosition());
+		}else{
+			System.out.println("The next piece to move is " + currentState.getCurrentInitial().getPosX() + " "
+					+currentState.getCurrentInitial().getPosY());
+		}
 		currentState.setCurrentPlayer(playerBlack);
 		notifyObservers();
 		//used to check for deadlock

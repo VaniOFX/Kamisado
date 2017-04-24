@@ -3,7 +3,9 @@ package Controller;
 import java.io.IOException;
 
 import Model.GameDriver;
+import Model.Observer;
 import Model.SaveManager;
+import Model.State;
 import View.StatsView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
