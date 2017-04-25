@@ -1,6 +1,7 @@
 package Model;
 
- 
+import View.BoardView;
+
 public class LocalPlayer implements AbstractPlayer{
 
 	private Color playerColor;
@@ -13,7 +14,17 @@ public class LocalPlayer implements AbstractPlayer{
 	
 	public Move getMove(State state) {
 		Position initial = state.getCurrentInitial();
-		return new Move(initial, Xterm.getPositionInput());
+		int x,y;
+		Position pos;
+//		Position pos = null;
+//		if(playerColor == Color.WHITE) pos = Xterm.getInitialPositionWhite();
+//		else if (playerColor == Color.BLACK) pos = Xterm.getInitialPositionBlack();
+		do{
+			pos = BoardView.getPosition();
+			x = pos.getPosX();
+			y = pos.getPosY();
+		}while(x < 0 && y < 0);
+		return new Move(initial,pos);
 	}
 	
 	public Color getColor() {
@@ -21,9 +32,16 @@ public class LocalPlayer implements AbstractPlayer{
 	}
 
 	public Position getInitialPosition(){
-		Position pos = null;
-		if(playerColor == Color.WHITE) pos = Xterm.getInitialPositionWhite();
-		else if (playerColor == Color.BLACK) pos = Xterm.getInitialPositionBlack();
+		int x,y;
+		Position pos;
+//		Position pos = null;
+//		if(playerColor == Color.WHITE) pos = Xterm.getInitialPositionWhite();
+//		else if (playerColor == Color.BLACK) pos = Xterm.getInitialPositionBlack();
+		do{
+			pos = BoardView.getPosition();
+			x = pos.getPosX();
+			y = pos.getPosY();
+		}while(x < 0 && y < 0);
 		return pos;
 	}
 	

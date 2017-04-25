@@ -15,18 +15,29 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class BoardView extends Parent{
 	
 	private VBox rows = new VBox();
 	private Board board = new Board(Board.NORMAL);
-	private EventHandler<? super MouseEvent> handler;
+	private static int selectedX;
+	private static int selectedY;
+	private static boolean newMove;
 	
-	public BoardView(EventHandler<? super MouseEvent> handler){
-		this.handler = handler;
+	public BoardView(){
+
 	}
 	
+	public static Position getPosition(){
+		if(newMove){
+			Position pos = new Position(selectedY,selectedX);
+			newMove = false;
+			return pos;
+		}
+		
+		return new Position(-3,-3);
+		
+	}
 	public Parent createBoard(){
 		for(int i = 0; i < 8; i++){
 			HBox row = new HBox();
@@ -35,12 +46,17 @@ public class BoardView extends Parent{
 				StackPane stack = new StackPane();	
 				Rectangle cell = new Rectangle(75,75,local);
 				cell.setStroke(Color.BLACK);
-				cell.setOnMouseClicked(handler);
+				stack.setOnMouseClicked(e->{
+					final Object selectedRow = e.getSource();
+					selectedX = row.getChildren().indexOf(selectedRow);
+					selectedY = rows.getChildren().indexOf(row);
+					newMove = true;
+					System.out.println(selectedX+" "+selectedY);
+				});
 				stack.getChildren().addAll(cell);
 				if(i==0 || i ==7){
-					Circle piece = new Circle(25,local);
-					piece.setStroke(Color.BLACK);
-					stack.getChildren().addAll(piece);
+
+					stack.getChildren().addAll(new PieceView(local));
 				}
 				row.getChildren().addAll(stack);
 				
@@ -51,8 +67,9 @@ public class BoardView extends Parent{
 	}
 	
 	private StackPane getCell(int x,int y){
-		return (StackPane) ((HBox) rows.getChildren().get(y)).getChildren().get(x);
+		return (StackPane) ((HBox) rows.getChildren().get(x)).getChildren().get(y);
 	}
+	
 	
 	private Node getPiece(StackPane pane){
 		if(pane.getChildren().size()>1) return pane.getChildren().get(1);
@@ -72,28 +89,55 @@ public class BoardView extends Parent{
 	}
 
 	
+	public class PieceView extends Circle{
+			
+
+		private Color col;
+			
+		public PieceView(Color col){
+			super(25,col);
+			setStroke(Color.BLACK);
+			setStrokeWidth(10);
+			this.col = col;
+		}
+		
+		public Color getColor(){
+			return col;
+		}
+			
+	}	
+		
+	
 	public Parent update(State currentState) {
 		for(int x = 0; x < 8; x++){
 			for(int y = 0; y < 8; y++){
 				Piece statePiece = currentState.getPiece(new Position(x,y));
 				StackPane currentCell = getCell(x,y);
 				if(statePiece != null){
-					if(getPiece(currentCell) == null){
-						Circle piece = new Circle(25,ColorManager.convertColor(statePiece.getColor()));
-						addPiece(currentCell,piece);
-					}else if(ColorManager.convertColor(statePiece.getColor()) !=  ((Shape) getPiece(currentCell)).getFill()){
-						removePiece(currentCell);
-						Circle piece = new Circle(25,ColorManager.convertColor(statePiece.getColor()));
+					if(getPiece(currentCell) != null){
+						if(ColorManager.convertColor(statePiece.getColor()) ==  ((PieceView) getPiece(currentCell)).getColor()){
+							Circle piece = new PieceView(ColorManager.convertColor(statePiece.getColor()));
+							addPiece(currentCell,piece);
+						}else{
+							removePiece(currentCell);
+							Circle piece = new PieceView(ColorManager.convertColor(statePiece.getColor()));
+							addPiece(currentCell,piece);
+						}
+					}else{
+						Circle piece = new PieceView(ColorManager.convertColor(statePiece.getColor()));
 						addPiece(currentCell,piece);
 					}
 				}else{
-					if(getPiece(currentCell) != null){
+					if(getPiece(currentCell) != null)
 						removePiece(currentCell);
-					}
+					
 				}
 			}
-		}
+		}		
 		return rows;
 	}
 }
+
+
+					
 

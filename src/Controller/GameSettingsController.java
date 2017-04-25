@@ -9,6 +9,7 @@ import Model.Color;
 import Model.GameDriver;
 import Model.LocalPlayer;
 import Model.NetworkGameDriver;
+import View.GameView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class GameSettingsController {
 	
@@ -94,9 +96,20 @@ public class GameSettingsController {
 				if(startSinglePlayerGame())
 					playSingleGame();
 			}else if(multiplayerScene != null && currentScene == multiplayerScene.getScene()){
-				mainController.showScene(GAMEVIEW,playButton);
-				if(startMultiplayerGame())
-					playMultiplayerGame();
+				GameView gv = new GameView();
+
+				Stage stage = (Stage) playButton.getScene().getWindow();
+				stage.setScene(new Scene(gv.createGameView()));
+				stage.show();
+				AbstractPlayer whitePlayer = new LocalPlayer(playerWhite,Color.WHITE);
+				AbstractPlayer blackPlayer = new LocalPlayer(playerBlack,Color.BLACK);
+				GameDriver game = new GameDriver(whitePlayer, blackPlayer ,GameDriver.HISTORYDISABLED,boardMode);
+				game.subscribe(gv);
+				Thread t = new Thread(game);
+				t.start();
+				
+				//if(startMultiplayerGame())
+					//playMultiplayerGame(gv);
 			}else if(networkScene != null && currentScene == networkScene.getScene()){
 				startNetworkGame();
 				playNetworkGame();
@@ -254,15 +267,16 @@ public class GameSettingsController {
 		}
 	}
 	
-	public void playMultiplayerGame() throws IOException{
+	public void playMultiplayerGame(GameView subscribed) throws IOException{
 		AbstractPlayer whitePlayer = new LocalPlayer(playerWhite,Color.WHITE);
 		AbstractPlayer blackPlayer = new LocalPlayer(playerBlack,Color.BLACK);
 		if(mode == NORMALMODE){
 			GameDriver game = new GameDriver(whitePlayer, blackPlayer ,GameDriver.HISTORYDISABLED,boardMode);
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(GAMEVIEW));
-			Parent root = (Parent) loader.load();
-			game.subscribe(loader.getController());
-//			game.playGame(lengthMode);
+//			FXMLLoader loader = new FXMLLoader(getClass().getResource(GAMEVIEW));
+//			Parent root = (Parent) loader.load();
+//			game.subscribe(loader.getController());
+			game.subscribe(subscribed);
+			game.playGame(lengthMode);
 		}
 		else if(mode == SPEEDMODE){
 			GameDriver game = new GameDriver(whitePlayer,blackPlayer,GameDriver.HISTORYDISABLED,boardMode,timer);

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class GameDriver implements Observable, Serializable {
+public class GameDriver implements Observable, Serializable, Runnable {
 
 	/**
 	 * 
@@ -87,7 +87,7 @@ public class GameDriver implements Observable, Serializable {
 		if(historyEnabled){
 			history.push(currentState);
 		}
-		notifyObservers();
+		//notifyObservers();
 		currentPlayer = playerWhite;
 		running = true;
 		deadlocked = false;
@@ -105,6 +105,7 @@ public class GameDriver implements Observable, Serializable {
 	}
 	
 	public void playGame(int winScore){
+		System.out.println("Game Started");
 		if(winScore == -1){
 			winScore = this.winScore;
 			restored = true;
@@ -299,7 +300,20 @@ public class GameDriver implements Observable, Serializable {
 		currentState.printState();
 		for(Observer ob : observers){
 			ob.update(currentState);
-		}
+			try
+		    {
+		      synchronized(currentState) {
+		        wait();
+		      }
+		    } catch (InterruptedException e) {}
+		    System.out.println("Runner away!");
+		  }
+	}
+
+	@Override
+	public void run() {
+		playGame(7);
+		
 	}
 
 }
