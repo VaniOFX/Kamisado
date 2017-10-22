@@ -1,0 +1,2 @@
+Damyan 0 5
+Ivan 5 0
