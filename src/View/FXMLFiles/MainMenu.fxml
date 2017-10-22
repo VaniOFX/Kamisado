@@ -30,7 +30,7 @@
                </padding>
                <children>
                   <Button fx:id="netButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Network Game" />
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="View Stats" />
+                  <Button fx:id="statsButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="View Stats" />
                   <Button fx:id="exitButton" mnemonicParsing="false" onAction="#handleMenus" prefHeight="50.0" prefWidth="300.0" text="Exit" />
                </children>
             </VBox>

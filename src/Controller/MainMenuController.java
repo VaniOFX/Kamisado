@@ -3,7 +3,10 @@ package Controller;
 import java.io.IOException;
 
 import Model.GameDriver;
+import Model.Observer;
 import Model.SaveManager;
+import Model.State;
+import View.StatsView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +29,8 @@ public class MainMenuController {
 	private Button exitButton;
 	@FXML
 	private Button loadGameButton;
+	@FXML
+	private Button statsButton;
 	
 	public static final String MAINMENU = "../View/FXMLFiles/MainMenu.fxml";
 	public static final String SMENU = "../View/FXMLFiles/SingleGameMenu.fxml";
@@ -52,6 +57,12 @@ public class MainMenuController {
 			stage.close();
 		}else if(e.getSource() == loadGameButton){
 			loadGame();
+		}else if(e.getSource() == statsButton){
+			System.out.println("stats");
+			Stage stage = (Stage) statsButton.getScene().getWindow();
+			Parent root = new StatsView();
+			stage.setScene(new Scene(((StatsView) root).createTable(), 800, 600));
+			stage.show();
 		}
 	}
 	
